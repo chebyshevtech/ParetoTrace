@@ -247,5 +247,32 @@ sl = [s['selection']['action_trace'][-1]['numerical_slack'] / s['selection']['ac
 check('G.2 slack at most 2.9% of U', round(max(sl) * 100, 1), 2.9); check('G.2 slack median 0.16% of U', round(st.median(sl) * 100, 2), .16)
 check('G.2 algorithm + audit actions = 16 every step', all(s['accounting']['algorithm_gram_actions'] + s['accounting']['audit_completion_actions'] == 16 for s in g2), True)
 
+
+# ---------------- Target-aware Stream, live training (paired by seed with the sharp-endpoint study)
+ta = load('target_aware_training/target_aware_events_summary_vm.json')['runs']
+tam = {r['seed']: load('target_aware_training/metrics_seed%d.json' % r['seed']) for r in ta}
+check('target-aware runs', sorted(r['seed'] for r in ta), [62001, 62002, 62003])
+check('target-aware same initialization as sharp study', all(tam[s_]['initial_model_sha256'] == runs[(s_, 'direct')]['initial_model_sha256'] for s_ in tam), True)
+check('target-aware early stops', sum(r['early_stops_below_40'] for r in ta), 894)
+check('target-aware fallbacks', sum(r['fallbacks'] for r in ta), 6)
+check('target-aware fallbacks near-stationary', max(x['qstar_over_median_accepted_U'] for r in ta for x in r['fallback_records']) < 6e-4, True)
+check('target-aware mean actions 19.5', round(st.mean(r['actions_mean'] for r in ta), 1), 19.5)
+check('target-aware s/update 1.14', round(st.mean(r['update_seconds_mean'] for r in ta), 2), 1.14)
+check('original rule s/update 1.79', round(st.mean(runs[(s_, 'stream_completion')]['update_seconds'] / 300 for s_ in (62001, 62002, 62003)), 2), 1.79)
+check('original rule mean actions 29.7', round(st.mean(r['actions_mean'] for r in arm('stream_completion')), 1), 29.7)
+check('energy test alone decided 611 stops', sum(r['stop_decided_by']['energy'] for r in ta), 611)
+check('descent target decided 211 stops', sum(r['stop_decided_by']['margin'] for r in ta), 211)
+check('both together 72', sum(r['stop_decided_by']['both_same_prefix'] for r in ta), 72)
+check('energy alone decided none under 0.95 gate', sum(r['stop_decided_by']['energy'] for r in arm('stream_completion')), 0)
+check('target-aware nine audits passed', sum(sum(r['audit_passed']) for r in ta), 9)
+check('target-aware every audited update descends', all(x > 0 for r in ta for x in r['audit_min_response']), True)
+check('target-aware peak without fallback 0.58 GiB', round(max(r['peak_gib_non_fallback_updates'] for r in ta), 2), .58)
+check('target-aware mean worst acc 62.4', round(st.mean(tam[s_]['final_test']['worst_accuracy'] * 100 for s_ in tam), 1), 62.4)
+gaps = {s_: [tam[s_]['final_test']['worst_accuracy'] * 100 - runs[(s_, a)]['final_test']['worst_accuracy'] * 100 for a in ('direct', 'native_chunk1')] for s_ in tam}
+within = [s_ for s_, g in gaps.items() if max(abs(x) for x in g) <= 2.6]
+check('within 2.6 points of exact arms on two seeds', len(within), 2)
+far = [g for s_, g in gaps.items() if s_ not in within][0]
+check('third seed 4.3 to 6.8 points below exact arms', (round(-max(far), 1), round(-min(far), 1)), (4.3, 6.8))
+
 print('\n%d claims failed' % len(FAILS) if FAILS else '\nALL CLAIMS PASS')
 sys.exit(1 if FAILS else 0)

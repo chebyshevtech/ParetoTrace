@@ -16,6 +16,7 @@ files.
 | Live CelebA training: 889 and 890 early stops, 11 and 10 fallbacks, mean actions, energy-first medians, gate-decided stops, 1.8–3.5% and 2.4–2.8% savings, 36 audits, test accuracies, time and memory | `results/sharp_training/*.json` | `sharp ...`, `scalar ...`, `training ...`, `stream ...` |
 | Target-aware Stream, live: 1.85 → 1.08 s, 41% by medians, 37% by paired geometric mean, actions, audits, descent, 2.1%, 0.54 GiB, about 2× Direct | `results/query_rule/query_rule_summary.json` (from `query_rule_study.json`) | `live ...` |
 | Target-aware Stream, replay: 7%/24%/3% fewer actions; sharp vs scalar under strict descent 37%/59%/29%; 33 distinct CelebA states; all 60 live action counts predicted | `results/query_rule/replay_results.json` (from `audits/replay_query_rules.py`) | `replay ...` |
+| Target-aware Stream, live training: 894 early stops, 6 fallbacks, 19.5 actions, 1.14 s vs 1.79 s, 611/211/72 decided stops, 9 audits with descent, 0.58 GiB, test accuracies and seed gaps | `results/target_aware_training/*.json` | `target-aware ...`, `energy test ...`, `descent target ...` |
 | Block-4 uniform controls: descends on all nine panels, objective factor 1.15–4.26 | `results/historical/uniform_block4_controls.json` | `uniform descends ...` |
 | App. G.2 fixed-step run: 22 early stops, 4–10 actions, U/L ≤ 1.049, q/q\* ≤ 1.031, no false stop, slack ≤ 2.9% of U (median 0.16%), 16 actions per step including the audit | `results/historical/g2_six_arm_run.json` | `G.2 ...` |
 

@@ -16,7 +16,7 @@ python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on s
 python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
 ```
 
-`check_claims.py` exits with status 0 only if every check passes. It currently runs 214
+`check_claims.py` exits with status 0 only if every check passes. It currently runs 233
 checks.
 
 `CLAIMS.md` lists every claim in the response with its source file. It also marks the
@@ -55,6 +55,7 @@ The Stream modules:
 | Live CelebA recovery at fixed states | P8RF Q2/Q3/Q7, ZNzr Q2 | `experiments/recovery_study/` | `results/recovery_study/` |
 | Live CelebA training, sharp vs scalar endpoint, 12 runs | P8RF Q7, 6wXk Q3 | `experiments/sharp_training/` | `results/sharp_training/` |
 | **Target-aware Stream** (live timing and replay) | All threads | `experiments/query_rule/`, `audits/replay_query_rules.py` | `results/query_rule/` |
+| **Target-aware Stream, live training** (3 seeds × 300 updates, paired with the 12-run study) | P8RF Q7, 6wXk Q3, ZNzr Q2 | `experiments/target_aware_training/` | `results/target_aware_training/` |
 
 ## The improvement: target-aware Stream
 
@@ -79,6 +80,14 @@ audits:
 - Memory is unchanged at 0.54 GiB.
 - Every direction passes the audit, every task descends, and the energy stays within 2.1%
   of optimal.
+
+**Live training results.** Over 900 CelebA-40 updates, paired by seed with the 12-run study:
+
+- 894 updates certified before full rank, at a mean 19.5 of 40 actions.
+- 1.14 s per update, against 1.79 s for the original rule.
+- The energy test alone decided 611 stops, against none under the 0.95 gate.
+- All nine audits passed, with every task descending.
+- Final test accuracy shows no quality difference that three seeds can resolve.
 
 **Replay results.** On stored Grams, the replay reproduces all 60 live action counts. Under
 the strict-descent target, the sharp endpoint needs 37%, 59% and 29% fewer actions than
