@@ -1,0 +1,170 @@
+[
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 17.998945951461792
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 19.36149263381958
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 18.18382978439331
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 19.670546054840088
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 23.002821445465088
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 18.157433032989502
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 104.36734890937805
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 226.74036240577698
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 111.91204786300659
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 267.1325902938843
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 655.0582273006439
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 118.47578883171082
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 106.53038096427917
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 224.21828961372375
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 112.08534002304077
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 269.57645893096924
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 703.8067960739136
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 120.77502918243408
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 105.42895865440369
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 228.96301341056824
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 112.68623924255371
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 236.36690521240234
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 641.267692565918
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 122.93685603141785
+ }
+]

@@ -274,5 +274,91 @@ check('within 2.6 points of exact arms on two seeds', len(within), 2)
 far = [g for s_, g in gaps.items() if s_ not in within][0]
 check('third seed 4.3 to 6.8 points below exact arms', (round(-max(far), 1), round(-min(far), 1)), (4.3, 6.8))
 
+
+# ---------------- Per-update guarantee: uniform's first-order responses and the certified-step study
+sys.path.insert(0, str(ROOT / 'paretotrace' / 'stream'))
+from v46_baseline_frontier import qp as _qp
+z = np.load(RES / 'certified_step' / 'uniform_responses_along_training.npz')
+U_, E_, FB_ = z['uniform_trunk_response'], z['executed_trunk_response'], z['fallback']
+check('along training: updates', len(U_), 2700)
+check('along training: uniform trunk direction raises a task', int((U_.min(1) < 0).sum()), 2690)
+check('along training: median attributes raised', float(np.median((U_ < 0).sum(1))), 8.0)
+check('along training: executed Stream margin positive', int((E_[~FB_].min(1) > 0).sum()), int((~FB_).sum()))
+check('along training: Stream-certified updates', int((~FB_).sum()), 2673)
+check('along training: exact fallbacks', int(FB_.sum()), 27)
+
+
+def uniform_stats(grams):
+    out = []
+    for K in grams:
+        K = (np.asarray(K, float) + np.asarray(K, float).T) / 2
+        r = K @ np.full(len(K), 1 / len(K))
+        out.append(((r < 0).sum(), len(K)))
+    return out
+
+
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location('_rq', ROOT / 'audits' / 'replay_query_rules.py'); _rq = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_rq)
+_cel = [K for _, K in _rq.distinct(_rq.celeba_grams())]
+s_ = uniform_stats(_cel)
+check('stored CelebA states', len(s_), 33)
+check('stored CelebA: uniform raises a task at every state', sum(n > 0 for n, _ in s_), 33)
+check('stored CelebA: median attributes raised', float(np.median([n for n, _ in s_])), 8.0)
+for nm, f, n_raise, med in (('CIFAR-10 groups', 'cifar10_m100.npz', 8, 27.0), ('recorded Grams', 'recorded103.npz', 2, 0.0)):
+    zz = np.load(RES / 'grams' / f); s_ = uniform_stats([zz[k] for k in zz.keys()])
+    check(f'stored {nm}: uniform raises a task', sum(n > 0 for n, _ in s_), n_raise)
+    check(f'stored {nm}: median raised', float(np.median([n for n, _ in s_])), med)
+
+
+# ---------------- Certified-step study (CelebA-40, six arms, three seeds, plain SGD)
+cs = {(r['arm'], r['seed']): r for r in load('certified_step/certified_step_summary.json')['runs']}
+CS_ARMS = ('uniform_fixed', 'direct_fixed', 'uniform_certified', 'direct_certified', 'stream_certified', 'mgda_ub_certified')
+CS_SEEDS = (62001, 62002, 62003)
+check('certified-step runs', len(cs), 18)
+check('certified-step every run 300 updates', all(cs[(a, s_)]['updates'] == 300 for a in CS_ARMS for s_ in CS_SEEDS), True)
+check('certified-step same initialization per seed', all(len({cs[(a, s_)]['initial_train']['worst_bce'] for a in CS_ARMS}) == 1 for s_ in CS_SEEDS), True)
+check('certified-step same initialization as the sharp and target-aware studies', all(cs[(a, s_)]['initial_model_sha256'] == runs[(s_, 'direct')]['initial_model_sha256'] for a in CS_ARMS for s_ in CS_SEEDS), True)
+
+
+def cs_sum(arm, key):
+    return sum(cs[(arm, s_)][key] for s_ in CS_SEEDS)
+
+
+def cs_mean(arm, split, key, scale=1.):
+    return st.mean(cs[(arm, s_)][split][key] * scale for s_ in CS_SEEDS)
+
+
+EXPECTED = {'table': {'uniform_fixed': (777, 0.604, 65.3), 'direct_fixed': (900, 1.778, 43.2), 'uniform_certified': (0, 0.64, 61.5), 'direct_certified': (0, 0.653, 59.8), 'stream_certified': (0, 0.653, 59.8), 'mgda_ub_certified': (0, 0.655, 59.6)}, 'status': {'uniform_certified': {'accepted': 898, 'no_admissible_step': 0, 'not_certified': 2}, 'direct_certified': {'accepted': 900, 'no_admissible_step': 0, 'not_certified': 0}, 'stream_certified': {'accepted': 900, 'no_admissible_step': 0, 'not_certified': 0}, 'mgda_ub_certified': {'accepted': 900, 'no_admissible_step': 0, 'not_certified': 0}}, 'first_order_positive': {'uniform_certified': 898, 'direct_fixed': 900, 'uniform_fixed': 197}, 'trunk_nonpositive': {'uniform_certified': 636, 'uniform_fixed': 890}, 'median_eta': 0.00125, 'full_step': 0, 'primary_mean': 0.013, 'primary_direct_lower': 0}
+for arm, (raised, train_worst, test_worst_acc) in EXPECTED['table'].items():
+    check(f'certified-step {arm} updates raising a task', cs_sum(arm, 'updates_raising_a_task'), raised)
+    check(f'certified-step {arm} worst-attribute train BCE', round(cs_mean(arm, 'final_train', 'worst_bce'), 3), train_worst)
+    check(f'certified-step {arm} worst-attribute test accuracy', round(cs_mean(arm, 'final_test', 'worst_accuracy', 100), 1), test_worst_acc)
+for arm, counts in EXPECTED['status'].items():
+    check(f'certified-step {arm} status counts', {k: sum(cs[(arm, s_)]['status_counts'][k] for s_ in CS_SEEDS) for k in counts}, counts)
+for arm, n in EXPECTED['first_order_positive'].items():
+    check(f'certified-step {arm} full first-order response positive at every update', 900 - cs_sum(arm, 'first_order_nonpositive_updates'), n)
+for arm, n in EXPECTED['trunk_nonpositive'].items():
+    check(f'certified-step {arm} trunk response nonpositive updates', cs_sum(arm, 'trunk_nonpositive_updates'), n)
+etas = [e for a in ('uniform_certified', 'direct_certified', 'stream_certified', 'mgda_ub_certified') for s_ in CS_SEEDS
+        for e, k in zip(cs[(a, s_)]['per_update']['accepted_eta'], cs[(a, s_)]['per_update']['status']) if k == 'accepted']
+check('certified-step median accepted step', st.median(etas), EXPECTED['median_eta'])
+check('certified-step accepted at the full step', sum(e == 0.02 for e in etas), EXPECTED['full_step'])
+d = [cs[('direct_certified', s_)]['final_train']['worst_bce'] - cs[('uniform_certified', s_)]['final_train']['worst_bce'] for s_ in CS_SEEDS]
+check('certified-step primary endpoint mean (direct - uniform, train worst BCE)', round(st.mean(d), 3), EXPECTED['primary_mean'])
+check('certified-step primary endpoint seeds favouring direct', sum(x < 0 for x in d), EXPECTED['primary_direct_lower'])
+check('certified-step audits passed', sum(cs_sum(a, 'audits_passed') for a in CS_ARMS), sum(cs_sum(a, 'audits') for a in CS_ARMS))
+check('certified-step audits count', sum(cs_sum(a, 'audits') for a in CS_ARMS), 54)
+check('certified-step realized change never positive at accepted updates', all(
+    c <= 0 for a in CS_ARMS if a.endswith('certified') for s_ in CS_SEEDS for c in cs[(a, s_)]['per_update']['max_task_change']), True)
+check('certified-step accepted certified updates 3,598', len(etas), 3598)
+check('certified-step held certified updates 2', sum(cs_sum(a, 'updates') for a in CS_ARMS if a.endswith('certified')) - len(etas), 2)
+check('certified-step uniform cost in worst-attribute test accuracy (3.7 points)', round(cs_mean('uniform_fixed', 'final_test', 'worst_accuracy', 100) - cs_mean('uniform_certified', 'final_test', 'worst_accuracy', 100), 1), 3.7)
+check('certified-step exact MGDA gain in worst-attribute test accuracy (16.6 points)', round(cs_mean('direct_certified', 'final_test', 'worst_accuracy', 100) - cs_mean('direct_fixed', 'final_test', 'worst_accuracy', 100), 1), 16.6)
+check('certified-step heads turned a negative trunk response positive (634 updates)', cs_sum('uniform_certified', 'trunk_nonpositive_updates') - cs_sum('uniform_certified', 'first_order_nonpositive_updates'), 634)
+check('certified-step Stream matches exact MGDA within 0.0002 train BCE', round(max(abs(cs[('stream_certified', s_)]['final_train']['worst_bce'] - cs[('direct_certified', s_)]['final_train']['worst_bce']) for s_ in CS_SEEDS), 4), 0.0002)
+check('certified-step Stream peak 0.58 GiB', round(max(cs[('stream_certified', s_)]['peak_gib_max'] for s_ in CS_SEEDS), 2), 0.58)
+check('certified-step Direct peak 8.04 GiB', round(max(cs[('direct_certified', s_)]['peak_gib_max'] for s_ in CS_SEEDS), 2), 8.04)
+check('certified-step uniform certified lower than direct certified on every seed', all(cs[('uniform_certified', s_)]['final_train']['worst_bce'] < cs[('direct_certified', s_)]['final_train']['worst_bce'] for s_ in CS_SEEDS), True)
+
 print('\n%d claims failed' % len(FAILS) if FAILS else '\nALL CLAIMS PASS')
 sys.exit(1 if FAILS else 0)
