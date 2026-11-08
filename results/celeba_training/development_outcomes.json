@@ -1,0 +1,68 @@
+{
+  "identity": {
+    "celeba_training.py": "5f5346ee2ac78d5fe831f07cc9f84690a17661b576edfb75f801fb74eec9c1bf",
+    "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+    "preflight.py": "91356e897f1786e5a13affc318965b4ee2d76cef3d6cfed591a53a1f501ecbba",
+    "celeba_protocol.json": "6d344fd4c9ccac9ceffc75aeb9e2d3bcc3085d11797d745de9561cad888430c1",
+    "celeba_queue.py": "c55c9a378b029396e808ae721018dbbc3c8617289d4d20c247f42ed0ae0b4fdc",
+    "run_campaign.py": "95958ec9120987ba6640d1d0d9dd541773771ad14923b10bf9200d5fc77eb04e",
+    "dataset": "703b67837b59368ef20e4a6ee1c74350d66c8ba561b05dac6ff1c4f9b991ae71"
+  },
+  "outcomes": {
+    "direct:0.005": {
+      "success": true,
+      "attempt_id": "188ef07e5c6e45c08c8d719e300299c3"
+    },
+    "mgda_ub:0.005": {
+      "success": true,
+      "attempt_id": "c9e41419965744a38f52a47fdbbed47e"
+    },
+    "uniform:0.005": {
+      "success": true,
+      "attempt_id": "8b1a84ff0c384da09b372e06c2f54427"
+    },
+    "direct:0.02": {
+      "success": true,
+      "attempt_id": "3686d01241f84a468a52cc89128496eb"
+    },
+    "mgda_ub:0.02": {
+      "success": true,
+      "attempt_id": "c42d14e78ee04c9d917f598a5fc6fb97"
+    },
+    "uniform:0.02": {
+      "success": true,
+      "attempt_id": "bf0b5d26e329409b8451f256a308a613"
+    },
+    "direct:0.08": {
+      "success": true,
+      "attempt_id": "1e2ffb0e9ffe42da812f49084eb9cef7"
+    },
+    "mgda_ub:0.08": {
+      "success": true,
+      "attempt_id": "625b5d947f634940ab0e7d50579bc4de"
+    },
+    "uniform:0.08": {
+      "success": false,
+      "attempt_id": "48beda9f8aea4e12b0345cc990495ab2",
+      "failure": {
+        "phase": "development",
+        "arm": "uniform",
+        "seed": 9001,
+        "lr": 0.08,
+        "step": 9,
+        "failure_path": "/content/rebuttal/celeba_v2/runs/development_uniform_seed9001_lr0.08.failure.json",
+        "attempt_id": "48beda9f8aea4e12b0345cc990495ab2",
+        "config_hash": "9027c0c3b4d8b350aba623a65da73b6c9e6961865a769bb29bd387f8875606ba",
+        "source_sha256": {
+          "celeba_training.py": "5f5346ee2ac78d5fe831f07cc9f84690a17661b576edfb75f801fb74eec9c1bf",
+          "preflight.py": "91356e897f1786e5a13affc318965b4ee2d76cef3d6cfed591a53a1f501ecbba",
+          "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3"
+        },
+        "data_sha256": "703b67837b59368ef20e4a6ee1c74350d66c8ba561b05dac6ff1c4f9b991ae71",
+        "kind": "nonfinite_training",
+        "error": "Nonfinite minibatch losses",
+        "complete": false
+      }
+    }
+  }
+}

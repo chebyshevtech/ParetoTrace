@@ -1,0 +1,116 @@
+{
+  "version": "qm9_rebuttal_short_v1",
+  "arms": [
+    "direct_factorized",
+    "mgda_ub",
+    "uniform",
+    "Nash_MTL",
+    "FairGrad",
+    "Aligned_MTL",
+    "FAMO"
+  ],
+  "reporting_seeds": [
+    38201,
+    38202,
+    38203
+  ],
+  "epochs": 2,
+  "learning_rate": 0.0001,
+  "batch_size": 128,
+  "optimizer": "Adam, weight_decay1e-5",
+  "systems": {
+    "direct_factorized": {
+      "method": "direct_factorized",
+      "chunk": 1,
+      "row_chunk": 512,
+      "fused": false
+    },
+    "mgda_ub": {
+      "method": "mgda_ub",
+      "chunk": 1,
+      "fused": false
+    },
+    "uniform": {
+      "method": "uniform",
+      "chunk": 1,
+      "fused": false
+    },
+    "Nash_MTL": {
+      "method": "Nash_MTL",
+      "chunk": 1,
+      "fused": false
+    },
+    "FairGrad": {
+      "method": "FairGrad",
+      "chunk": 1,
+      "fused": false
+    },
+    "Aligned_MTL": {
+      "method": "Aligned_MTL",
+      "chunk": 1,
+      "fused": false
+    },
+    "FAMO": {
+      "method": "FAMO",
+      "chunk": 1,
+      "fused": false
+    }
+  },
+  "systems_pilot_summary": {
+    "direct_factorized": {
+      "median_update_seconds": 0.4807208279999031,
+      "pilot": "joint",
+      "development_peak_cap_bytes": 32212254720,
+      "pilot_unsuccessful_solver_calls": 0
+    },
+    "mgda_ub": {
+      "median_update_seconds": 0.06625704599991877,
+      "pilot": "original",
+      "development_peak_cap_bytes": null,
+      "pilot_unsuccessful_solver_calls": 0
+    },
+    "uniform": {
+      "median_update_seconds": 0.05595818700021482,
+      "pilot": "original",
+      "development_peak_cap_bytes": null,
+      "pilot_unsuccessful_solver_calls": 0
+    },
+    "Nash_MTL": {
+      "median_update_seconds": 0.40535261199966044,
+      "pilot": "original",
+      "development_peak_cap_bytes": null,
+      "pilot_unsuccessful_solver_calls": 3
+    },
+    "FairGrad": {
+      "median_update_seconds": 0.3304306629997882,
+      "pilot": "original",
+      "development_peak_cap_bytes": null,
+      "pilot_unsuccessful_solver_calls": 0
+    },
+    "Aligned_MTL": {
+      "median_update_seconds": 0.2958791889996064,
+      "pilot": "original",
+      "development_peak_cap_bytes": null,
+      "pilot_unsuccessful_solver_calls": 0
+    },
+    "FAMO": {
+      "median_update_seconds": 0.07203756099988823,
+      "pilot": "original",
+      "development_peak_cap_bytes": null,
+      "pilot_unsuccessful_solver_calls": 0
+    }
+  },
+  "systems_memory_rule": "Direct fastest qualified pilot configuration under30GiB allocated; not an OOM guarantee",
+  "method_hyperparameters": "pinned LibMTL defaults; fixed published learning rate for every method; no LR tuning",
+  "normalization": "published whole-QM9 label means/std, including heldout labels",
+  "scheduler": "shared validation mean normalized MAE, factor.7/patience5/min_lr1e-5; no reduction in two epochs",
+  "primary_endpoint": "paired Direct-minus-MGDA-UB final test mean normalized MAE after two full-data epochs",
+  "secondary": "all seven methods and11targets; final and validation-selected test metrics; all seed differences; cost/memory",
+  "inference": "three paired seeds; descriptive differences and t95% intervals; no power or convergence claim",
+  "scope": "bounded early-training screen using110831training graphs; not the standard300epoch comparison",
+  "budget": "approximately2.5A100hours of updates plus evaluation, loading, packing, checkpoints; replaces unstarted long development campaign",
+  "systems_inputs": {
+    "original_preflight.json": "295b5b845e74cd7ce47a567b89073663c75deeb32a2d274c9faf1db5f1b11e26",
+    "joint_preflight.json": "3fc19bdccd65be71198d627f87d75dcfeb326f7dede6b9cad63bb4b711c59429"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "identity": {
+    "celeba_training.py": "5f5346ee2ac78d5fe831f07cc9f84690a17661b576edfb75f801fb74eec9c1bf",
+    "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+    "preflight.py": "91356e897f1786e5a13affc318965b4ee2d76cef3d6cfed591a53a1f501ecbba",
+    "celeba_protocol.json": "6d344fd4c9ccac9ceffc75aeb9e2d3bcc3085d11797d745de9561cad888430c1",
+    "celeba_queue.py": "c55c9a378b029396e808ae721018dbbc3c8617289d4d20c247f42ed0ae0b4fdc",
+    "run_campaign.py": "95958ec9120987ba6640d1d0d9dd541773771ad14923b10bf9200d5fc77eb04e",
+    "dataset": "703b67837b59368ef20e4a6ee1c74350d66c8ba561b05dac6ff1c4f9b991ae71"
+  },
+  "rates": {
+    "direct": 0.02,
+    "mgda_ub": 0.02,
+    "uniform": 0.02
+  }
+}

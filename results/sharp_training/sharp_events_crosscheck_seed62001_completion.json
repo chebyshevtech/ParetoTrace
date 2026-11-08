@@ -1,0 +1,75 @@
+[
+ {
+  "run": "reporting/seed62001/stream_completion",
+  "arm": "stream_completion",
+  "seed": 62001,
+  "updates": 300,
+  "fallbacks": 1,
+  "update_seconds_mean": 1.7963924195903382,
+  "update_seconds_median": 1.8340882199991029,
+  "update_seconds_total": 538.9177258771015,
+  "peak_allocated_gib_max": 8.082632064819336,
+  "incremental_peak_gib_max": 7.938838481903076,
+  "base_allocated_gib": 0.0417628288269043,
+  "actions_mean": 29.923333333333332,
+  "actions_median": 31.0,
+  "actions_min": 7,
+  "actions_max": 37,
+  "actions_total": 8977,
+  "early_stops_below_40": 299,
+  "accepted_without_fallback": 299,
+  "final_U_over_L_max": 1.0246769690808968,
+  "final_lower_min": 0.0001511065857854196,
+  "final_upper_min": 0.0001511065879926801,
+  "final_margin_over_U_min": 0.95003219711885,
+  "stop_decided_by": {
+   "energy": 0,
+   "margin": 298,
+   "both_same_prefix": 1,
+   "full_rank": 0
+  },
+  "energy_condition_first_met_median": 20,
+  "failed_query_records": 0,
+  "audits": [
+   {
+    "step": 0,
+    "objective_factor": 1.0000402721095534,
+    "emitted_objective_factor": 1.0000402759108071,
+    "normalized_gain": 0.9694869962126063,
+    "direction_rel_error": 3.8470284797014294e-07,
+    "table_direction_rel_error": 2.5482863454222228e-06,
+    "head_rel_error": 0.0,
+    "passed": true
+   },
+   {
+    "step": 150,
+    "objective_factor": 1.0000119709477255,
+    "emitted_objective_factor": 1.0000119826247833,
+    "normalized_gain": 0.9939169458094222,
+    "direction_rel_error": 5.13111240702269e-07,
+    "table_direction_rel_error": 3.256706982322252e-06,
+    "head_rel_error": 0.0,
+    "passed": true
+   },
+   {
+    "step": 299,
+    "objective_factor": 1.0000004366469668,
+    "emitted_objective_factor": 1.0000004331937336,
+    "normalized_gain": 0.9998711875963816,
+    "direction_rel_error": 4.556674041179818e-07,
+    "table_direction_rel_error": 3.0347513121013447e-06,
+    "head_rel_error": 0.0,
+    "passed": true
+   }
+  ],
+  "final_test": {
+   "worst_accuracy": 0.6341047883033752,
+   "mean_accuracy": 0.862662672996521,
+   "mean_balanced_accuracy": 0.6730673909187317,
+   "worst_balanced_accuracy": 0.502622663974762,
+   "mean_bce": 0.30462351439051955,
+   "worst_bce": 0.6492245701165822
+  },
+  "initial_model_sha256": "73f2051599315eb41934d7d902fb8d7f2bf10f14e55618e25d504dd729868384"
+ }
+]

@@ -1,0 +1,83 @@
+{
+  "source": "results/v65/largeM_structure.json",
+  "matched_against": [
+    "results/v65/rule_end_to_end.json",
+    "results/v65/rule_m2048.json"
+  ],
+  "match": "M, seed, shared generator source, mean cosine to recorded rounding; native Gram files not retained",
+  "new_experiment": false,
+  "rows": [
+    {
+      "M": 512,
+      "seed": 0,
+      "uniform_objective_factor": 2.903389598677017,
+      "uniform_normalized_gain": 0.289135908300631,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 4.6200393046591515e-05
+    },
+    {
+      "M": 512,
+      "seed": 1,
+      "uniform_objective_factor": 1.1458299398630982,
+      "uniform_normalized_gain": 0.97191828978861,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 2.4544335503251524e-05
+    },
+    {
+      "M": 512,
+      "seed": 2,
+      "uniform_objective_factor": 1.1551381008206716,
+      "uniform_normalized_gain": 0.9552879418296358,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 2.8046694596106647e-05
+    },
+    {
+      "M": 1024,
+      "seed": 0,
+      "uniform_objective_factor": 3.4517459468273053,
+      "uniform_normalized_gain": 0.11481214893359427,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 2.962412851803542e-06
+    },
+    {
+      "M": 1024,
+      "seed": 1,
+      "uniform_objective_factor": 1.1682947311795295,
+      "uniform_normalized_gain": 0.9718027197827962,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 2.011204841223524e-05
+    },
+    {
+      "M": 1024,
+      "seed": 2,
+      "uniform_objective_factor": 1.1828057415387485,
+      "uniform_normalized_gain": 0.96450386453732,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 1.184692557276712e-06
+    },
+    {
+      "M": 2048,
+      "seed": 0,
+      "uniform_objective_factor": 4.2619163892672525,
+      "uniform_normalized_gain": 0.1268993772246267,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 4.657958871068235e-05
+    },
+    {
+      "M": 2048,
+      "seed": 1,
+      "uniform_objective_factor": 1.678140836023643,
+      "uniform_normalized_gain": 0.6061993983335402,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 4.9845646064028415e-05
+    },
+    {
+      "M": 2048,
+      "seed": 2,
+      "uniform_objective_factor": 1.190439148295457,
+      "uniform_normalized_gain": 0.9660320260274889,
+      "uniform_descends": true,
+      "mean_cosine_match_abs": 4.036867546064471e-05
+    }
+  ]
+}

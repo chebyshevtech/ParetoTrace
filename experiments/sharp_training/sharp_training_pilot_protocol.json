@@ -1,0 +1,95 @@
+{
+  "version": "sharp_endpoint_training_proposal_v1",
+  "status": "development_pilot_enabled_after_independent_source_cpu_audit",
+  "enabled_phases": [
+    "pilot"
+  ],
+  "reporting_budget_frozen": false,
+  "arms": [
+    "direct",
+    "native_chunk1",
+    "stream_completion",
+    "stream_scalar"
+  ],
+  "pilot": {
+    "seeds": [
+      61900
+    ],
+    "updates": 100,
+    "scope": "development-only error, fidelity, memory and complete-update timing check; validation only; no test evaluation"
+  },
+  "reporting": {
+    "seeds": [
+      62001,
+      62002,
+      62003
+    ],
+    "updates": 300,
+    "expected_runs": 12,
+    "scope": "complete bounded early-training fidelity/cost/memory demonstration; not convergence or quality superiority"
+  },
+  "lr": 0.02,
+  "momentum": 0.9,
+  "weight_decay": 0.0,
+  "batch_size": 128,
+  "epsilon": 0.05,
+  "response_margin_fraction": 0.95,
+  "optimizer": "SGD momentum0.9; all original private-head gradients unweighted; no clipping/scheduler",
+  "model": "frozen CelebA v2 Model: ImageNet1K_V1 ResNet18 shared trunk;40 linear binary heads; fixed pretrained BN statistics and frozen BN affine; evaluation mode",
+  "loss": "40 simultaneous shared-minibatch attribute BCE means; shared trunk weighted, private heads receive own unweighted gradient",
+  "initialization": "fresh paired initialization by new seed, pretrained trunk and newly initialized heads; compare initial_model_sha256 across all four arms",
+  "data": "same frozen 16000 official-train subset,4000 official-validation subset, full official test;64x64 RGB PIL bilinear and existing ImageNet preprocessing",
+  "data_manifest_sha256": "703b67837b59368ef20e4a6ee1c74350d66c8ba561b05dac6ff1c4f9b991ae71",
+  "prior_selection_sha256": "6f91a433be015ab2638a775a6edd91681e9f50c50aecbe236430cb845e56ee04",
+  "learning_rate_source": "existing frozen Direct development-selected LR .02; no new LR search; identical for every arm",
+  "pairing": "same seed and torch.Generator.manual_seed(seed*100000+step) sample order with replacement; all128 sample indices and hashes retained per step",
+  "stream_policy": "start from uniform each update; identical retained stable_recovery acquisition, upper-span solver and lower-completion QP machinery. Completion versus positive-part scalar stopping only; scalar is an endpoint ablation, not an optimized scalar-only algorithm.",
+  "failure_policy": "Record every attempted action/prefix/error; failed or unaccepted Stream recovery/reconstruction incurs explicit timed Direct fallback. Direct/native control failures and independent audit failures halt and quarantine the run; no omitted seeds or cells.",
+  "raw_traces": "Every attempted query vector and response, every upper endpoint/weight/response, every lower-completion QP result, retained stopping history, executed weights, native audit records and per-update losses. Intermediate solver failure prefixes remain marked incomplete.",
+  "audits": "At pre-update states0,updates//2,updates-1; inspect the actual emitted shared gradient, separate unweighted head convention and emitted objective against independently acquired native task gradients. Relative reference must be resolved. Failed audit halts; does not silently become a fallback.",
+  "audit_gates": {
+    "shared_native_and_table_direction_relative_error": 2e-05,
+    "head_gradient_relative_error": 2e-05,
+    "full_recovery_objective_factor": 1.001,
+    "stream_objective_factor": 1.05,
+    "objective_factor_roundoff_tolerance": 1e-05,
+    "recorded_normalized_gain_min": 0.95,
+    "gain_tolerance": 1e-05
+  },
+  "primary_endpoint": "final300-update worst-attribute test accuracy; paired Stream-completion minus each matched arm, descriptive three-seed differences only",
+  "co_primary_engineering": "independently achieved fidelity, complete-update elapsed time, total and incremental training allocation including real SGD momentum/update buffers; all fallback and failed-query counts",
+  "secondary": "all40 attribute accuracy, balanced accuracy and BCE; means/worst; final full validation and reporting-only test metrics. No validation checkpoint selection.",
+  "numerical_scope": "FP32 model/AD/emitted gradients;FP64 contraction/QP diagnostics. No outward full-AD certificate; momentum update has no common-descent guarantee.",
+  "update_timing": "CUDA-synchronized preprocessing/transfer,recovery,head gradients,finite checks and actual SGD. On audited steps recovery and optimizer segments surround an untimed independent audit; peak is maximum of the two measured segments. Audit allocations released before optimizer/next-step peak reset.",
+  "wall_timing": "Separate main-entry active-attempt wall includes setup, data loading, audits, evaluation, earlier snapshots and event writes. Excludes imports and final manifest write. Interrupted tails remain explicitly unrecorded; orphan events and their work retained.",
+  "persistence": "one atomically replaced latest checkpoint every25updates and final; immutable attempt-specific update JSONs; preserve uncommitted attempt events after restart; no Drive/archive lifecycle",
+  "budget_estimate": {
+    "assumed_recovery_seconds": {
+      "direct": 0.52,
+      "native_chunk1": 0.54,
+      "stream_completion": 1.9,
+      "stream_scalar": 1.94
+    },
+    "reporting_update_hours": 1.225,
+    "pilot_update_hours": 0.1361111111111111,
+    "scope": "planning estimate from completed fixed-state recovery; excludes extra head/optimizer work,audits,evaluation,persistence and runtime variation; freeze final allowance after complete four-arm pilot"
+  },
+  "freeze_conditions": [
+    "Independent source/CPU audit of driver and protocol.",
+    "Explicitly enable pilot only; all four pilot arms must finish with all three native audits passing and complete traces/fallback accounting.",
+    "Review complete-update timings and peak allocation with true optimizer state; do not tune to pilot validation/test quality.",
+    "Freeze reporting budget/source/protocol identities before enabling any reporting seed; keep all12 outcomes regardless of performance."
+  ],
+  "source_sha256": {
+    "sharp_training.py": "33aba7c31a262217cfb9a92c741d1a5122312fe3ee74db4f33856e14dfa7c76c",
+    "shared_native_actions.py": "26610cd5a7a1dc2f26983791e6c9e97fb85f70fd5c2eaec2e5979e4265f21b2b",
+    "celeba_recovery_study.py": "39172144fa0ac1201f2d17b1f10c3e647132516c4e9bf06fa985d69e127d6553",
+    "celeba_v2/celeba_training.py": "5f5346ee2ac78d5fe831f07cc9f84690a17661b576edfb75f801fb74eec9c1bf",
+    "celeba_v2/preflight.py": "91356e897f1786e5a13affc318965b4ee2d76cef3d6cfed591a53a1f501ecbba",
+    "celeba_v2/simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+    "retained_sources/stable_recovery.py": "d0d676619b6912bc3671beaa2f09108a08dce5ead72177ba3f73038bfce9b76e",
+    "retained_sources/v46_baseline_frontier.py": "64a9fc44b6fef852ef245fb23b8797cffbfb64bbf3694477149e3a76956b8bda"
+  },
+  "cpu_fixture": "sharp_training_cpu_audit.py",
+  "cpu_fixture_scope": "toy model checks all4 recovery arms, native shared/head parity, actual momentum SGD, exact CPU restart, failed action and nonfinite reconstruction with timed Direct fallback; no GPU test"
+}

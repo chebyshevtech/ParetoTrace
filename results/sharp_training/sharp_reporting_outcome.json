@@ -1,0 +1,8 @@
+{
+  "outcome": "complete",
+  "terminal": true,
+  "safe_for_downstream": true,
+  "reporting_complete_sha256": "93c3177d9e17d10a7484a9b3435be213dccdbff36c6a89858156c5ef36b065d7",
+  "protocol_sha256": "dbf719d19abddfba3aa01215f8773261d2d284173e870217a1d95ffe9acc93b8",
+  "utc_seconds": 1794157683.3297863
+}
