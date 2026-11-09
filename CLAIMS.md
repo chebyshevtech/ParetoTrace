@@ -18,6 +18,7 @@ files.
 | Target-aware Stream, replay: 7%/24%/3% fewer actions; sharp vs scalar under strict descent 37%/59%/29%; 33 distinct CelebA states; all 60 live action counts predicted | `results/query_rule/replay_results.json` (from `audits/replay_query_rules.py`) | `replay ...` |
 | Target-aware Stream, live training: 894 early stops, 6 fallbacks, 19.5 actions, 1.14 s vs 1.79 s, 611/211/72 decided stops, 9 audits with descent, 0.58 GiB, test accuracies and seed gaps | `results/target_aware_training/*.json` | `target-aware ...`, `energy test ...`, `descent target ...` |
 | Per-update guarantee: uniform's shared-trunk direction raises some attribute at 2,690 of 2,700 live training updates (median 8 of 40), 2,673 executed Stream margins positive, 27 exact fallbacks, stored Grams CelebA 33/33, CIFAR-10 8/8, recorded 2/103 | `results/certified_step/uniform_responses_along_training.npz`, `results/grams/`, `results/recovery_study/`, `results/sharp_training/` | `along training ...`, `stored ...` |
+| Study A (frozen heads, three seeds): refusals, updates raising a loss, worst-attribute train BCE and test accuracy, full steps kept, certified vs fixed within 0.0002, held-out rises 7 to 12, endpoint −0.018, 54 audits, plus the interrupted first run on seed 62001 | `results/certified_step/protected_v2/protected_v2_summary.json`, `results/certified_step/protected_seed62001/*_metrics.json` | `study A ...`, `first run ...` |
 | Certified-step study: updates raising an attribute's minibatch loss per arm, status counts, worst-attribute training BCE and test accuracy, accepted step sizes, primary endpoint, audits | `results/certified_step/certified_step_summary.json` | `certified-step ...` |
 | Block-4 uniform controls: descends on all nine panels, objective factor 1.15–4.26 | `results/historical/uniform_block4_controls.json` | `uniform descends ...` |
 | App. G.2 fixed-step run: 22 early stops, 4–10 actions, U/L ≤ 1.049, q/q\* ≤ 1.031, no false stop, slack ≤ 2.9% of U (median 0.16%), 16 actions per step including the audit | `results/historical/g2_six_arm_run.json` | `G.2 ...` |
@@ -27,6 +28,7 @@ files.
 These numbers come from the submission itself:
 
 - **Table 25:** 59/60 accepted steps, losses 65.91, 5.45, 257.10 and 246.34, median step 5.86×10⁻⁷, 48/60 non-increasing.
+- **Table 26:** held-out worst-task losses 77.48 (certified step), 6.40 (same direction, tuned step) and 248.33 (audited uniform, certified step).
 - **Equation (27):** c = 1/2.
 - **Table 9:** TorchJD at 1.49×, OOM at 32 objectives.
 - **Tables 8 and 15:** memory of Stream relative to contraction.

@@ -16,7 +16,7 @@ python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on s
 python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
 ```
 
-`check_claims.py` exits with status 0 only if every check passes. It currently runs 293
+`check_claims.py` exits with status 0 only if every check passes. It currently runs 341
 checks.
 
 `CLAIMS.md` lists every claim in the response with its source file. It also marks the
@@ -56,53 +56,88 @@ The Stream modules:
 | Live CelebA training, sharp vs scalar endpoint, 12 runs | P8RF Q7, 6wXk Q3 | `experiments/sharp_training/` | `results/sharp_training/` |
 | **Target-aware Stream** (live timing and replay) | All threads | `experiments/query_rule/`, `audits/replay_query_rules.py` | `results/query_rule/` |
 | **Target-aware Stream, live training** (3 seeds × 300 updates, paired with the 12-run study) | P8RF Q7, 6wXk Q3, ZNzr Q2 | `experiments/target_aware_training/` | `results/target_aware_training/` |
-| **Certified-step study** (CelebA-40, six arms × 3 seeds × 300 updates) and uniform's responses along training | General response (1/3), P8RF Q2/Q4, 6wXk Q1 | `experiments/certified_step/`, `audits/uniform_along_training.py` | `results/certified_step/` |
+| **Per-update guarantee studies** (CelebA-40: study A with frozen heads, study B with six arms × 3 seeds) and uniform's responses along training | General response (1/4, 2/4), P8RF Q2/Q4, 6wXk Q1 | `experiments/certified_step/`, `audits/uniform_along_training.py` | `results/certified_step/` |
 
 ## The per-update guarantee
 
-The response's main argument is that ParetoTrace supplies a certificate, at every update, that no objective's
-loss rises on that update's minibatch. Held-out averages, where uniform weighting often wins, cannot supply it.
-The theory is Proposition 1 with the exact margin of Theorem 2 and Corollary 4. Equation (27) is the test that
-finds and verifies the step.
+**The guarantee comes from the verified step.**
+- It rests on Proposition 1, with the exact margin of Theorem 2 and Corollary 4, and the acceptance test of
+  Equation (27): the test is tried only when every exact first-order response is positive.
+- Any weighting can be audited this way for one Gram action. MGDA's role is narrower: it is the weighting the test
+  never has to refuse for lack of a descent direction, because in exact arithmetic its margin is positive at every
+  non-stationary state.
+- Scope: the guarantee covers each update's minibatch, in floating point. It bounds no held-out or population
+  loss and does not cover momentum or Adam.
 
-**Certified-step study** (`experiments/certified_step/`, results in `results/certified_step/`). CelebA-40, three
-seeds, 300 plain-SGD updates per arm, with the initialization and data order of the sharp-training and
-target-aware studies. Every response includes the private heads' own gradients.
+Both studies below use CelebA-40, three seeds, 300 plain-SGD updates per arm, and the data order of the earlier studies.
+- *Fixed step:* 0.02, the learning rate selected for the momentum-trained CelebA study, which is untuned for
+  plain SGD.
+- *Certified step:* it starts at 0.02 and halves, up to 20 trials, until Equation (27) holds for all 40
+  attributes. Otherwise the parameters are held.
+- *Primary endpoint* (fixed in each protocol): certified exact MGDA minus certified uniform, final worst-attribute
+  training BCE.
 
-- *Fixed step:* 0.02, the learning rate selected for the CelebA training study, at every update.
-- *Certified step:* starts at 0.02 and halves, up to 20 trials, until Equation (27) holds for all 40 attributes.
-  It is taken only when every exact first-order response is positive. Otherwise the parameters are held.
+**Study A: private heads frozen, three seeds.** A uniform-trained model is fine-tuned, so every attribute depends
+only on the shared trunk. Driver: `experiments/certified_step/protected_finetune_v2.py`. Results:
+`results/certified_step/protected_v2/`, summarized by `certified_step_summary_v2.py` and
+`analyze_certified_step_v2.py`. Starting worst-attribute training BCE: 0.587.
 
-| Arm | Updates raising some attribute's minibatch loss | Worst-attribute training BCE | Worst-attribute test accuracy |
-|---|---|---|---|
-| Uniform, fixed step | 777/900 | 0.604 | 65.3% |
-| Exact MGDA (Direct), fixed step | 900/900 | 1.778 | 43.2% |
-| Uniform, certified step | 0/900 | 0.640 | 61.5% |
-| Exact MGDA (Direct), certified step | 0/900 | 0.653 | 59.8% |
-| Target-aware Stream, certified step | 0/900 | 0.653 | 59.8% |
-| MGDA-UB, certified step | 0/900 | 0.655 | 59.6% |
+| Arm | Refused | Updates raising a loss | Worst-attribute train BCE | Worst-attribute test accuracy |
+|---|---|---|---|---|
+| Uniform, fixed | n/a | 899/900 | 0.566 | 68.1% |
+| Exact MGDA, fixed | n/a | 0/900 | 0.569 | 68.6% |
+| Uniform, certified | 892/900 | 0 | 0.586 | 68.5% |
+| Exact MGDA, certified | 0/900 | 0 | 0.569 | 68.6% |
+| Stream, certified | 0/900 | 0 | 0.569 | 68.6% |
+| MGDA-UB, certified | 894/900 | 0 | 0.587 | 68.5% |
 
-- **Without a verified step.** Uniform's fixed-step updates raised at least one attribute's minibatch loss at 777 of 900 updates. Exact MGDA's direction descended on every attribute to first order at every update, yet its fixed step raised one at all 900 updates.
-- **With the certified step.** No attribute's minibatch loss rose at any of the 3,598 accepted updates of the four certified arms. The certificate refused 2 uniform updates, whose exact response was not positive, and held the parameters there. The median accepted step was 0.00125.
-- **Cost of the guarantee.** For uniform it cost 3.7 points of worst-attribute test accuracy. For exact MGDA it was a gain of 16.6 points.
-- **Primary endpoint** (fixed before reporting): certified exact MGDA minus certified uniform in worst-attribute training BCE was +0.013, with uniform lower on 3 of 3 seeds. Certified Stream matched exact MGDA to within 0.0002, at 0.58 GiB against 8.04 GiB.
-- **Uniform's full first-order response.** Along its own fixed-step trajectory, private heads included, it was not positive at 703 of 900 updates.
+- **Exact MGDA.** It kept the full step at 878 of 900 updates and ended within 0.0002 BCE of its fixed-step run.
+- **Endpoint and audits.** The prespecified endpoint is −0.018, with exact MGDA lower on 3 of 3 seeds. All 54
+  audits passed. In this version the head first-order term is zero everywhere, including inside the audit.
+- **Held-out losses.** No arm protects them: 7 to 12 of 40 attributes per seed end with a higher validation BCE than
+  at the start.
+- **Environment.** This study ran on a fresh runtime after the first one was reclaimed. The CelebA tensors were
+  rebuilt from the pinned dataset revision and are byte-identical, with every split SHA-256 and the manifest hash
+  matching. The uniform development model was retrained with the frozen code and seed. Its validation
+  worst-attribute BCE is 0.638, against 0.636 for the original.
+- **Interrupted first run.** An earlier version (`protected_finetune.py`, results in
+  `results/certified_step/protected_seed62001/`) completed four arms of seed 62001 before that runtime was lost.
+  It agrees: uniform certified was refused at every update, exact MGDA's fixed step raised no loss, and uniform's
+  raised one at 299 of 300. Its recorded audit flags test head terms that the frozen design never uses, which is
+  why version 2 corrects the audit.
 
-**Uniform's first-order responses along training** (`audits/uniform_along_training.py`,
-`audits/extract_uniform_responses.py`, `results/certified_step/uniform_responses_along_training.npz`). Every
-Stream recovery spends its first Gram action on the uniform weighting. Over the 2,700 updates of the nine Stream
-training runs, the uniform shared-trunk direction would have raised at least one attribute's loss to first order
-at 2,690, a median of 8 of 40. Every executed Stream direction had a positive certified margin (2,673 updates),
-and the other 27 updates used exact recovery. The same computation on the stored Grams gives the following:
+**Study B: private heads trained from a fresh initialization, three seeds.**
+Driver: `experiments/certified_step/certified_step_training.py`.
 
-- CelebA (33 distinct states): uniform's direction raises some attribute at 33.
-- CIFAR-10 groups (8 states): it raises some group at all 8.
-- The 103 recorded Grams: it raises a task at only 2.
+| Arm | Refused | Updates raising a loss | Worst-attribute train BCE | Worst-attribute test accuracy |
+|---|---|---|---|---|
+| Uniform, fixed | n/a | 777/900 | 0.604 | 65.3% |
+| Exact MGDA, fixed | n/a | 900/900 | 1.778 | 43.2% |
+| Uniform, certified | 2/900 | 0 | 0.640 | 61.5% |
+| Exact MGDA, certified | 0/900 | 0 | 0.653 | 59.8% |
+| Stream, certified | 0/900 | 0 | 0.653 | 59.8% |
+| MGDA-UB, certified | 0/900 | 0 | 0.655 | 59.6% |
 
-The driver `certified_step_training.py` imports the frozen target-aware training module and its retained
-sources. On the A100 it ran in a directory assembled from `experiments/target_aware_training/`, with the protocol
-in `results/certified_step/certified_step_protocol.json`. It shared the GPU with a Pythia-1B job, so its timings
-are not compared with any other study.
+- **Uniform certifiability.** The private heads' gradients turned a negative trunk response positive at 634 of
+  uniform's certified updates, so uniform stayed certifiable.
+- **Primary endpoint:** +0.013, with uniform lower on 3 of 3 seeds.
+- **Audits:** all 54 passed.
+- **Stream:** certified Stream matched exact MGDA to within 0.0002 BCE, at 0.58 GiB against 8.04 GiB, with no
+  fallback.
+
+**Uniform's first-order responses along training.**
+Code and data: `audits/uniform_along_training.py`, `audits/extract_uniform_responses.py` and
+`results/certified_step/uniform_responses_along_training.npz`.
+- **Training runs.** Every Stream recovery spends its first Gram action on the uniform weighting. Over the 2,700
+  updates of the nine Stream training runs, the uniform shared-trunk direction would have raised at least one
+  attribute's loss to first order at 2,690, a median of 8 of 40.
+- **Stored Grams.**
+  - CelebA, 33 distinct states: it would raise one at all 33.
+  - CIFAR-10 at M = 100, the 8 stored Grams in this repository: at all 8.
+  - The 103 recorded Grams: at 2.
+
+**Environment.** Both studies shared the A100 with a Pythia-1B job, so their timings are not compared with any
+other study.
 
 ## The improvement: target-aware Stream
 

@@ -1,0 +1,170 @@
+[
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 17.862942457199097
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 19.516282081604004
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 17.95758628845215
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 19.646575212478638
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 17.99038004875183
+ },
+ {
+  "phase": "pilot",
+  "seed": 61900,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 22.33321475982666
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 95.65203213691711
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 223.68207955360413
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 99.41411876678467
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 224.28699827194214
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 101.1948413848877
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 96.41159749031067
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 224.51274514198303
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 100.44160342216492
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 269.42226457595825
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 100.87105917930603
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "uniform_certified",
+  "returncode": 0,
+  "wall_seconds": 96.58181881904602
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "direct_certified",
+  "returncode": 0,
+  "wall_seconds": 224.40906262397766
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "uniform_fixed",
+  "returncode": 0,
+  "wall_seconds": 100.48155069351196
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "direct_fixed",
+  "returncode": 0,
+  "wall_seconds": 224.6268961429596
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "mgda_ub_certified",
+  "returncode": 0,
+  "wall_seconds": 100.98302984237671
+ },
+ {
+  "phase": "reporting",
+  "seed": 62001,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 471.03941798210144
+ },
+ {
+  "phase": "reporting",
+  "seed": 62002,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 466.86642122268677
+ },
+ {
+  "phase": "reporting",
+  "seed": 62003,
+  "arm": "stream_certified",
+  "returncode": 0,
+  "wall_seconds": 475.9126694202423
+ }
+]

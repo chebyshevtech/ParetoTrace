@@ -358,7 +358,49 @@ check('certified-step heads turned a negative trunk response positive (634 updat
 check('certified-step Stream matches exact MGDA within 0.0002 train BCE', round(max(abs(cs[('stream_certified', s_)]['final_train']['worst_bce'] - cs[('direct_certified', s_)]['final_train']['worst_bce']) for s_ in CS_SEEDS), 4), 0.0002)
 check('certified-step Stream peak 0.58 GiB', round(max(cs[('stream_certified', s_)]['peak_gib_max'] for s_ in CS_SEEDS), 2), 0.58)
 check('certified-step Direct peak 8.04 GiB', round(max(cs[('direct_certified', s_)]['peak_gib_max'] for s_ in CS_SEEDS), 2), 8.04)
+check('certified-step Stream had no fallback', cs_sum('stream_certified', 'fallbacks'), 0)
+check('certified-step fixed exact MGDA worst-attribute BCE above ln 2', cs_mean('direct_fixed', 'final_train', 'worst_bce') > math.log(2), True)
 check('certified-step uniform certified lower than direct certified on every seed', all(cs[('uniform_certified', s_)]['final_train']['worst_bce'] < cs[('direct_certified', s_)]['final_train']['worst_bce'] for s_ in CS_SEEDS), True)
+
+
+# ---------------- Study A v2: private heads frozen, uniform-trained start, three seeds (protected_finetune_v2.py)
+A2 = {(r['arm'], r['seed']): r for r in load('certified_step/protected_v2/protected_v2_summary.json')['runs']}
+check('study A runs', len(A2), 18)
+check('study A every run 300 updates', all(A2[(a, s_)]['updates'] == 300 for a in CS_ARMS for s_ in CS_SEEDS), True)
+check('study A one starting model for every arm and seed', len({A2[(a, s_)]['initial_model_sha256'] for a in CS_ARMS for s_ in CS_SEEDS}), 1)
+check('study A starting worst-attribute train BCE', round(st.mean(A2[('uniform_fixed', s_)]['initial_train']['worst_bce'] for s_ in CS_SEEDS), 3), 0.587)
+a2sum = lambda arm, key: sum(A2[(arm, s_)][key] for s_ in CS_SEEDS)
+a2mean = lambda arm, split, key, scale=1.: st.mean(A2[(arm, s_)][split][key] * scale for s_ in CS_SEEDS)
+for arm, (refused, raised, worst, acc) in {'uniform_fixed': (None, 899, 0.566, 68.1), 'direct_fixed': (None, 0, 0.569, 68.6),
+                                           'uniform_certified': (892, 0, 0.586, 68.5), 'direct_certified': (0, 0, 0.569, 68.6),
+                                           'stream_certified': (0, 0, 0.569, 68.6), 'mgda_ub_certified': (894, 0, 0.587, 68.5)}.items():
+    if refused is not None:
+        check(f'study A {arm} refused', sum(A2[(arm, s_)]['status_counts']['not_certified'] for s_ in CS_SEEDS), refused)
+        check(f'study A {arm} no hold for lack of an admissible step', sum(A2[(arm, s_)]['status_counts']['no_admissible_step'] for s_ in CS_SEEDS), 0)
+    check(f'study A {arm} updates raising a loss', a2sum(arm, 'updates_raising_a_task'), raised)
+    check(f'study A {arm} worst-attribute train BCE', round(a2mean(arm, 'final_train', 'worst_bce'), 3), worst)
+    check(f'study A {arm} worst-attribute test accuracy', round(a2mean(arm, 'final_test', 'worst_accuracy', 100), 1), acc)
+full = lambda arm: sum(e == 0.02 for s_ in CS_SEEDS for e, k in zip(A2[(arm, s_)]['per_update']['accepted_eta'], A2[(arm, s_)]['per_update']['status']) if k == 'accepted')
+check('study A exact MGDA kept the full step at 878 of 900 updates', full('direct_certified'), 878)
+check('study A certified exact MGDA within 0.0002 BCE of fixed', max(abs(A2[('direct_certified', s_)]['final_train']['worst_bce'] - A2[('direct_fixed', s_)]['final_train']['worst_bce']) for s_ in CS_SEEDS) < 0.0002, True)
+check('study A held-out: 7 to 12 of 40 attributes per seed rose, in every arm', (min(A2[(a, s_)]['validation_attributes_risen'] for a in CS_ARMS for s_ in CS_SEEDS), max(A2[(a, s_)]['validation_attributes_risen'] for a in CS_ARMS for s_ in CS_SEEDS)), (7, 12))
+d2 = [A2[('direct_certified', s_)]['final_train']['worst_bce'] - A2[('uniform_certified', s_)]['final_train']['worst_bce'] for s_ in CS_SEEDS]
+check('study A prespecified endpoint mean', round(st.mean(d2), 3), -0.018)
+check('study A endpoint: exact MGDA lower on every seed', sum(x < 0 for x in d2), 3)
+check('study A audits recorded passed', sum(a2sum(a, 'audits_passed') for a in CS_ARMS), 54)
+check('study A audits count', sum(a2sum(a, 'audits') for a in CS_ARMS), 54)
+check('study A trunk-response audits passed (error 1e-4, eligibility agrees)', sum(x['trunk_error'] <= 1e-4 and (x['native_min_trunk'] > 0) == (x['event_min_trunk'] > 0) for a in CS_ARMS for s_ in CS_SEEDS for x in A2[(a, s_)]['audit_records']), 54)
+check('study A head terms frozen at zero in every audited update', all(x['head_error'] == 0 and x['heads_frozen'] for a in CS_ARMS for s_ in CS_SEEDS for x in A2[(a, s_)]['audit_records']), True)
+check('study A Stream peak 0.58 GiB, Direct 8.04 GiB', (round(max(A2[('stream_certified', s_)]['peak_gib_max'] for s_ in CS_SEEDS), 2), round(max(A2[('direct_certified', s_)]['peak_gib_max'] for s_ in CS_SEEDS), 2)), (0.58, 8.04))
+check('study A no fallbacks', sum(a2sum(a, 'fallbacks') for a in CS_ARMS), 0)
+check('study A realized change never positive in certified arms', all(c <= 0 for a in CS_ARMS if a.endswith('certified') for s_ in CS_SEEDS for c in A2[(a, s_)]['per_update']['max_task_change']), True)
+
+# Interrupted first run of study A (protected_finetune.py, seed 62001, four arms; recorded audit flags inapplicable)
+pa = {a: load('certified_step/protected_seed62001/%s_metrics.json' % a) for a in ('uniform_fixed', 'direct_fixed', 'uniform_certified', 'direct_certified')}
+check('first run: uniform certified refused at every update', pa['uniform_certified']['status_counts']['not_certified'], 300)
+check('first run: exact MGDA fixed step raised no loss', pa['direct_fixed']['updates_raising_a_task'], 0)
+check('first run: uniform fixed step raised a loss at 299 of 300', pa['uniform_fixed']['updates_raising_a_task'], 299)
+check('first run: exact MGDA certified never refused', pa['direct_certified']['status_counts']['not_certified'], 0)
 
 print('\n%d claims failed' % len(FAILS) if FAILS else '\nALL CLAIMS PASS')
 sys.exit(1 if FAILS else 0)

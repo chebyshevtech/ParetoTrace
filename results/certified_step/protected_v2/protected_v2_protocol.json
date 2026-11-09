@@ -1,0 +1,72 @@
+{
+ "version": "protected_finetune_v2",
+ "status": "protected fine-tuning rerun on a new runtime: fine-tune the shared trunk of a uniform-trained CelebA-40 model with the 40 private heads frozen; head first-order term zero everywhere, including the independent audit",
+ "arms": [
+  "uniform_fixed",
+  "direct_fixed",
+  "uniform_certified",
+  "direct_certified",
+  "stream_certified",
+  "mgda_ub_certified"
+ ],
+ "lr": 0.02,
+ "batch_size": 128,
+ "momentum": 0.0,
+ "armijo_c": 0.5,
+ "halvings": 20,
+ "pilot": {
+  "seeds": [
+   61900
+  ],
+  "updates": 4,
+  "scope": "smoke test only; not reported as evidence"
+ },
+ "reporting": {
+  "seeds": [
+   62001,
+   62002,
+   62003
+  ],
+  "updates": 300,
+  "expected_runs": 18
+ },
+ "optimizer": "plain SGD without momentum for every arm (the guarantee does not cover momentum); trunk moves along -G w for the arm weighting w; each private head along its own unweighted gradient, as in every earlier CelebA arm",
+ "step_rules": {
+  "fixed": "step 0.02 (the frozen Direct development-selected learning rate) at every update; realized change of every task loss on the same minibatch recorded",
+  "certified": "eligible only if every exact first-order response s_i = (K w)_i + |head-i gradient|^2 is positive; then the first step 0.02*2^-k, k=0..19, with L_i(after) <= L_i(before) - 0.5*eta*s_i for every task (Equation 27); otherwise hold the parameters"
+ },
+ "response_sources": {
+  "direct": "captured exact Gram",
+  "stream": "target-aware Stream transcript (strict descent, eps 0.05), Direct fallback",
+  "uniform": "one native Gram action",
+  "mgda_ub": "MGDA-UB weights from the representation Gram, then one native Gram action"
+ },
+ "primary_endpoint": "final worst-attribute BCE over the 16,000-image training subset; paired direct_certified minus uniform_certified; three seeds; descriptive",
+ "secondary": [
+  "updates whose executed step raised at least one attribute loss on its minibatch, per arm",
+  "certified arms: accepted, held for no admissible step, held as not certified",
+  "attributes whose training-subset or validation BCE ended above its starting value, per run",
+  "the primary endpoint for stream_certified and mgda_ub_certified against uniform_certified",
+  "final worst-attribute and mean validation and test BCE and accuracy; peak memory"
+ ],
+ "audits": "at pre-update states 0, 150 and 299 of every reporting run, the responses that decide eligibility are recomputed from independent per-task autodiff (trunk responses and head terms, relative error 1e-4, and eligibility agreement); recorded, not halting",
+ "numerical_scope": "FP32 model and losses, FP64 responses and comparisons; rounded same-minibatch checks, not interval enclosures; no population, momentum or exact-real claim",
+ "data_manifest_sha256": "703b67837b59368ef20e4a6ee1c74350d66c8ba561b05dac6ff1c4f9b991ae71",
+ "prior_selection_sha256": "6f91a433be015ab2638a775a6edd91681e9f50c50aecbe236430cb845e56ee04",
+ "source_sha256": {
+  "protected_finetune_v2.py": "5371275c166a34579a140cf590e0163c7f53bf110c176c9afb46bb68feb1cade",
+  "certified_step_training.py": "fb685d62f3cfeb43b14cc55f9364004430421c130cdc877f510963fe7cef748d",
+  "target_aware_training.py": "f006eb59ff70fdc6aa6e2fae87ef1af6f3026bb6369cd9178e78ae5e2bcac56f",
+  "shared_native_actions.py": "26610cd5a7a1dc2f26983791e6c9e97fb85f70fd5c2eaec2e5979e4265f21b2b",
+  "celeba_recovery_study.py": "39172144fa0ac1201f2d17b1f10c3e647132516c4e9bf06fa985d69e127d6553",
+  "celeba_v2/celeba_training.py": "5f5346ee2ac78d5fe831f07cc9f84690a17661b576edfb75f801fb74eec9c1bf",
+  "celeba_v2/preflight.py": "91356e897f1786e5a13affc318965b4ee2d76cef3d6cfed591a53a1f501ecbba",
+  "celeba_v2/simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+  "retained_sources/stable_recovery.py": "d0d676619b6912bc3671beaa2f09108a08dce5ead72177ba3f73038bfce9b76e",
+  "retained_sources/v46_baseline_frontier.py": "64a9fc44b6fef852ef245fb23b8797cffbfb64bbf3694477149e3a76956b8bda",
+  "retained_sources/stable_recovery_v2.py": "4202cb195a8516643220dd1411d54813cd55f508936df50fca27b1b0d846800e"
+ },
+ "initial_model": "development_uniform_seed9001_lr0.02.pt retrained on this runtime with the frozen celeba_training.py, seed 9001, learning rate 0.02 and the byte-identical data; identical for every arm and seed",
+ "init_checkpoint_sha256": "a6ef851adb2be92161a2f56c239e88c4badfdb16bf4114eefb73ea6effad8089",
+ "heads": "frozen: zero head update and zero head first-order term, also inside the audit"
+}
