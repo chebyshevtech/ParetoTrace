@@ -1,0 +1,12 @@
+{
+ "pins": [
+  "transformers==4.57.1",
+  "tokenizers==0.22.2",
+  "huggingface_hub==0.36.2",
+  "accelerate==1.15.0",
+  "safetensors==0.8.0"
+ ],
+ "pip_rc": 0,
+ "versions": "4.57.1 0.22.2 0.36.2 2.14.1+cu130",
+ "utc": 1794199974.380859
+}

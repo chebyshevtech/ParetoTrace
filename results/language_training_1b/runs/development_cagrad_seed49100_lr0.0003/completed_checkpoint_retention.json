@@ -1,0 +1,132 @@
+{
+  "storage_format": "language-final-only-retention-v1",
+  "complete": true,
+  "config": {
+    "phase": "development",
+    "seed": 49100,
+    "method": "cagrad",
+    "lr": 0.0003,
+    "model": "EleutherAI/pythia-1b-deduped",
+    "batch_size": 32,
+    "steps": 100,
+    "validation_every": 100,
+    "system": {
+      "mode": "cached",
+      "row_chunk": 256,
+      "scratch_mib": 32,
+      "reconstruction": "operator"
+    },
+    "method_options": {},
+    "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+    "checkpoint_backup": "metadata",
+    "checkpoint_slot_budget_bytes": null,
+    "completed_checkpoint_policy": "final-only"
+  },
+  "owner_identity_sha256": "447b9920f8b7cd8c088baadeb4e4ffc51dfcecacda4f6ef8986e2dcf35077395",
+  "metrics_sha256": "3ecc1d706812785282a8cb9b269a52fcaedada61d087006684d905d6f06d69e5",
+  "verified_pair_retention": {
+    "storage_format": "language-metadata-retention-v1",
+    "complete": true,
+    "owner_identity_sha256": "447b9920f8b7cd8c088baadeb4e4ffc51dfcecacda4f6ef8986e2dcf35077395",
+    "config": {
+      "phase": "development",
+      "seed": 49100,
+      "method": "cagrad",
+      "lr": 0.0003,
+      "model": "EleutherAI/pythia-1b-deduped",
+      "batch_size": 32,
+      "steps": 100,
+      "validation_every": 100,
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      },
+      "method_options": {},
+      "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+      "checkpoint_backup": "metadata",
+      "checkpoint_slot_budget_bytes": null,
+      "completed_checkpoint_policy": "final-only"
+    },
+    "metrics_sha256": "3ecc1d706812785282a8cb9b269a52fcaedada61d087006684d905d6f06d69e5",
+    "previous_backup_commit": {
+      "storage_format": "language-metadata-only-v1",
+      "run_complete": true,
+      "steps": 100,
+      "selected_checkpoint": {
+        "file": "selected/step00000100_82aed7563f23e197.pt",
+        "sha256": "82aed7563f23e197f1e44e1d7bad4ac2fbe7334b316dea05b4cd09ef37ebaf61",
+        "after_updates": 100,
+        "worst_ce": 0.742474720289465
+      },
+      "checkpoint_sources": {
+        "latest.pt": {
+          "source_sha256": "993321a04e80cc96d03959ee52522212b15db10e1be33fc1b435744fc4ccc0bd",
+          "source_bytes": 4047219815
+        },
+        "selected/step00000100_82aed7563f23e197.pt": {
+          "source_sha256": "82aed7563f23e197f1e44e1d7bad4ac2fbe7334b316dea05b4cd09ef37ebaf61",
+          "source_bytes": 4047208823
+        }
+      },
+      "latest_sha256": "993321a04e80cc96d03959ee52522212b15db10e1be33fc1b435744fc4ccc0bd",
+      "run_identity_sha256": "2317605e82f22fa9cfb1771cda9a5f82be28f13c6120d36e6714c93925f8a5ab",
+      "metrics_file": "generations/metrics_3ecc1d706812785282a8cb9b269a52fcaedada61d087006684d905d6f06d69e5.json",
+      "metrics_sha256": "3ecc1d706812785282a8cb9b269a52fcaedada61d087006684d905d6f06d69e5",
+      "recovery_scope": "Numerical/provenance records only; active model, optimizer, rule and RNG recovery requires surviving VM checkpoint bytes."
+    },
+    "local_checkpoint_archives": {
+      "latest.pt": {
+        "format": "gzip-lossless-v1",
+        "source_sha256": "993321a04e80cc96d03959ee52522212b15db10e1be33fc1b435744fc4ccc0bd",
+        "source_bytes": 4047219815,
+        "archive_sha256": "294d8728f678cac7461d0f13d14b4a48f53d282707f5fd72af778b280021f5b8",
+        "archive_bytes": 3581145289,
+        "archive_file": "latest.pt_993321a04e80cc96.gz"
+      },
+      "selected/step00000100_82aed7563f23e197.pt": {
+        "format": "gzip-lossless-v1",
+        "source_sha256": "82aed7563f23e197f1e44e1d7bad4ac2fbe7334b316dea05b4cd09ef37ebaf61",
+        "source_bytes": 4047208823,
+        "archive_sha256": "82918e74aba16bd7a396a1f0d99b835066489bcfe6b69bfbd08f71911a9f5027",
+        "archive_bytes": 3581147846,
+        "archive_file": "step00000100_82aed7563f23e197.pt_82aed7563f23e197.gz"
+      }
+    },
+    "vm_archive_root_at_retirement": "/content/rebuttal/language_training_v2/completed_checkpoints/development_cagrad_seed49100_lr0.0003",
+    "policy": "Verified lossless completed models on VM; Drive holds numerical/provenance records only.",
+    "limitation": "VM reset loses models unless an independent model copy has been verified; metadata-only Drive backup cannot restore model/rule/RNG state."
+  },
+  "local_checkpoint_archives": {
+    "latest.pt": {
+      "format": "gzip-lossless-v1",
+      "source_sha256": "993321a04e80cc96d03959ee52522212b15db10e1be33fc1b435744fc4ccc0bd",
+      "source_bytes": 4047219815,
+      "archive_sha256": "294d8728f678cac7461d0f13d14b4a48f53d282707f5fd72af778b280021f5b8",
+      "archive_bytes": 3581145289,
+      "archive_file": "latest.pt_993321a04e80cc96.gz"
+    }
+  },
+  "selected_checkpoint": {
+    "file": "selected/step00000100_82aed7563f23e197.pt",
+    "sha256": "82aed7563f23e197f1e44e1d7bad4ac2fbe7334b316dea05b4cd09ef37ebaf61",
+    "after_updates": 100,
+    "worst_ce": 0.742474720289465
+  },
+  "selected_model": {
+    "file": "selected/step00000100_82aed7563f23e197.pt",
+    "source_sha256": "82aed7563f23e197f1e44e1d7bad4ac2fbe7334b316dea05b4cd09ef37ebaf61",
+    "source_bytes": 4047208823,
+    "verified_archive_sha256": "82918e74aba16bd7a396a1f0d99b835066489bcfe6b69bfbd08f71911a9f5027",
+    "verified_archive_bytes": 3581147846,
+    "lossless_archive_verified_before_retirement": true,
+    "model_bytes_retained": false
+  },
+  "selected_evaluation": {
+    "validation_metrics_sha256": "cba4f6b3d1b694d815d5346e8f287c54da46edfffe1b459c459396c8c6aaab3d",
+    "heldout_test_metrics_sha256": null
+  },
+  "policy": "Final model checkpoint retained losslessly; selected model bytes intentionally not retained after both archives were verified.",
+  "limitation": "All validation-selected scalar/evaluation/provenance records remain; the selected model cannot be re-evaluated without an independently retained copy. VM loss can still destroy final model bytes."
+}

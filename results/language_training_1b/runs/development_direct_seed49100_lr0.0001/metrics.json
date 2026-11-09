@@ -1,0 +1,4273 @@
+{
+  "complete": true,
+  "config": {
+    "phase": "development",
+    "seed": 49100,
+    "method": "direct",
+    "lr": 0.0001,
+    "model": "EleutherAI/pythia-1b-deduped",
+    "batch_size": 32,
+    "steps": 100,
+    "validation_every": 100,
+    "system": {
+      "mode": "cached",
+      "row_chunk": 256,
+      "scratch_mib": 32,
+      "reconstruction": "operator"
+    },
+    "method_options": {},
+    "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+    "checkpoint_backup": "metadata",
+    "checkpoint_slot_budget_bytes": null,
+    "completed_checkpoint_policy": "final-only"
+  },
+  "identity": {
+    "config_sha256": "1bad0f4ceea211a52b573025266839ec2d91afedf138b4fdbd1ee278cabf2300",
+    "source_sha256": {
+      "language_training_rebuttal.py": "8c43e059db44c0c17d319fd8c154f630e81e98fb85e7f974b03918bf5ceeca93",
+      "language_training_methods.py": "7c2fd9397849ff6b5ce2df5ca1845bfed6f3c45e89e33561ce4aceb484484cf2",
+      "language_common.py": "87f9720737656b2650ffcf463464cecc55871bf7403cd62efcfd1d4b83e2bff4",
+      "attention_precision.py": "a1b2c67ed471e1f0b41eecb1bcde2cb8dc98d7334804bca3d289e87331fbb83e",
+      "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+      "v46_factorized_jacobian.py": "4d98d256ab815800a4158ee3a15862bea4d36296ce8e51072d67d63f447668df",
+      "v46_factorized_exact.py": "6984919555b4e58947f6701413204eb6d84ecc4f451f63b61e833a104b804305",
+      "paretotrace_online_factor.py": "4b8e834d529b2feb9ed76eb81f1e2d530eb83b7453effb03b846c172240c04bd",
+      "v46_supervised_head.py": "31abf06743c453c9c12848d7f98233a15738a58a97bd1209287145ccf432a4d8",
+      "native_language_dual_reference.py": "f6f26170c755835b0f3313a0b2917005ccf8afceac1b26fcac864c0f648fe307",
+      "native_language_dual_reference_gpu_v6.py": "d753acbca021be5037342ec92a5228b1aaf934ac44bcc0e99772a043561a1f48",
+      "language_baseline_v6.py": "e97cc97e37ddaad4f2ad824e2f1858aec664241b37511f119ae9b8fe3841095f",
+      "ghost_adapter.py": "74f4e0706cc31d2721ea4cdeee8aa66495ccd8bb76680c1f42633c7a445f2e7f",
+      "structured_gram.py": "944abbb3809a51076143297d68e542651022394f87264303886e3a430cbe0e30",
+      "language_retained_v31.py": "1b76f16c1113d98fb7cb1ac90197015e08a2bb9ebed3906f59bb6be42da22992",
+      "language_retained_manifest.json": "1ceeae4186e436a84a26febe1c11b2052d3a77a419839e6e0d7efc275508f853",
+      "language_tokenizer_contract.py": "1d59d9786f4a4ff753f42ec92cebbcd7bf02a9b0d5a3e13761ccfc1a7184c655",
+      "checkpoint_archive.py": "168cdf882f2e97f06acb44503b4e9a18b15d0c7a383f1839d84a9d5320b3f56e",
+      "drive_checkpoint_slots.py": "98f3e1e1cfde7a4bf4378caa53ba3e0f61cf005f1fd7107e6cb4f5197ca9e830",
+      "language_checkpoint_storage.py": "9eb4cf25d4d77c7453e9387fe546d82a308faef472929a536f6b6b87bd293239",
+      "retire_completed_language.py": "7883e53662b4939f3fd2906310c349f216d7c8a9b59b4d8d5a68fd0598bd1aed"
+    },
+    "data": {
+      "dataset": "tasksource/tasksource-instruct",
+      "revision": "4cdba593d93bf1e32c0fd1731d84c6780136fe51",
+      "tasks": [
+        "glue/mnli",
+        "glue/qnli",
+        "glue/rte",
+        "super_glue/cb",
+        "anli/a1",
+        "sick/label",
+        "snli",
+        "scitail/snli_format"
+      ],
+      "caps": {
+        "train": 2048,
+        "validation": 128,
+        "test": 256
+      },
+      "scope": "New maintained-dataset split protocol, not historical v0 reproduction",
+      "historical_unavailable_revision": "938647aeeb6b04ff7d584b62164aa67d4c8915a8",
+      "task_rename": "sick/entailment_AB -> sick/label",
+      "tokenizer_model": "EleutherAI/pythia-160m-deduped",
+      "tokenizer_revision": "c54a0e0b28cc667b6f278803024438d57f847b5d",
+      "rows_scanned": {
+        "train": 890383,
+        "validation": 58153,
+        "test": 113137
+      },
+      "duplicates_removed": {
+        "train": 2,
+        "validation": 0,
+        "test": 0
+      },
+      "counts": {
+        "train": {
+          "glue/mnli": 2048,
+          "glue/qnli": 2048,
+          "glue/rte": 2048,
+          "super_glue/cb": 250,
+          "anli/a1": 2048,
+          "sick/label": 2048,
+          "snli": 2048,
+          "scitail/snli_format": 2048
+        },
+        "validation": {
+          "glue/mnli": 128,
+          "glue/qnli": 128,
+          "glue/rte": 128,
+          "super_glue/cb": 28,
+          "anli/a1": 128,
+          "sick/label": 128,
+          "snli": 128,
+          "scitail/snli_format": 128
+        },
+        "test": {
+          "glue/mnli": 256,
+          "glue/qnli": 250,
+          "glue/rte": 139,
+          "super_glue/cb": 28,
+          "anli/a1": 256,
+          "sick/label": 256,
+          "snli": 256,
+          "scitail/snli_format": 256
+        }
+      },
+      "loss": "mean answer-token CE per example, then mean per task; EOS ignored",
+      "pool_sha256": "7168eea3ca22eca16fc3877cb22ec8ec0d45d27c38a03730155adfdf7d5afbed"
+    },
+    "model": {
+      "model": "EleutherAI/pythia-1b-deduped",
+      "revision": "d1988145ec1cf1e76d786cd05af9f53e8b1c95cc",
+      "cache_path": "/root/.cache/huggingface/hub/models--EleutherAI--pythia-1b-deduped/snapshots/d1988145ec1cf1e76d786cd05af9f53e8b1c95cc"
+    },
+    "tokenizer_contract": {
+      "data_tokenizer_model": "EleutherAI/pythia-160m-deduped",
+      "data_tokenizer_revision": "c54a0e0b28cc667b6f278803024438d57f847b5d",
+      "target_tokenizer_model": "EleutherAI/pythia-1b-deduped",
+      "target_revision": "d1988145ec1cf1e76d786cd05af9f53e8b1c95cc",
+      "data_padding_eos_id": 0,
+      "target_tokenizer_eos_attribute": null,
+      "model_config_eos": 2,
+      "generation_eos_differs_from_data_eos": true,
+      "generation_used": false,
+      "encoding_backend_sha256": "dc2f66c2b3397abbb81d703554eb001d2ae2c08060495f57d10759fc51fab16d",
+      "scope": "identical vocabulary, merges, added tokens, normalizer, pre-tokenizer and decoder; frozen data IDs unchanged; generation EOS metadata is unused by teacher-forced loss and all padding/EOS labels are ignored"
+    },
+    "attention": {
+      "softmax_dtype": "float64",
+      "original_source_sha256": "6747c2be076a33cc7abc6f15abdb4208f2a1b6a82cbad70ad8fe54d5fa292520",
+      "executed_source_sha256": "9d4af3acc11d24a74045d3571609ab3ce19ad1c2c5fa5ad9d0edf7b007289b06",
+      "scope": "shared by all methods; forward and backward arithmetic change"
+    }
+  },
+  "steps": 100,
+  "update_blocks": [
+    {
+      "file": "updates/00000000_00000099.json",
+      "sha256": "ebc41c0051a4e011145e2490cf2d1c3f1ebf4fd37097ccbd1c2644b9e23c5acf",
+      "first_step": 0,
+      "last_step": 99,
+      "rows": 100
+    }
+  ],
+  "history": [
+    {
+      "after_updates": 0,
+      "metrics": {
+        "tasks": [
+          {
+            "task": "glue/mnli",
+            "examples": 128,
+            "answer_ce": 7.9741369895637035,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "glue/qnli",
+            "examples": 128,
+            "answer_ce": 3.8866871912032366,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "glue/rte",
+            "examples": 128,
+            "answer_ce": 5.216978709213436,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "super_glue/cb",
+            "examples": 28,
+            "answer_ce": 7.390347821371896,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "anli/a1",
+            "examples": 128,
+            "answer_ce": 9.347676143050194,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "sick/label",
+            "examples": 128,
+            "answer_ce": 7.860882604494691,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "snli",
+            "examples": 128,
+            "answer_ce": 7.813262443989515,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "scitail/snli_format",
+            "examples": 128,
+            "answer_ce": 6.9269222393631935,
+            "teacher_forced_answer_exact_match": 0.0
+          }
+        ],
+        "mean_ce": 7.052111767781233,
+        "worst_ce": 9.347676143050194,
+        "mean_answer_exact_match": 0.0,
+        "worst_answer_exact_match": 0.0,
+        "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+      },
+      "update_seconds": 0.0,
+      "recorded_wall_seconds": 28.867742498000098,
+      "selected": false
+    },
+    {
+      "after_updates": 100,
+      "metrics": {
+        "tasks": [
+          {
+            "task": "glue/mnli",
+            "examples": 128,
+            "answer_ce": 0.7167779234005138,
+            "teacher_forced_answer_exact_match": 0.3125
+          },
+          {
+            "task": "glue/qnli",
+            "examples": 128,
+            "answer_ce": 0.2946072800696129,
+            "teacher_forced_answer_exact_match": 0.3984375
+          },
+          {
+            "task": "glue/rte",
+            "examples": 128,
+            "answer_ce": 0.6683734142861795,
+            "teacher_forced_answer_exact_match": 0.421875
+          },
+          {
+            "task": "super_glue/cb",
+            "examples": 28,
+            "answer_ce": 1.7319572706307684,
+            "teacher_forced_answer_exact_match": 0.21428571428571427
+          },
+          {
+            "task": "anli/a1",
+            "examples": 128,
+            "answer_ce": 2.0458910135785118,
+            "teacher_forced_answer_exact_match": 0.2109375
+          },
+          {
+            "task": "sick/label",
+            "examples": 128,
+            "answer_ce": 1.0248828789917752,
+            "teacher_forced_answer_exact_match": 0.2734375
+          },
+          {
+            "task": "snli",
+            "examples": 128,
+            "answer_ce": 0.8302209042012691,
+            "teacher_forced_answer_exact_match": 0.265625
+          },
+          {
+            "task": "scitail/snli_format",
+            "examples": 128,
+            "answer_ce": 0.45062633759516757,
+            "teacher_forced_answer_exact_match": 0.515625
+          }
+        ],
+        "mean_ce": 0.9704171278442248,
+        "worst_ce": 2.0458910135785118,
+        "mean_answer_exact_match": 0.3265904017857143,
+        "worst_answer_exact_match": 0.2109375,
+        "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+      },
+      "update_seconds": 191.46126676900008,
+      "recorded_wall_seconds": 488.873104149,
+      "selected": true
+    }
+  ],
+  "selected_checkpoint": {
+    "file": "selected/step00000100_ecdfbe498c05f8cc.pt",
+    "sha256": "ecdfbe498c05f8ccb2a078708e5fe63daab3081dc689339eb9f03f536040899e",
+    "after_updates": 100,
+    "worst_ce": 2.0458910135785118
+  },
+  "native_audits": [
+    {
+      "method": "direct_cached",
+      "seconds": 1.8658452719998877,
+      "times": {
+        "capture_seconds": 0.8493879440000001,
+        "gram_seconds": 0.674236535000091,
+        "transfer_and_qp_seconds": 0.0006118819999301195,
+        "reconstruction_seconds": 0.34014185000000907
+      },
+      "peak_allocated_bytes": 16820562432,
+      "configuration": {
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "native_chunk": 4,
+        "gram_precision": null,
+        "reconstruction": "operator"
+      },
+      "incremental_peak_bytes": 12754196992,
+      "weights": [
+        0.0,
+        0.5533898382673084,
+        0.3210041174703622,
+        0.09122947486319502,
+        0.0,
+        0.034376569399134485,
+        0.0,
+        0.0
+      ],
+      "gram": [
+        [
+          28856.06640625,
+          3080.529296875,
+          5777.16162109375,
+          6118.91455078125,
+          12411.740234375,
+          10159.572265625,
+          12012.912109375,
+          16786.552734375
+        ],
+        [
+          3080.529296875,
+          4080.583740234375,
+          1856.462646484375,
+          929.62548828125,
+          2488.3427734375,
+          1438.1141357421875,
+          2057.442138671875,
+          3122.6845703125
+        ],
+        [
+          5777.16162109375,
+          1856.462646484375,
+          5215.421875,
+          2198.332275390625,
+          3744.220703125,
+          2509.2744140625,
+          4533.142578125,
+          5170.467529296875
+        ],
+        [
+          6118.91455078125,
+          929.62548828125,
+          2198.332275390625,
+          16829.109375,
+          3738.302490234375,
+          6775.03857421875,
+          7007.96484375,
+          4864.484375
+        ],
+        [
+          12411.740234375,
+          2488.3427734375,
+          3744.220703125,
+          3738.302490234375,
+          16400.1796875,
+          6543.667724609375,
+          6580.09033203125,
+          10496.80322265625
+        ],
+        [
+          10159.572265625,
+          1438.1141357421875,
+          2509.2744140625,
+          6775.03857421875,
+          6543.667724609375,
+          22367.677734375,
+          9822.5556640625,
+          9934.2822265625
+        ],
+        [
+          12012.912109375,
+          2057.442138671875,
+          4533.142578125,
+          7007.96484375,
+          6580.09033203125,
+          9822.5556640625,
+          20856.91796875,
+          11413.509765625
+        ],
+        [
+          16786.552734375,
+          3122.6845703125,
+          5170.467529296875,
+          4864.484375,
+          10496.80322265625,
+          9934.2822265625,
+          11413.509765625,
+          23269.640625
+        ]
+      ],
+      "objective": 2988.332405002476,
+      "qp_gap": 1.8189894035458565e-12,
+      "metadata": {
+        "contraction_plan": [
+          {
+            "parameter": "gpt_neox.embed_in.weight",
+            "method": "observed_embedding_tiles",
+            "active_tokens": 2690,
+            "observed_rows": 698
+          },
+          {
+            "parameter": "gpt_neox.layers.0.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.dense.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 94,
+            "token_tile": 1672,
+            "output_rows": 2048,
+            "parameter_flops_padded": 2147483648,
+            "token_flops_padded": 301989888
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_h_to_4h.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 94,
+            "token_tile": 1672,
+            "output_rows": 8192,
+            "parameter_flops_padded": 8589934592,
+            "token_flops_padded": 754974720
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_4h_to_h.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 94,
+            "token_tile": 1672,
+            "output_rows": 2048,
+            "parameter_flops_padded": 8589934592,
+            "token_flops_padded": 754974720
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.final_layer_norm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.final_layer_norm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "embed_out.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 94,
+            "token_tile": 1672,
+            "output_rows": 50304,
+            "parameter_flops_padded": 52747567104,
+            "token_flops_padded": 3859808256
+          }
+        ]
+      },
+      "timed_recovery_complete": true,
+      "execution_variant": "cached contraction control",
+      "emitted_table_direction_relative_error": 6.44911600805166e-07,
+      "emitted_table_direction_absolute_error": 3.525450938309124e-05,
+      "emitted_cast_table_direction_relative_error": 6.446096840101284e-07,
+      "emitted_weighted_backward_relative_error": 3.99242476746888e-06,
+      "weighted_backward_cast_table_relative_error": 4.013965112484806e-06,
+      "emitted_direction_norm": 54.6656473436733,
+      "table_direction_norm": 54.665646173950535,
+      "task_gradient_norm_max": 169.87074325026893,
+      "mixture_cancellation_condition": 1.3812826330884516,
+      "executed_coefficients": [
+        0.0,
+        0.553389847278595,
+        0.32100412249565125,
+        0.09122947603464127,
+        0.0,
+        0.03437656909227371,
+        0.0,
+        0.0
+      ],
+      "executed_coefficient_sum": 1.0000000149011612,
+      "solver_coefficient_sum": 1.0000000000000002,
+      "cast_table_objective": 2988.332960674813,
+      "executed_native_table_responses": [
+        4466.703792741616,
+        2988.3329314328585,
+        2988.3328567790813,
+        2988.333115897675,
+        3144.9265331801325,
+        2988.3332590183877,
+        3570.7235869430997,
+        4173.094444798111
+      ],
+      "executed_native_table_min_response": 2988.3328567790813,
+      "table_response_error_bound_diagnostic": [
+        4466.697646745844,
+        2988.330616761627,
+        2988.3302449126745,
+        2988.3284922365833,
+        3144.921915323888,
+        2988.3278828015436,
+        3570.7183860105633,
+        4173.088938817012
+      ],
+      "normalized_gain_to_reference_primal": 0.999999973637436,
+      "passes_table_direction": true,
+      "passes_weighted_backward_direction": true,
+      "direction_audit_backend": "tiled GPU FP64, independent host task table, outside recovery timing",
+      "direction_audit_scope": "FP64 diagnostics against an independently acquired FP32 native task table and separately against weighted native backward; no outward AD enclosure",
+      "audit_weighted_seconds": 1.1493779060001543,
+      "audit_dual_seconds": 21.19644338299986,
+      "passed_weight_feasibility_gate": true,
+      "native_gram_relative_error": 2.028065814124562e-07,
+      "passed_native_gram_gate": true,
+      "native_objective_factor_upper": 1.0000000000000029,
+      "native_objective_excess_above_lower": 8.640199666842818e-12,
+      "native_reference_lower": 2988.332871615545,
+      "native_reference_qp_gap": 0.0,
+      "native_table_min_response": 2988.3327909185346,
+      "passed_native_objective_gate": true,
+      "objective_audit_scope": "relative native task-table objective",
+      "common_descent_scope": "table response only; actual reconstructed direction response not certified",
+      "passes_table_contract": true,
+      "passes_weighted_contract": true,
+      "passes_joint_contract": true,
+      "after_updates": 1,
+      "reference": {
+        "seconds": 47.040537836999874,
+        "host_table_bytes": 32377012224,
+        "scope": "independent native task gradients, host table, tiled GPU FP64 contractions; outside timed recovery",
+        "lower": 2988.332871615545,
+        "objective": 2988.332871615545,
+        "qp_gap": 0.0,
+        "gram": [
+          [
+            28856.06941239879,
+            3080.5295351298764,
+            5777.163912810192,
+            6118.913034174881,
+            12411.744187421702,
+            10159.573051712588,
+            12012.908590723322,
+            16786.55287234298
+          ],
+          [
+            3080.5295351298764,
+            4080.584169586372,
+            1856.4631713935005,
+            929.6259652557133,
+            2488.343082610448,
+            1438.1145484267067,
+            2057.44211796341,
+            3122.684477343646
+          ],
+          [
+            5777.163912810192,
+            1856.4631713935005,
+            5215.421913622993,
+            2198.3330166182013,
+            3744.2206281053964,
+            2509.2748625290214,
+            4533.142173714398,
+            5170.467641304183
+          ],
+          [
+            6118.913034174881,
+            929.6259652557133,
+            2198.3330166182013,
+            16829.110417664604,
+            3738.3043623519534,
+            6775.04042682758,
+            7007.963373253551,
+            4864.485924894911
+          ],
+          [
+            12411.744187421702,
+            2488.343082610448,
+            3744.2206281053964,
+            3738.3043623519534,
+            16400.179046501187,
+            6543.668429562304,
+            6580.092769625851,
+            10496.806585747241
+          ],
+          [
+            10159.573051712588,
+            1438.1145484267067,
+            2509.2748625290214,
+            6775.04042682758,
+            6543.668429562304,
+            22367.683815722292,
+            9822.556502723613,
+            9934.282747107607
+          ],
+          [
+            12012.908590723322,
+            2057.44211796341,
+            4533.142173714398,
+            7007.963373253551,
+            6580.092769625851,
+            9822.556502723613,
+            20856.918509405106,
+            11413.515117398956
+          ],
+          [
+            16786.55287234298,
+            3122.684477343646,
+            5170.467641304183,
+            4864.485924894911,
+            10496.806585747241,
+            9934.282747107607,
+            11413.515117398956,
+            23269.63899919302
+          ]
+        ]
+      }
+    },
+    {
+      "method": "direct_cached",
+      "seconds": 1.8649059720000878,
+      "times": {
+        "capture_seconds": 0.8482334079999418,
+        "gram_seconds": 0.6740995380000641,
+        "transfer_and_qp_seconds": 0.000813501000038741,
+        "reconstruction_seconds": 0.34025224900005924
+      },
+      "peak_allocated_bytes": 16820562432,
+      "configuration": {
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "native_chunk": 4,
+        "gram_precision": null,
+        "reconstruction": "operator"
+      },
+      "incremental_peak_bytes": 12754196992,
+      "weights": [
+        0.0,
+        0.564275265500864,
+        0.2902569206056471,
+        0.008603142803456679,
+        0.005093487412398617,
+        0.0028043730934826693,
+        0.018444075003062124,
+        0.11052273558108883
+      ],
+      "gram": [
+        [
+          5018.869140625,
+          -2.7578479051589966,
+          -2.9349664449691772,
+          991.5783081054688,
+          -405.6574401855469,
+          226.2800521850586,
+          2905.252685546875,
+          178.8893051147461
+        ],
+        [
+          -2.7578479051589966,
+          117.81558227539062,
+          21.751608848571777,
+          -50.08077049255371,
+          23.40384006500244,
+          6.2071332931518555,
+          -26.42137622833252,
+          -3.120411992073059
+        ],
+        [
+          -2.9349664449691772,
+          21.751608848571777,
+          210.11997985839844,
+          -41.868173599243164,
+          24.95040225982666,
+          120.9393310546875,
+          -78.48656845092773,
+          -2.29423189163208
+        ],
+        [
+          991.5783081054688,
+          -50.08077049255371,
+          -41.868173599243164,
+          10737.45703125,
+          1795.7213134765625,
+          1206.564453125,
+          1144.6888427734375,
+          -126.12187576293945
+        ],
+        [
+          -405.6574401855469,
+          23.40384006500244,
+          24.95040225982666,
+          1795.7213134765625,
+          12023.212890625,
+          1634.921630859375,
+          -912.2147521972656,
+          -119.70022583007812
+        ],
+        [
+          226.2800521850586,
+          6.2071332931518555,
+          120.9393310546875,
+          1206.564453125,
+          1634.921630859375,
+          9116.7626953125,
+          -127.88370513916016,
+          -80.1126937866211
+        ],
+        [
+          2905.252685546875,
+          -26.42137622833252,
+          -78.48656845092773,
+          1144.6888427734375,
+          -912.2147521972656,
+          -127.88370513916016,
+          5063.3203125,
+          100.67202377319336
+        ],
+        [
+          178.8893051147461,
+          -3.120411992073059,
+          -2.29423189163208,
+          -126.12187576293945,
+          -119.70022583007812,
+          -80.1126937866211,
+          100.67202377319336,
+          670.9644775390625
+        ]
+      ],
+      "objective": 71.66754191895976,
+      "qp_gap": 2.842170943040401e-14,
+      "metadata": {
+        "contraction_plan": [
+          {
+            "parameter": "gpt_neox.embed_in.weight",
+            "method": "observed_embedding_tiles",
+            "active_tokens": 2749,
+            "observed_rows": 760
+          },
+          {
+            "parameter": "gpt_neox.layers.0.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.dense.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 98,
+            "token_tile": 1672,
+            "output_rows": 2048,
+            "parameter_flops_padded": 2147483648,
+            "token_flops_padded": 301989888
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_h_to_4h.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 98,
+            "token_tile": 1672,
+            "output_rows": 8192,
+            "parameter_flops_padded": 8589934592,
+            "token_flops_padded": 754974720
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_4h_to_h.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 98,
+            "token_tile": 1672,
+            "output_rows": 2048,
+            "parameter_flops_padded": 8589934592,
+            "token_flops_padded": 754974720
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.final_layer_norm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.final_layer_norm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "embed_out.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 98,
+            "token_tile": 1672,
+            "output_rows": 50304,
+            "parameter_flops_padded": 52747567104,
+            "token_flops_padded": 3859808256
+          }
+        ]
+      },
+      "timed_recovery_complete": true,
+      "execution_variant": "cached contraction control",
+      "emitted_table_direction_relative_error": 1.1287602054638978e-06,
+      "emitted_table_direction_absolute_error": 9.555712081983545e-06,
+      "emitted_cast_table_direction_relative_error": 1.128690479319022e-06,
+      "emitted_weighted_backward_relative_error": 1.5395434207529284e-05,
+      "weighted_backward_cast_table_relative_error": 1.5413009042845157e-05,
+      "emitted_direction_norm": 8.46567055585298,
+      "table_direction_norm": 8.465670596578429,
+      "task_gradient_norm_max": 109.65041532819639,
+      "mixture_cancellation_condition": 1.9165958382023847,
+      "executed_coefficients": [
+        0.0,
+        0.5642752647399902,
+        0.29025691747665405,
+        0.008603142574429512,
+        0.005093487445265055,
+        0.0028043731581419706,
+        0.01844407431781292,
+        0.11052273213863373
+      ],
+      "executed_coefficient_sum": 0.9999999918509275,
+      "solver_coefficient_sum": 1.0000000000000002,
+      "cast_table_objective": 71.66757748172408,
+      "executed_native_table_responses": [
+        78.04700353283542,
+        71.66759121164588,
+        71.66754580637114,
+        71.66757266894176,
+        71.66756764374024,
+        71.66759151722687,
+        71.667541119964,
+        71.6676045583492
+      ],
+      "executed_native_table_min_response": 71.667541119964,
+      "table_response_error_bound_diagnostic": [
+        78.04632963878284,
+        71.66748729914916,
+        71.66740770856515,
+        71.66658497484266,
+        71.66651911200272,
+        71.66667727656055,
+        71.66686535767147,
+        71.66735922918024
+      ],
+      "normalized_gain_to_reference_primal": 0.999999481145634,
+      "passes_table_direction": true,
+      "passes_weighted_backward_direction": true,
+      "direction_audit_backend": "tiled GPU FP64, independent host task table, outside recovery timing",
+      "direction_audit_scope": "FP64 diagnostics against an independently acquired FP32 native task table and separately against weighted native backward; no outward AD enclosure",
+      "audit_weighted_seconds": 1.1485226220002005,
+      "audit_dual_seconds": 21.56778680599996,
+      "passed_weight_feasibility_gate": true,
+      "native_gram_relative_error": 2.2193466707101423e-07,
+      "passed_native_gram_gate": true,
+      "native_objective_factor_upper": 1.000000000000125,
+      "native_objective_excess_above_lower": 8.967049325292464e-12,
+      "native_reference_lower": 71.66757864976367,
+      "native_reference_qp_gap": 0.0,
+      "native_table_min_response": 71.6675453135982,
+      "passed_native_objective_gate": true,
+      "objective_audit_scope": "relative native task-table objective",
+      "common_descent_scope": "table response only; actual reconstructed direction response not certified",
+      "passes_table_contract": true,
+      "passes_weighted_contract": true,
+      "passes_joint_contract": true,
+      "after_updates": 50,
+      "reference": {
+        "seconds": 46.74145342499992,
+        "host_table_bytes": 32377012224,
+        "scope": "independent native task gradients, host table, tiled GPU FP64 contractions; outside timed recovery",
+        "lower": 71.66757864976367,
+        "objective": 71.66757864976367,
+        "qp_gap": 0.0,
+        "gram": [
+          [
+            5018.870024816296,
+            -2.7578395967159763,
+            -2.9349757765733195,
+            991.5783449279647,
+            -405.6572634803588,
+            226.2802386655374,
+            2905.25151320508,
+            178.8894677551108
+          ],
+          [
+            -2.7578395967159763,
+            117.81566016288726,
+            21.75162743459345,
+            -50.08076757885732,
+            23.403854437067604,
+            6.207147338490807,
+            -26.42139375529262,
+            -3.1204125206431055
+          ],
+          [
+            -2.9349757765733195,
+            21.75162743459345,
+            210.11995830776047,
+            -41.86817377942569,
+            24.950418466505884,
+            120.9393869323426,
+            -78.48657426264377,
+            -2.2942324195294743
+          ],
+          [
+            991.5783449279647,
+            -50.08076757885732,
+            -41.86817377942569,
+            10737.460205060912,
+            1795.7213483373728,
+            1206.564211179912,
+            1144.6889181764031,
+            -126.12184455848343
+          ],
+          [
+            -405.6572634803588,
+            23.403854437067604,
+            24.950418466505884,
+            1795.7213483373728,
+            12023.213581645967,
+            1634.921824695188,
+            -912.2147603870357,
+            -119.70015385587817
+          ],
+          [
+            226.2802386655374,
+            6.207147338490807,
+            120.9393869323426,
+            1206.564211179912,
+            1634.921824695188,
+            9116.765222007007,
+            -127.88358425476625,
+            -80.11255455531935
+          ],
+          [
+            2905.25151320508,
+            -26.42139375529262,
+            -78.48657426264377,
+            1144.6889181764031,
+            -912.2147603870357,
+            -127.88358425476625,
+            5063.320467520017,
+            100.67212480548778
+          ],
+          [
+            178.8894677551108,
+            -3.1204125206431055,
+            -2.2942324195294743,
+            -126.12184455848343,
+            -119.70015385587817,
+            -80.11255455531935,
+            100.67212480548778,
+            670.9650420770971
+          ]
+        ]
+      }
+    },
+    {
+      "method": "direct_cached",
+      "seconds": 1.865282924999974,
+      "times": {
+        "capture_seconds": 0.8485742300001675,
+        "gram_seconds": 0.6744595939999272,
+        "transfer_and_qp_seconds": 0.0008429930001057073,
+        "reconstruction_seconds": 0.3399146589999873
+      },
+      "peak_allocated_bytes": 16820562432,
+      "configuration": {
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "native_chunk": 4,
+        "gram_precision": null,
+        "reconstruction": "operator"
+      },
+      "incremental_peak_bytes": 12754196992,
+      "weights": [
+        0.00397140760755035,
+        0.8334068684007481,
+        0.031993813259780235,
+        0.012158983846313321,
+        0.026780049607261658,
+        0.019461644443992922,
+        0.03873996503426595,
+        0.03348726780008762
+      ],
+      "gram": [
+        [
+          18545.576171875,
+          -8.141721248626709,
+          1456.7986450195312,
+          -1254.1785278320312,
+          -5589.7841796875,
+          -17244.21875,
+          12796.447265625,
+          3236.6611328125
+        ],
+        [
+          -8.141721248626709,
+          261.65875244140625,
+          38.7919807434082,
+          43.772565841674805,
+          13.73018217086792,
+          -105.78289413452148,
+          -78.10983276367188,
+          58.493125915527344
+        ],
+        [
+          1456.7986450195312,
+          38.7919807434082,
+          4714.529296875,
+          1362.603759765625,
+          200.55831146240234,
+          -2534.276611328125,
+          267.9168395996094,
+          1346.8831787109375
+        ],
+        [
+          -1254.1785278320312,
+          43.772565841674805,
+          1362.603759765625,
+          15350.13671875,
+          2456.129150390625,
+          1676.4163208007812,
+          -4450.1015625,
+          875.2649536132812
+        ],
+        [
+          -5589.7841796875,
+          13.73018217086792,
+          200.55831146240234,
+          2456.129150390625,
+          9932.873046875,
+          10201.76416015625,
+          -5754.443359375,
+          -1495.8578491210938
+        ],
+        [
+          -17244.21875,
+          -105.78289413452148,
+          -2534.276611328125,
+          1676.4163208007812,
+          10201.76416015625,
+          49852.9765625,
+          -15398.427734375,
+          -6345.619140625
+        ],
+        [
+          12796.447265625,
+          -78.10983276367188,
+          267.9168395996094,
+          -4450.1015625,
+          -5754.443359375,
+          -15398.427734375,
+          17222.6015625,
+          1894.61279296875
+        ],
+        [
+          3236.6611328125,
+          58.493125915527344,
+          1346.8831787109375,
+          875.2649536132812,
+          -1495.8578491210938,
+          -6345.619140625,
+          1894.61279296875,
+          5729.70458984375
+        ]
+      ],
+      "objective": 217.05098934464633,
+      "qp_gap": 2.2737367544323206e-13,
+      "metadata": {
+        "contraction_plan": [
+          {
+            "parameter": "gpt_neox.embed_in.weight",
+            "method": "observed_embedding_tiles",
+            "active_tokens": 2786,
+            "observed_rows": 774
+          },
+          {
+            "parameter": "gpt_neox.layers.0.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.0.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.0.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.1.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.1.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.2.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.2.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.3.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.3.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.4.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.4.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.5.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.5.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.6.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.6.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.7.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.7.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.8.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.8.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.9.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.9.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.10.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.10.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.11.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.11.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.12.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.12.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.13.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.13.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.dense.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 66060288
+          },
+          {
+            "parameter": "gpt_neox.layers.14.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_h_to_4h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_4h_to_h.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 128,
+            "packed_factor_bytes": 165150720
+          },
+          {
+            "parameter": "gpt_neox.layers.14.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.input_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.input_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.post_attention_layernorm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.post_attention_layernorm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.query_key_value.weight",
+            "method": "merged_task_parameter_tiles",
+            "tokens": 4032,
+            "padded_tokens": 4032,
+            "row_tile": 256,
+            "packed_factor_bytes": 132120576
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.query_key_value.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.dense.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 90,
+            "token_tile": 1672,
+            "output_rows": 2048,
+            "parameter_flops_padded": 2147483648,
+            "token_flops_padded": 301989888
+          },
+          {
+            "parameter": "gpt_neox.layers.15.attention.dense.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_h_to_4h.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 90,
+            "token_tile": 1672,
+            "output_rows": 8192,
+            "parameter_flops_padded": 8589934592,
+            "token_flops_padded": 754974720
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_h_to_4h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_4h_to_h.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 90,
+            "token_tile": 1672,
+            "output_rows": 2048,
+            "parameter_flops_padded": 8589934592,
+            "token_flops_padded": 754974720
+          },
+          {
+            "parameter": "gpt_neox.layers.15.mlp.dense_4h_to_h.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.final_layer_norm.weight",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "gpt_neox.final_layer_norm.bias",
+            "method": "grouped_parameter_tiles"
+          },
+          {
+            "parameter": "embed_out.weight",
+            "method": "ragged_token_hadamard",
+            "active_tokens": 90,
+            "token_tile": 1672,
+            "output_rows": 50304,
+            "parameter_flops_padded": 52747567104,
+            "token_flops_padded": 3859808256
+          }
+        ]
+      },
+      "timed_recovery_complete": true,
+      "execution_variant": "cached contraction control",
+      "emitted_table_direction_relative_error": 1.160132951035793e-06,
+      "emitted_table_direction_absolute_error": 1.7091835111422926e-05,
+      "emitted_cast_table_direction_relative_error": 1.1600711264001866e-06,
+      "emitted_weighted_backward_relative_error": 9.32851067686901e-06,
+      "weighted_backward_cast_table_relative_error": 9.360229325262347e-06,
+      "emitted_direction_norm": 14.73265196675204,
+      "table_direction_norm": 14.732652060406481,
+      "task_gradient_norm_max": 223.27779074865683,
+      "mixture_cancellation_condition": 2.1963688484050032,
+      "executed_coefficients": [
+        0.003971407655626535,
+        0.8334068655967712,
+        0.0319938138127327,
+        0.012158983387053013,
+        0.02678005024790764,
+        0.01946164481341839,
+        0.03873996436595917,
+        0.033487267792224884
+      ],
+      "executed_coefficient_sum": 0.9999999976716936,
+      "solver_coefficient_sum": 1.0,
+      "cast_table_objective": 217.05103572227708,
+      "executed_native_table_responses": [
+        217.05081654724376,
+        217.051049867796,
+        217.0510331840875,
+        217.05098132048644,
+        217.05085683830353,
+        217.05103438024165,
+        217.05078133079505,
+        217.05115895396332
+      ],
+      "executed_native_table_min_response": 217.05078133079505,
+      "table_response_error_bound_diagnostic": [
+        217.04850359034344,
+        217.05077498962171,
+        217.04986038763852,
+        217.04886727571193,
+        217.04914461593015,
+        217.0471887260229,
+        217.04855520196983,
+        217.04986744144588
+      ],
+      "normalized_gain_to_reference_primal": 0.9999988296650283,
+      "passes_table_direction": true,
+      "passes_weighted_backward_direction": true,
+      "direction_audit_backend": "tiled GPU FP64, independent host task table, outside recovery timing",
+      "direction_audit_scope": "FP64 diagnostics against an independently acquired FP32 native task table and separately against weighted native backward; no outward AD enclosure",
+      "audit_weighted_seconds": 1.1490553910000472,
+      "audit_dual_seconds": 21.592169167000065,
+      "passed_weight_feasibility_gate": true,
+      "native_gram_relative_error": 1.6315310406247144e-07,
+      "passed_native_gram_gate": true,
+      "native_objective_factor_upper": 1.0000000000000826,
+      "native_objective_excess_above_lower": 1.7905676941154525e-11,
+      "native_reference_lower": 217.05103673298186,
+      "native_reference_qp_gap": 1.1368683772161603e-13,
+      "native_table_min_response": 217.05079824717706,
+      "passed_native_objective_gate": true,
+      "objective_audit_scope": "relative native task-table objective",
+      "common_descent_scope": "table response only; actual reconstructed direction response not certified",
+      "passes_table_contract": true,
+      "passes_weighted_contract": true,
+      "passes_joint_contract": true,
+      "after_updates": 100,
+      "reference": {
+        "seconds": 46.826408510999954,
+        "host_table_bytes": 32377012224,
+        "scope": "independent native task gradients, host table, tiled GPU FP64 contractions; outside timed recovery",
+        "lower": 217.05103673298186,
+        "objective": 217.05103673298197,
+        "qp_gap": 1.1368683772161603e-13,
+        "gram": [
+          [
+            18545.576227232068,
+            -8.141715643242469,
+            1456.7986819177258,
+            -1254.1783400759896,
+            -5589.784974789184,
+            -17244.22024303433,
+            12796.444228306618,
+            3236.66117787339
+          ],
+          [
+            -8.141715643242469,
+            261.6588273593749,
+            38.791996131948245,
+            43.77257191916236,
+            13.730176800532957,
+            -105.78289207070934,
+            -78.10984622674232,
+            58.493117550403056
+          ],
+          [
+            1456.7986819177258,
+            38.791996131948245,
+            4714.529970164789,
+            1362.6038885938115,
+            200.55825607988953,
+            -2534.2765118629054,
+            267.9169028545605,
+            1346.8833467725176
+          ],
+          [
+            -1254.1783400759896,
+            43.77257191916236,
+            1362.6038885938115,
+            15350.136610433166,
+            2456.1292864027346,
+            1676.4170289658346,
+            -4450.102309706696,
+            875.2649070981153
+          ],
+          [
+            -5589.784974789184,
+            13.730176800532957,
+            200.55825607988953,
+            2456.1292864027346,
+            9932.866135447564,
+            10201.766623302341,
+            -5754.443675576634,
+            -1495.8573754921038
+          ],
+          [
+            -17244.22024303433,
+            -105.78289207070934,
+            -2534.2765118629054,
+            1676.4170289658346,
+            10201.766623302341,
+            49852.971841600985,
+            -15398.428666552585,
+            -6345.617048755795
+          ],
+          [
+            12796.444228306618,
+            -78.10984622674232,
+            267.9169028545605,
+            -4450.102309706696,
+            -5754.443675576634,
+            -15398.428666552585,
+            17222.597988459755,
+            1894.612921808192
+          ],
+          [
+            3236.66117787339,
+            58.493117550403056,
+            1346.8833467725176,
+            875.2649070981153,
+            -1495.8573754921038,
+            -6345.617048755795,
+            1894.612921808192,
+            5729.70803758464
+          ]
+        ]
+      }
+    }
+  ],
+  "update_seconds": 191.46126676900008,
+  "preparation_seconds": 0.34057620399926236,
+  "recorded_wall_seconds": 567.789584144,
+  "attempts": 1,
+  "peak_update_allocated_bytes": 16821611008,
+  "gram_captures": 100,
+  "periodic_refinements": 0,
+  "post_update_forwards": 0,
+  "wall_scope": "main through latest recorded event, including loading, preparation, audits, evaluation and earlier checkpoint copies; excludes imports/final persistence; resumed uncheckpointed work may be missing",
+  "model_mode": "full-parameter fine-tuning in eval mode, disabling dropout for every rule",
+  "certificate_scope": "raw computational fidelity diagnostics; no population guarantee or per-step interval certificate",
+  "heldout_test_evaluated": false,
+  "uninterrupted_training_evaluation_seconds": 567.789584144
+}

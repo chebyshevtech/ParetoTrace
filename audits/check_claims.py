@@ -402,5 +402,77 @@ check('first run: exact MGDA fixed step raised no loss', pa['direct_fixed']['upd
 check('first run: uniform fixed step raised a loss at 299 of 300', pa['uniform_fixed']['updates_raising_a_task'], 299)
 check('first run: exact MGDA certified never refused', pa['direct_certified']['status_counts']['not_certified'], 0)
 
+# ---------------- Pythia-1B training: six rules, frozen protocol, 18 development + 18 confirmatory runs
+import hashlib
+L = load('language_training_1b/campaign_analysis.json')
+check('1B training analysis validated and complete', (L['validated'], L['complete']), (True, True))
+check('1B training analyzed runs, development and confirmatory', (len(L['runs']['development']), len(L['runs']['confirmatory'])), (18, 18))
+P1 = L['protocol']
+check('1B training protocol: plain SGD, 200 updates, batch 32, three paired seeds, three rates',
+      (P1['optimizer'].startswith('plain SGD'), P1['reporting_steps'], P1['batch_size'], len(P1['reporting_seeds']), P1['learning_rates']),
+      (True, 200, 32, 3, [0.0001, 0.0003, 0.001]))
+check('1B training protocol identical to the frozen file', P1, load('language_training_1b/protocol.json'))
+check('1B training primary endpoint is final held-out worst-task CE', P1['primary_endpoint'].startswith('final heldout worst-task answer CE'), True)
+check('1B training selected rates', L['selection']['rates'], {'direct': 0.001, 'uniform': 0.001, 'cagrad': 0.001, 'fa': 0.0003, 'periodic': 0.001, 'famo': 0.001})
+check('1B training five rules chose the largest rate', sum(r == max(P1['learning_rates']) for r in L['selection']['rates'].values()), 5)
+check('1B training periodic refines every five updates', P1['method_settings'].count('periodic every5updates'), 1)
+# Re-derived independently from the 36 per-run metrics files, then compared with the validated analysis.
+RM = {}
+for p_ in sorted((RES / 'language_training_1b/runs').glob('*/metrics.json')):
+    m_ = json.loads(p_.read_text()); c_ = m_['config']
+    RM[(c_['phase'], c_['method'], c_['seed'], c_['lr'])] = m_
+check('1B training run files', len(RM), 36)
+# Hash chain: analysis inputs -> completion markers -> each run's metrics and config files.
+sha_f = lambda q: hashlib.sha256(q.read_bytes()).hexdigest()
+check('1B training analysis input files match', {n: sha_f(RES / 'language_training_1b' / n) for n in L['input_sha256']}, L['input_sha256'])
+MK = {ph: load(f'language_training_1b/{ph}_complete.json') for ph in ('development', 'confirmatory')}
+check('1B training every run file bound to its completion marker',
+      all(sha_f(RES / 'language_training_1b/runs' / lab / 'metrics.json') == rec['metrics_sha256']
+          and sha_f(RES / 'language_training_1b/configs' / (lab + '.json')) == rec['config_sha256']
+          for ph in MK for lab, rec in MK[ph]['runs'].items()) and sum(len(MK[ph]['runs']) for ph in MK) == 36, True)
+check('1B training one shared batch sequence per seed', len(L['coverage']['paired_batch_sequence_sha256']), 4)
+check('1B training every run complete', all(m_['complete'] is True for m_ in RM.values()), True)
+CF = {(k[1], k[2]): m_ for k, m_ in RM.items() if k[0] == 'confirmatory'}
+check('1B training confirmatory runs at the selected rates for 200 updates',
+      all(m_['config']['lr'] == L['selection']['rates'][k[0]] and m_['steps'] == 200 for k, m_ in CF.items()) and len(CF) == 18, True)
+S1B = tuple(P1['reporting_seeds'])
+def cf_mean(meth, ep, key):
+    return st.mean(CF[(meth, s_)][ep][key] for s_ in S1B)
+MS = {x['method']: x for x in L['method_summaries']}
+for meth, (w, mce, vw) in {'uniform': (.774, .375, .680), 'periodic': (.781, .391, .734), 'fa': (.818, .534, .848),
+                          'cagrad': (.846, .389, .769), 'famo': (.878, .378, .796), 'direct': (1.026, .438, 1.026)}.items():
+    check(f'1B training {meth} final worst-task CE', round(cf_mean(meth, 'final_test', 'worst_ce'), 3), w)
+    check(f'1B training {meth} final mean CE', round(cf_mean(meth, 'final_test', 'mean_ce'), 3), mce)
+    check(f'1B training {meth} validation-selected worst-task CE', round(cf_mean(meth, 'validation_selected_test', 'worst_ce'), 3), vw)
+    check(f'1B training {meth} analysis agrees with run files',
+          [MS[meth][ep][key]['mean'] for ep in ('final_test', 'validation_selected_test') for key in ('worst_ce', 'mean_ce')],
+          [cf_mean(meth, ep, key) for ep in ('final_test', 'validation_selected_test') for key in ('worst_ce', 'mean_ce')])
+check('1B training ordering by final worst-task CE', sorted(MS, key=lambda k: MS[k]['final_test']['worst_ce']['mean']),
+      ['uniform', 'periodic', 'fa', 'cagrad', 'famo', 'direct'])
+for (a, b, mean, lo, hi, nfirst) in [('direct', 'uniform', .252, .167, .337, 0), ('periodic', 'fa', -.037, -.464, .390, 1)]:
+    d_ = [CF[(a, s_)]['final_test']['worst_ce'] - CF[(b, s_)]['final_test']['worst_ce'] for s_ in S1B]
+    m_, l_, h_ = tci(d_)
+    check(f'1B training {a}-{b} mean', round(m_, 3), mean); check(f'1B training {a}-{b} CI low', round(l_, 3), lo)
+    check(f'1B training {a}-{b} CI high', round(h_, 3), hi); check(f'1B training {a}-{b} seeds where {a} is lower', sum(x < 0 for x in d_), nfirst)
+    C_ = next(x for x in L['primary_contrasts'] if x['contrast'] == f'{a}-minus-{b}')
+    # The analyzer uses the closed-form df=2 critical value sqrt(2*.95**2/(1-.95**2)), which differs from tci's tabulated
+    # value by 1.6e-10, so the interval endpoints agree to about 1e-11 rather than exactly.
+    check(f'1B training {a}-{b} analysis agrees with run files', bool(max(abs(u - v) for u, v in zip((C_['mean'], *C_['descriptive_t95_interval']), (m_, l_, h_))) < 1e-9), True)
+    check(f'1B training {a}-{b} t critical value, df=2', round(C_['t95_critical'], 6), 4.302653)
+check('1B training direct validation-selected checkpoint is the last (update 200) on 3/3 seeds', [CF[('direct', s_)]['selected_checkpoint']['after_updates'] for s_ in S1B], [200, 200, 200])
+check('1B training uniform validation-selected checkpoint is update 100 on 3/3 seeds', [CF[('uniform', s_)]['selected_checkpoint']['after_updates'] for s_ in S1B], [100, 100, 100])
+# Frozen campaign sources, and the analyzer's one corrected source pin
+FS = ROOT / 'experiments/language_training_1b'
+FROZEN = load('language_training_1b/campaign_sources.json')
+check('1B training all frozen campaign sources included, hash-identical', all(hashlib.sha256((FS / n).read_bytes()).hexdigest() == h for n, h in FROZEN.items()) and len(FROZEN) == 26, True)
+check('1B training analysis records the frozen source map', L['campaign_sources'], FROZEN)
+fa_lines = (FS / 'analyze_language_training.py').read_text().splitlines()
+ca_path = FS / 'corrected_analyzer/analyze_language_training.py'
+ca_lines = ca_path.read_text().splitlines()
+changed = [(u, v) for u, v in zip(fa_lines, ca_lines) if u != v]
+check('1B training corrected analyzer differs from the frozen one in exactly one line', (len(fa_lines) == len(ca_lines), len(changed)), (True, 1))
+check('1B training the changed line pins the frozen methods file', changed[0][1].strip(), "'language_training_methods.py': '%s'," % FROZEN['language_training_methods.py'])
+check('1B training the analysis was produced by the corrected analyzer', L['analyzer_sha256'], hashlib.sha256(ca_path.read_bytes()).hexdigest())
+
 print('\n%d claims failed' % len(FAILS) if FAILS else '\nALL CLAIMS PASS')
 sys.exit(1 if FAILS else 0)

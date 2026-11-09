@@ -1,0 +1,22 @@
+{
+ "stage": "failed",
+ "utc": 1794254549.4525344,
+ "note": "fresh 1B campaign on a fifth runtime after four earlier runtimes were reclaimed (a busy kernel heartbeat now holds the runtime); transformers 4.57.1 pinned as in the original run; runs the development AND confirmatory stages (the earlier runner invoked only development, which the analyzer rejects)",
+ "sources_match": true,
+ "source_mismatches": [],
+ "command": "/usr/bin/python3 -u /content/rebuttal/language_training_v2/analyze_language_training.py --root /content/rebuttal/language_training_v2 --output /content/rebuttal/language_training_v2/campaign_analysis.json",
+ "prepare_language_returncode": 0,
+ "pool_sha256": "7168eea3ca22eca16fc3877cb22ec8ec0d45d27c38a03730155adfdf7d5afbed",
+ "pool_matches_frozen": true,
+ "preflight_returncode": 0,
+ "preflight_complete": true,
+ "preflight_missing": [],
+ "backup": "/content/rebuttal/language_training_v2_backup",
+ "vm_free_bytes_before_campaign": 235368271872,
+ "vm_required_bytes_upper_bound": 176997418240,
+ "campaign_returncode": 0,
+ "campaign_confirmatory_returncode": 0,
+ "analysis_returncode": 2,
+ "complete": false,
+ "error": "Traceback (most recent call last):\n  File \"/content/rebuttal/run_language_v2.py\", line 44, in <module>\n    run('analysis', ['/usr/bin/python3', '-u', str(V2 / 'analyze_language_training.py'), '--root', str(V2), '--output', str(V2 / 'campaign_analysis.json')], 'analysis.log')\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/content/rebuttal/run_language_v2.py\", line 13, in run\n    if rc: raise RuntimeError(name + ' failed with return code ' + str(rc))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: analysis failed with return code 2\n"
+}

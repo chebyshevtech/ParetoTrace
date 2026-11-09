@@ -16,7 +16,7 @@ python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on s
 python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
 ```
 
-`check_claims.py` exits with status 0 only if every check passes. It currently runs 341
+`check_claims.py` exits with status 0 only if every check passes. It currently runs 399
 checks.
 
 `CLAIMS.md` lists every claim in the response with its source file. It also marks the
@@ -52,6 +52,7 @@ The Stream modules:
 | CelebA-40 training, 20 paired seeds | P8RF W1/Q1, 6wXk Q1 | `experiments/celeba_training/` | `results/celeba_training/` |
 | QM9, seven methods, three seeds | P8RF Q1, 6wXk Q1 | `experiments/qm9/` | `results/qm9/` |
 | Matched recovery benchmark on Pythia-160M and Pythia-1B, plus the 1B training-update costs | P8RF Q8, 6wXk Q2, ZNzr Q1 | `experiments/language_benchmark/`, `paretotrace/` | `results/language_benchmark/` |
+| **Pythia-1B training** (six rules, three paired seeds, frozen protocol, 36 runs) | 6wXk Q2, P8RF Q1, General response (3/4) | `experiments/language_training_1b/` | `results/language_training_1b/` |
 | Live CelebA recovery at fixed states | P8RF Q2/Q3/Q7, ZNzr Q2 | `experiments/recovery_study/` | `results/recovery_study/` |
 | Live CelebA training, sharp vs scalar endpoint, 12 runs | P8RF Q7, 6wXk Q3 | `experiments/sharp_training/` | `results/sharp_training/` |
 | **Target-aware Stream** (live timing and replay) | All threads | `experiments/query_rule/`, `audits/replay_query_rules.py` | `results/query_rule/` |
@@ -177,10 +178,52 @@ the scalar endpoint, on CelebA, CIFAR-10 groups and the paper's 103 recorded Gra
 respectively. The scalar endpoint gains nothing from the relaxed target: at ε = 0.05 it is
 equivalent to the margin test m ≥ 0.976·U.
 
+## Pythia-1B training (new)
+
+Six training rules on Pythia-1B-deduped with eight tasks: Direct (exact MGDA), uniform, CAGrad, MGDA-FA, periodic
+(held weights refined by one damped exact step every five updates) and FAMO. Plain SGD without momentum, weight decay
+or clipping, batch 32, full-parameter training. The protocol (`results/language_training_1b/protocol.json`) was frozen
+before the campaign. Each rule received the same learning-rate search: 1e-4, 3e-4 and 1e-3 on a separate development
+seed for 100 updates, selected by validation worst-task cross-entropy with no test access. The selected rate was then
+run for 200 updates on three paired reporting seeds, which share their batch sequences across rules. All 36 runs are
+reported.
+
+| Rule | Selected rate | Final worst-task CE | Final mean CE | Validation-selected worst-task CE |
+|---|---|---|---|---|
+| Uniform | 1e-3 | 0.774 | 0.375 | 0.680 |
+| Periodic | 1e-3 | 0.781 | 0.391 | 0.734 |
+| MGDA-FA | 3e-4 | 0.818 | 0.534 | 0.848 |
+| CAGrad | 1e-3 | 0.846 | 0.389 | 0.769 |
+| FAMO | 1e-3 | 0.878 | 0.378 | 0.796 |
+| Direct | 1e-3 | 1.026 | 0.438 | 1.026 |
+
+Held-out answer cross-entropy, means of three seeds. The frozen primary endpoints are paired differences in final
+held-out worst-task cross-entropy, with descriptive Student-t 95% intervals (df = 2):
+
+- Direct minus uniform: +0.252 [+0.167, +0.337], uniform lower on 3 of 3 seeds.
+- Periodic minus MGDA-FA: -0.037 [-0.464, +0.390], periodic lower on 1 of 3 seeds, not separated.
+
+Five rules chose the largest rate in the grid. Direct's validation-selected checkpoint was its last (update 200) on
+every seed, and uniform's was update 100 on every seed. The study measures bounded-budget adaptation, not convergence.
+It did not use the verified step, so it speaks to training quality only.
+
+**Provenance.** `experiments/language_training_1b/` holds the 26 frozen campaign sources byte for byte (their hashes
+are in `results/language_training_1b/campaign_sources.json`). The campaign driver validated every run, including full
+verification of each final model archive. The frozen analyzer then refused to run, because it pinned
+`language_training_methods.py` to the version before the CAGrad solver fix. The campaign ran, and froze, the fixed
+version, which differs only in `cagrad_weights`. The analysis was produced by
+`experiments/language_training_1b/corrected_analyzer/analyze_language_training.py`, which differs from the frozen
+analyzer only in that one hash. Every other check ran as frozen, against the unmodified campaign directory, and no
+statistic or endpoint changed. `audits/check_claims.py` confirms the one-line difference, re-derives every number above
+from the 36 `runs/*/metrics.json` files and compares them with `campaign_analysis.json`.
+
 ## What is not included
 
 - **Datasets and model checkpoints.** The drivers download the data at pinned revisions,
   with hashes recorded in the protocols.
+- **The 36 trained Pythia-1B models** (about 4 GB each). The analyzer verified them on the training
+  machine, so it cannot be re-run from this repository. The checker re-derives every stated number from the
+  per-run metrics instead.
 - **Upstream third-party code (GhostSuite, LibMTL, FAMO, CAGrad).** It is pinned by commit
   inside the drivers.
 

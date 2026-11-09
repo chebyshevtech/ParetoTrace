@@ -1,0 +1,21 @@
+{
+  "phase": "confirmatory",
+  "seed": 49203,
+  "method": "uniform",
+  "lr": 0.001,
+  "model": "EleutherAI/pythia-1b-deduped",
+  "batch_size": 32,
+  "steps": 200,
+  "validation_every": 100,
+  "system": {
+    "mode": "cached",
+    "row_chunk": 256,
+    "scratch_mib": 32,
+    "reconstruction": "operator"
+  },
+  "method_options": {},
+  "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+  "checkpoint_backup": "metadata",
+  "checkpoint_slot_budget_bytes": null,
+  "completed_checkpoint_policy": "final-only"
+}

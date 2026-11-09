@@ -1,0 +1,132 @@
+{
+  "storage_format": "language-final-only-retention-v1",
+  "complete": true,
+  "config": {
+    "phase": "development",
+    "seed": 49100,
+    "method": "famo",
+    "lr": 0.0001,
+    "model": "EleutherAI/pythia-1b-deduped",
+    "batch_size": 32,
+    "steps": 100,
+    "validation_every": 100,
+    "system": {
+      "mode": "cached",
+      "row_chunk": 256,
+      "scratch_mib": 32,
+      "reconstruction": "operator"
+    },
+    "method_options": {},
+    "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+    "checkpoint_backup": "metadata",
+    "checkpoint_slot_budget_bytes": null,
+    "completed_checkpoint_policy": "final-only"
+  },
+  "owner_identity_sha256": "923903782a566a338f99959525e3319482d9902e1ba70cc906eff0401c336b12",
+  "metrics_sha256": "f1257de7be64ec73fa640238967c11d4da31c3deb7d3359798c7dffc0a9fe74e",
+  "verified_pair_retention": {
+    "storage_format": "language-metadata-retention-v1",
+    "complete": true,
+    "owner_identity_sha256": "923903782a566a338f99959525e3319482d9902e1ba70cc906eff0401c336b12",
+    "config": {
+      "phase": "development",
+      "seed": 49100,
+      "method": "famo",
+      "lr": 0.0001,
+      "model": "EleutherAI/pythia-1b-deduped",
+      "batch_size": 32,
+      "steps": 100,
+      "validation_every": 100,
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      },
+      "method_options": {},
+      "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+      "checkpoint_backup": "metadata",
+      "checkpoint_slot_budget_bytes": null,
+      "completed_checkpoint_policy": "final-only"
+    },
+    "metrics_sha256": "f1257de7be64ec73fa640238967c11d4da31c3deb7d3359798c7dffc0a9fe74e",
+    "previous_backup_commit": {
+      "storage_format": "language-metadata-only-v1",
+      "run_complete": true,
+      "steps": 100,
+      "selected_checkpoint": {
+        "file": "selected/step00000100_6a88db2646cd6ef3.pt",
+        "sha256": "6a88db2646cd6ef33dc5ed95283cab5826bb43c4ab2ad1b191abe7fce8b91430",
+        "after_updates": 100,
+        "worst_ce": 1.455970779148629
+      },
+      "checkpoint_sources": {
+        "latest.pt": {
+          "source_sha256": "b4a22c18c2322d71c0d1626172ea27b33c8a7b7d74f47d697a292a40bcfe468d",
+          "source_bytes": 4047221211
+        },
+        "selected/step00000100_6a88db2646cd6ef3.pt": {
+          "source_sha256": "6a88db2646cd6ef33dc5ed95283cab5826bb43c4ab2ad1b191abe7fce8b91430",
+          "source_bytes": 4047208823
+        }
+      },
+      "latest_sha256": "b4a22c18c2322d71c0d1626172ea27b33c8a7b7d74f47d697a292a40bcfe468d",
+      "run_identity_sha256": "cd127365e36797e74885559a7ca91a6ab68d396d35a8b8b1b85d9051a0e30950",
+      "metrics_file": "generations/metrics_f1257de7be64ec73fa640238967c11d4da31c3deb7d3359798c7dffc0a9fe74e.json",
+      "metrics_sha256": "f1257de7be64ec73fa640238967c11d4da31c3deb7d3359798c7dffc0a9fe74e",
+      "recovery_scope": "Numerical/provenance records only; active model, optimizer, rule and RNG recovery requires surviving VM checkpoint bytes."
+    },
+    "local_checkpoint_archives": {
+      "latest.pt": {
+        "format": "gzip-lossless-v1",
+        "source_sha256": "b4a22c18c2322d71c0d1626172ea27b33c8a7b7d74f47d697a292a40bcfe468d",
+        "source_bytes": 4047221211,
+        "archive_sha256": "7721283fb829bd59460d7fe78ac546d532518fa39fba8b8a5d89f063b6263465",
+        "archive_bytes": 3548221161,
+        "archive_file": "latest.pt_b4a22c18c2322d71.gz"
+      },
+      "selected/step00000100_6a88db2646cd6ef3.pt": {
+        "format": "gzip-lossless-v1",
+        "source_sha256": "6a88db2646cd6ef33dc5ed95283cab5826bb43c4ab2ad1b191abe7fce8b91430",
+        "source_bytes": 4047208823,
+        "archive_sha256": "ec7f9d0e493b143175385540c8c02a8efda398e2281494cd22380717d900274d",
+        "archive_bytes": 3548187931,
+        "archive_file": "step00000100_6a88db2646cd6ef3.pt_6a88db2646cd6ef3.gz"
+      }
+    },
+    "vm_archive_root_at_retirement": "/content/rebuttal/language_training_v2/completed_checkpoints/development_famo_seed49100_lr0.0001",
+    "policy": "Verified lossless completed models on VM; Drive holds numerical/provenance records only.",
+    "limitation": "VM reset loses models unless an independent model copy has been verified; metadata-only Drive backup cannot restore model/rule/RNG state."
+  },
+  "local_checkpoint_archives": {
+    "latest.pt": {
+      "format": "gzip-lossless-v1",
+      "source_sha256": "b4a22c18c2322d71c0d1626172ea27b33c8a7b7d74f47d697a292a40bcfe468d",
+      "source_bytes": 4047221211,
+      "archive_sha256": "7721283fb829bd59460d7fe78ac546d532518fa39fba8b8a5d89f063b6263465",
+      "archive_bytes": 3548221161,
+      "archive_file": "latest.pt_b4a22c18c2322d71.gz"
+    }
+  },
+  "selected_checkpoint": {
+    "file": "selected/step00000100_6a88db2646cd6ef3.pt",
+    "sha256": "6a88db2646cd6ef33dc5ed95283cab5826bb43c4ab2ad1b191abe7fce8b91430",
+    "after_updates": 100,
+    "worst_ce": 1.455970779148629
+  },
+  "selected_model": {
+    "file": "selected/step00000100_6a88db2646cd6ef3.pt",
+    "source_sha256": "6a88db2646cd6ef33dc5ed95283cab5826bb43c4ab2ad1b191abe7fce8b91430",
+    "source_bytes": 4047208823,
+    "verified_archive_sha256": "ec7f9d0e493b143175385540c8c02a8efda398e2281494cd22380717d900274d",
+    "verified_archive_bytes": 3548187931,
+    "lossless_archive_verified_before_retirement": true,
+    "model_bytes_retained": false
+  },
+  "selected_evaluation": {
+    "validation_metrics_sha256": "e069dfc3782d7122b86ef940303c273aab662cf85c460cde5d4f9269e97ef80b",
+    "heldout_test_metrics_sha256": null
+  },
+  "policy": "Final model checkpoint retained losslessly; selected model bytes intentionally not retained after both archives were verified.",
+  "limitation": "All validation-selected scalar/evaluation/provenance records remain; the selected model cannot be re-evaluated without an independently retained copy. VM loss can still destroy final model bytes."
+}

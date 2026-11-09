@@ -1,0 +1,486 @@
+{
+  "complete": true,
+  "config": {
+    "phase": "confirmatory",
+    "seed": 49201,
+    "method": "periodic",
+    "lr": 0.001,
+    "model": "EleutherAI/pythia-1b-deduped",
+    "batch_size": 32,
+    "steps": 200,
+    "validation_every": 100,
+    "system": {
+      "mode": "cached",
+      "row_chunk": 256,
+      "scratch_mib": 32,
+      "reconstruction": "operator"
+    },
+    "method_options": {
+      "periodic_backend": "factor"
+    },
+    "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+    "checkpoint_backup": "metadata",
+    "checkpoint_slot_budget_bytes": null,
+    "completed_checkpoint_policy": "final-only"
+  },
+  "identity": {
+    "config_sha256": "ba61bcba3fe6cda564c3bd37dbb817e4f57f5981f7a279c2a2271ab6ca4da485",
+    "source_sha256": {
+      "language_training_rebuttal.py": "8c43e059db44c0c17d319fd8c154f630e81e98fb85e7f974b03918bf5ceeca93",
+      "language_training_methods.py": "7c2fd9397849ff6b5ce2df5ca1845bfed6f3c45e89e33561ce4aceb484484cf2",
+      "language_common.py": "87f9720737656b2650ffcf463464cecc55871bf7403cd62efcfd1d4b83e2bff4",
+      "attention_precision.py": "a1b2c67ed471e1f0b41eecb1bcde2cb8dc98d7334804bca3d289e87331fbb83e",
+      "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+      "v46_factorized_jacobian.py": "4d98d256ab815800a4158ee3a15862bea4d36296ce8e51072d67d63f447668df",
+      "v46_factorized_exact.py": "6984919555b4e58947f6701413204eb6d84ecc4f451f63b61e833a104b804305",
+      "paretotrace_online_factor.py": "4b8e834d529b2feb9ed76eb81f1e2d530eb83b7453effb03b846c172240c04bd",
+      "v46_supervised_head.py": "31abf06743c453c9c12848d7f98233a15738a58a97bd1209287145ccf432a4d8",
+      "native_language_dual_reference.py": "f6f26170c755835b0f3313a0b2917005ccf8afceac1b26fcac864c0f648fe307",
+      "native_language_dual_reference_gpu_v6.py": "d753acbca021be5037342ec92a5228b1aaf934ac44bcc0e99772a043561a1f48",
+      "language_baseline_v6.py": "e97cc97e37ddaad4f2ad824e2f1858aec664241b37511f119ae9b8fe3841095f",
+      "ghost_adapter.py": "74f4e0706cc31d2721ea4cdeee8aa66495ccd8bb76680c1f42633c7a445f2e7f",
+      "structured_gram.py": "944abbb3809a51076143297d68e542651022394f87264303886e3a430cbe0e30",
+      "language_retained_v31.py": "1b76f16c1113d98fb7cb1ac90197015e08a2bb9ebed3906f59bb6be42da22992",
+      "language_retained_manifest.json": "1ceeae4186e436a84a26febe1c11b2052d3a77a419839e6e0d7efc275508f853",
+      "language_tokenizer_contract.py": "1d59d9786f4a4ff753f42ec92cebbcd7bf02a9b0d5a3e13761ccfc1a7184c655",
+      "checkpoint_archive.py": "168cdf882f2e97f06acb44503b4e9a18b15d0c7a383f1839d84a9d5320b3f56e",
+      "drive_checkpoint_slots.py": "98f3e1e1cfde7a4bf4378caa53ba3e0f61cf005f1fd7107e6cb4f5197ca9e830",
+      "language_checkpoint_storage.py": "9eb4cf25d4d77c7453e9387fe546d82a308faef472929a536f6b6b87bd293239",
+      "retire_completed_language.py": "7883e53662b4939f3fd2906310c349f216d7c8a9b59b4d8d5a68fd0598bd1aed"
+    },
+    "data": {
+      "dataset": "tasksource/tasksource-instruct",
+      "revision": "4cdba593d93bf1e32c0fd1731d84c6780136fe51",
+      "tasks": [
+        "glue/mnli",
+        "glue/qnli",
+        "glue/rte",
+        "super_glue/cb",
+        "anli/a1",
+        "sick/label",
+        "snli",
+        "scitail/snli_format"
+      ],
+      "caps": {
+        "train": 2048,
+        "validation": 128,
+        "test": 256
+      },
+      "scope": "New maintained-dataset split protocol, not historical v0 reproduction",
+      "historical_unavailable_revision": "938647aeeb6b04ff7d584b62164aa67d4c8915a8",
+      "task_rename": "sick/entailment_AB -> sick/label",
+      "tokenizer_model": "EleutherAI/pythia-160m-deduped",
+      "tokenizer_revision": "c54a0e0b28cc667b6f278803024438d57f847b5d",
+      "rows_scanned": {
+        "train": 890383,
+        "validation": 58153,
+        "test": 113137
+      },
+      "duplicates_removed": {
+        "train": 2,
+        "validation": 0,
+        "test": 0
+      },
+      "counts": {
+        "train": {
+          "glue/mnli": 2048,
+          "glue/qnli": 2048,
+          "glue/rte": 2048,
+          "super_glue/cb": 250,
+          "anli/a1": 2048,
+          "sick/label": 2048,
+          "snli": 2048,
+          "scitail/snli_format": 2048
+        },
+        "validation": {
+          "glue/mnli": 128,
+          "glue/qnli": 128,
+          "glue/rte": 128,
+          "super_glue/cb": 28,
+          "anli/a1": 128,
+          "sick/label": 128,
+          "snli": 128,
+          "scitail/snli_format": 128
+        },
+        "test": {
+          "glue/mnli": 256,
+          "glue/qnli": 250,
+          "glue/rte": 139,
+          "super_glue/cb": 28,
+          "anli/a1": 256,
+          "sick/label": 256,
+          "snli": 256,
+          "scitail/snli_format": 256
+        }
+      },
+      "loss": "mean answer-token CE per example, then mean per task; EOS ignored",
+      "pool_sha256": "7168eea3ca22eca16fc3877cb22ec8ec0d45d27c38a03730155adfdf7d5afbed"
+    },
+    "model": {
+      "model": "EleutherAI/pythia-1b-deduped",
+      "revision": "d1988145ec1cf1e76d786cd05af9f53e8b1c95cc",
+      "cache_path": "/root/.cache/huggingface/hub/models--EleutherAI--pythia-1b-deduped/snapshots/d1988145ec1cf1e76d786cd05af9f53e8b1c95cc"
+    },
+    "tokenizer_contract": {
+      "data_tokenizer_model": "EleutherAI/pythia-160m-deduped",
+      "data_tokenizer_revision": "c54a0e0b28cc667b6f278803024438d57f847b5d",
+      "target_tokenizer_model": "EleutherAI/pythia-1b-deduped",
+      "target_revision": "d1988145ec1cf1e76d786cd05af9f53e8b1c95cc",
+      "data_padding_eos_id": 0,
+      "target_tokenizer_eos_attribute": null,
+      "model_config_eos": 2,
+      "generation_eos_differs_from_data_eos": true,
+      "generation_used": false,
+      "encoding_backend_sha256": "dc2f66c2b3397abbb81d703554eb001d2ae2c08060495f57d10759fc51fab16d",
+      "scope": "identical vocabulary, merges, added tokens, normalizer, pre-tokenizer and decoder; frozen data IDs unchanged; generation EOS metadata is unused by teacher-forced loss and all padding/EOS labels are ignored"
+    },
+    "attention": {
+      "softmax_dtype": "float64",
+      "original_source_sha256": "6747c2be076a33cc7abc6f15abdb4208f2a1b6a82cbad70ad8fe54d5fa292520",
+      "executed_source_sha256": "9d4af3acc11d24a74045d3571609ab3ce19ad1c2c5fa5ad9d0edf7b007289b06",
+      "scope": "shared by all methods; forward and backward arithmetic change"
+    }
+  },
+  "steps": 200,
+  "update_blocks": [
+    {
+      "file": "updates/00000000_00000099.json",
+      "sha256": "523e70696cc4eba290d98f35ea8f48d31e2bba91a2589d7bcd95e4537d6e9c01",
+      "first_step": 0,
+      "last_step": 99,
+      "rows": 100
+    },
+    {
+      "file": "updates/00000100_00000199.json",
+      "sha256": "3fb8fff65d9b7c5f24498447a051db4561ccc69ab0bcdf971b0e4f8577e2d472",
+      "first_step": 100,
+      "last_step": 199,
+      "rows": 100
+    }
+  ],
+  "history": [
+    {
+      "after_updates": 0,
+      "metrics": {
+        "tasks": [
+          {
+            "task": "glue/mnli",
+            "examples": 128,
+            "answer_ce": 7.9741369895637035,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "glue/qnli",
+            "examples": 128,
+            "answer_ce": 3.8866871912032366,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "glue/rte",
+            "examples": 128,
+            "answer_ce": 5.216978709213436,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "super_glue/cb",
+            "examples": 28,
+            "answer_ce": 7.390347821371896,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "anli/a1",
+            "examples": 128,
+            "answer_ce": 9.347676143050194,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "sick/label",
+            "examples": 128,
+            "answer_ce": 7.860882604494691,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "snli",
+            "examples": 128,
+            "answer_ce": 7.813262443989515,
+            "teacher_forced_answer_exact_match": 0.0
+          },
+          {
+            "task": "scitail/snli_format",
+            "examples": 128,
+            "answer_ce": 6.9269222393631935,
+            "teacher_forced_answer_exact_match": 0.0
+          }
+        ],
+        "mean_ce": 7.052111767781233,
+        "worst_ce": 9.347676143050194,
+        "mean_answer_exact_match": 0.0,
+        "worst_answer_exact_match": 0.0,
+        "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+      },
+      "update_seconds": 0.0,
+      "recorded_wall_seconds": 29.50820208600271,
+      "selected": false
+    },
+    {
+      "after_updates": 100,
+      "metrics": {
+        "tasks": [
+          {
+            "task": "glue/mnli",
+            "examples": 128,
+            "answer_ce": 0.4285395719925873,
+            "teacher_forced_answer_exact_match": 0.5078125
+          },
+          {
+            "task": "glue/qnli",
+            "examples": 128,
+            "answer_ce": 0.18954494546051137,
+            "teacher_forced_answer_exact_match": 0.5703125
+          },
+          {
+            "task": "glue/rte",
+            "examples": 128,
+            "answer_ce": 0.19050326486467384,
+            "teacher_forced_answer_exact_match": 0.578125
+          },
+          {
+            "task": "super_glue/cb",
+            "examples": 28,
+            "answer_ce": 0.44304364014949116,
+            "teacher_forced_answer_exact_match": 0.6071428571428571
+          },
+          {
+            "task": "anli/a1",
+            "examples": 128,
+            "answer_ce": 0.679575643123826,
+            "teacher_forced_answer_exact_match": 0.34375
+          },
+          {
+            "task": "sick/label",
+            "examples": 128,
+            "answer_ce": 0.3243985959634301,
+            "teacher_forced_answer_exact_match": 0.75
+          },
+          {
+            "task": "snli",
+            "examples": 128,
+            "answer_ce": 0.5275918506813468,
+            "teacher_forced_answer_exact_match": 0.421875
+          },
+          {
+            "task": "scitail/snli_format",
+            "examples": 128,
+            "answer_ce": 0.23050384687667247,
+            "teacher_forced_answer_exact_match": 0.6640625
+          }
+        ],
+        "mean_ce": 0.3767126698890674,
+        "worst_ce": 0.679575643123826,
+        "mean_answer_exact_match": 0.5553850446428572,
+        "worst_answer_exact_match": 0.34375,
+        "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+      },
+      "update_seconds": 142.46974772397516,
+      "recorded_wall_seconds": 220.38998465900295,
+      "selected": true
+    },
+    {
+      "after_updates": 200,
+      "metrics": {
+        "tasks": [
+          {
+            "task": "glue/mnli",
+            "examples": 128,
+            "answer_ce": 0.4438053836929612,
+            "teacher_forced_answer_exact_match": 0.5703125
+          },
+          {
+            "task": "glue/qnli",
+            "examples": 128,
+            "answer_ce": 0.20305266813375056,
+            "teacher_forced_answer_exact_match": 0.3984375
+          },
+          {
+            "task": "glue/rte",
+            "examples": 128,
+            "answer_ce": 0.1916478415405436,
+            "teacher_forced_answer_exact_match": 0.5703125
+          },
+          {
+            "task": "super_glue/cb",
+            "examples": 28,
+            "answer_ce": 0.5434828071988055,
+            "teacher_forced_answer_exact_match": 0.5357142857142857
+          },
+          {
+            "task": "anli/a1",
+            "examples": 128,
+            "answer_ce": 0.8508203060482629,
+            "teacher_forced_answer_exact_match": 0.2734375
+          },
+          {
+            "task": "sick/label",
+            "examples": 128,
+            "answer_ce": 0.5412228891073028,
+            "teacher_forced_answer_exact_match": 0.59375
+          },
+          {
+            "task": "snli",
+            "examples": 128,
+            "answer_ce": 0.4893106525851181,
+            "teacher_forced_answer_exact_match": 0.53125
+          },
+          {
+            "task": "scitail/snli_format",
+            "examples": 128,
+            "answer_ce": 0.2061921259337396,
+            "teacher_forced_answer_exact_match": 0.796875
+          }
+        ],
+        "mean_ce": 0.43369183428006053,
+        "worst_ce": 0.8508203060482629,
+        "mean_answer_exact_match": 0.5337611607142857,
+        "worst_answer_exact_match": 0.2734375,
+        "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+      },
+      "update_seconds": 284.77388921897,
+      "recorded_wall_seconds": 460.6212315900011,
+      "selected": false
+    }
+  ],
+  "selected_checkpoint": {
+    "file": "selected/step00000100_52beaee1fc12685c.pt",
+    "sha256": "52beaee1fc12685c33fc8862b7feca7d6217b462cfe01012767ef8ce48f23539",
+    "after_updates": 100,
+    "worst_ce": 0.679575643123826
+  },
+  "native_audits": [],
+  "update_seconds": 284.77388921897,
+  "preparation_seconds": 0.689605041021423,
+  "recorded_wall_seconds": 570.6249562110024,
+  "attempts": 1,
+  "peak_update_allocated_bytes": 18004944896,
+  "gram_captures": 0,
+  "periodic_refinements": 40,
+  "post_update_forwards": 0,
+  "wall_scope": "main through latest recorded event, including loading, preparation, audits, evaluation and earlier checkpoint copies; excludes imports/final persistence; resumed uncheckpointed work may be missing",
+  "model_mode": "full-parameter fine-tuning in eval mode, disabling dropout for every rule",
+  "certificate_scope": "raw computational fidelity diagnostics; no population guarantee or per-step interval certificate",
+  "heldout_test_evaluated": true,
+  "final_test": {
+    "tasks": [
+      {
+        "task": "glue/mnli",
+        "examples": 256,
+        "answer_ce": 0.4588903995536384,
+        "teacher_forced_answer_exact_match": 0.53125
+      },
+      {
+        "task": "glue/qnli",
+        "examples": 250,
+        "answer_ce": 0.1645518525503576,
+        "teacher_forced_answer_exact_match": 0.564
+      },
+      {
+        "task": "glue/rte",
+        "examples": 139,
+        "answer_ce": 0.18552711146059547,
+        "teacher_forced_answer_exact_match": 0.5323741007194245
+      },
+      {
+        "task": "super_glue/cb",
+        "examples": 28,
+        "answer_ce": 0.42952963300714536,
+        "teacher_forced_answer_exact_match": 0.5357142857142857
+      },
+      {
+        "task": "anli/a1",
+        "examples": 256,
+        "answer_ce": 0.88882301391277,
+        "teacher_forced_answer_exact_match": 0.27734375
+      },
+      {
+        "task": "sick/label",
+        "examples": 256,
+        "answer_ce": 0.5671850307116983,
+        "teacher_forced_answer_exact_match": 0.57421875
+      },
+      {
+        "task": "snli",
+        "examples": 256,
+        "answer_ce": 0.5205729387380416,
+        "teacher_forced_answer_exact_match": 0.48046875
+      },
+      {
+        "task": "scitail/snli_format",
+        "examples": 256,
+        "answer_ce": 0.23470285886651254,
+        "teacher_forced_answer_exact_match": 0.7734375
+      }
+    ],
+    "mean_ce": 0.4312228548500949,
+    "worst_ce": 0.88882301391277,
+    "mean_answer_exact_match": 0.5336008920542138,
+    "worst_answer_exact_match": 0.27734375,
+    "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+  },
+  "validation_selected_test": {
+    "tasks": [
+      {
+        "task": "glue/mnli",
+        "examples": 256,
+        "answer_ce": 0.45852219218795653,
+        "teacher_forced_answer_exact_match": 0.45703125
+      },
+      {
+        "task": "glue/qnli",
+        "examples": 250,
+        "answer_ce": 0.19211904633045196,
+        "teacher_forced_answer_exact_match": 0.628
+      },
+      {
+        "task": "glue/rte",
+        "examples": 139,
+        "answer_ce": 0.16187759827179232,
+        "teacher_forced_answer_exact_match": 0.5827338129496403
+      },
+      {
+        "task": "super_glue/cb",
+        "examples": 28,
+        "answer_ce": 0.38314000942877363,
+        "teacher_forced_answer_exact_match": 0.6071428571428571
+      },
+      {
+        "task": "anli/a1",
+        "examples": 256,
+        "answer_ce": 0.7483016739352024,
+        "teacher_forced_answer_exact_match": 0.26953125
+      },
+      {
+        "task": "sick/label",
+        "examples": 256,
+        "answer_ce": 0.31300140275743615,
+        "teacher_forced_answer_exact_match": 0.734375
+      },
+      {
+        "task": "snli",
+        "examples": 256,
+        "answer_ce": 0.526476790306333,
+        "teacher_forced_answer_exact_match": 0.39453125
+      },
+      {
+        "task": "scitail/snli_format",
+        "examples": 256,
+        "answer_ce": 0.19983054713520687,
+        "teacher_forced_answer_exact_match": 0.7421875
+      }
+    ],
+    "mean_ce": 0.3729086575441441,
+    "worst_ce": 0.7483016739352024,
+    "mean_answer_exact_match": 0.5519416150115621,
+    "worst_answer_exact_match": 0.26953125,
+    "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+  },
+  "uninterrupted_training_evaluation_seconds": 570.6249562110024
+}

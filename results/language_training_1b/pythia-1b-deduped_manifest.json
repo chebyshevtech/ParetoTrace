@@ -1,0 +1,5 @@
+{
+  "model": "EleutherAI/pythia-1b-deduped",
+  "revision": "d1988145ec1cf1e76d786cd05af9f53e8b1c95cc",
+  "cache_path": "/root/.cache/huggingface/hub/models--EleutherAI--pythia-1b-deduped/snapshots/d1988145ec1cf1e76d786cd05af9f53e8b1c95cc"
+}

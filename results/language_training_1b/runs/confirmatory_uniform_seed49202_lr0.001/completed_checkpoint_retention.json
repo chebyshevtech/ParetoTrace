@@ -1,0 +1,132 @@
+{
+  "storage_format": "language-final-only-retention-v1",
+  "complete": true,
+  "config": {
+    "phase": "confirmatory",
+    "seed": 49202,
+    "method": "uniform",
+    "lr": 0.001,
+    "model": "EleutherAI/pythia-1b-deduped",
+    "batch_size": 32,
+    "steps": 200,
+    "validation_every": 100,
+    "system": {
+      "mode": "cached",
+      "row_chunk": 256,
+      "scratch_mib": 32,
+      "reconstruction": "operator"
+    },
+    "method_options": {},
+    "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+    "checkpoint_backup": "metadata",
+    "checkpoint_slot_budget_bytes": null,
+    "completed_checkpoint_policy": "final-only"
+  },
+  "owner_identity_sha256": "c53bef2470fe1cac78574dc75532ad49fc09fad48eed05dd617d363cce264ecf",
+  "metrics_sha256": "8752044897658e079898752165828a17e4e10bdd027cf7567efa384cb5383cf2",
+  "verified_pair_retention": {
+    "storage_format": "language-metadata-retention-v1",
+    "complete": true,
+    "owner_identity_sha256": "c53bef2470fe1cac78574dc75532ad49fc09fad48eed05dd617d363cce264ecf",
+    "config": {
+      "phase": "confirmatory",
+      "seed": 49202,
+      "method": "uniform",
+      "lr": 0.001,
+      "model": "EleutherAI/pythia-1b-deduped",
+      "batch_size": 32,
+      "steps": 200,
+      "validation_every": 100,
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      },
+      "method_options": {},
+      "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+      "checkpoint_backup": "metadata",
+      "checkpoint_slot_budget_bytes": null,
+      "completed_checkpoint_policy": "final-only"
+    },
+    "metrics_sha256": "8752044897658e079898752165828a17e4e10bdd027cf7567efa384cb5383cf2",
+    "previous_backup_commit": {
+      "storage_format": "language-metadata-only-v1",
+      "run_complete": true,
+      "steps": 200,
+      "selected_checkpoint": {
+        "file": "selected/step00000100_62f7e5a654340a35.pt",
+        "sha256": "62f7e5a654340a35ed0b3282a7a7ef204246b85d9d33b0e70e112e79888c013c",
+        "after_updates": 100,
+        "worst_ce": 0.608458340037032
+      },
+      "checkpoint_sources": {
+        "latest.pt": {
+          "source_sha256": "058ce0c2af1858a4c661c133190b81729875291b9f55ea837c0ae5f4ae158196",
+          "source_bytes": 4047220519
+        },
+        "selected/step00000100_62f7e5a654340a35.pt": {
+          "source_sha256": "62f7e5a654340a35ed0b3282a7a7ef204246b85d9d33b0e70e112e79888c013c",
+          "source_bytes": 4047208823
+        }
+      },
+      "latest_sha256": "058ce0c2af1858a4c661c133190b81729875291b9f55ea837c0ae5f4ae158196",
+      "run_identity_sha256": "c8ace66ee6b2f1a649b00e90771f15c296d0e3c9d4fb45b3441f026204179ac0",
+      "metrics_file": "generations/metrics_8752044897658e079898752165828a17e4e10bdd027cf7567efa384cb5383cf2.json",
+      "metrics_sha256": "8752044897658e079898752165828a17e4e10bdd027cf7567efa384cb5383cf2",
+      "recovery_scope": "Numerical/provenance records only; active model, optimizer, rule and RNG recovery requires surviving VM checkpoint bytes."
+    },
+    "local_checkpoint_archives": {
+      "latest.pt": {
+        "format": "gzip-lossless-v1",
+        "source_sha256": "058ce0c2af1858a4c661c133190b81729875291b9f55ea837c0ae5f4ae158196",
+        "source_bytes": 4047220519,
+        "archive_sha256": "9e6286aedf120daf1f3298b48ff9324d4857d8d81102e4622070351b067f84c3",
+        "archive_bytes": 3613372752,
+        "archive_file": "latest.pt_058ce0c2af1858a4.gz"
+      },
+      "selected/step00000100_62f7e5a654340a35.pt": {
+        "format": "gzip-lossless-v1",
+        "source_sha256": "62f7e5a654340a35ed0b3282a7a7ef204246b85d9d33b0e70e112e79888c013c",
+        "source_bytes": 4047208823,
+        "archive_sha256": "ea9f72d3524fbbee047bf813c7112ba49b9cfbb4820902790001b0ba23160ee4",
+        "archive_bytes": 3600544499,
+        "archive_file": "step00000100_62f7e5a654340a35.pt_62f7e5a654340a35.gz"
+      }
+    },
+    "vm_archive_root_at_retirement": "/content/rebuttal/language_training_v2/completed_checkpoints/confirmatory_uniform_seed49202_lr0.001",
+    "policy": "Verified lossless completed models on VM; Drive holds numerical/provenance records only.",
+    "limitation": "VM reset loses models unless an independent model copy has been verified; metadata-only Drive backup cannot restore model/rule/RNG state."
+  },
+  "local_checkpoint_archives": {
+    "latest.pt": {
+      "format": "gzip-lossless-v1",
+      "source_sha256": "058ce0c2af1858a4c661c133190b81729875291b9f55ea837c0ae5f4ae158196",
+      "source_bytes": 4047220519,
+      "archive_sha256": "9e6286aedf120daf1f3298b48ff9324d4857d8d81102e4622070351b067f84c3",
+      "archive_bytes": 3613372752,
+      "archive_file": "latest.pt_058ce0c2af1858a4.gz"
+    }
+  },
+  "selected_checkpoint": {
+    "file": "selected/step00000100_62f7e5a654340a35.pt",
+    "sha256": "62f7e5a654340a35ed0b3282a7a7ef204246b85d9d33b0e70e112e79888c013c",
+    "after_updates": 100,
+    "worst_ce": 0.608458340037032
+  },
+  "selected_model": {
+    "file": "selected/step00000100_62f7e5a654340a35.pt",
+    "source_sha256": "62f7e5a654340a35ed0b3282a7a7ef204246b85d9d33b0e70e112e79888c013c",
+    "source_bytes": 4047208823,
+    "verified_archive_sha256": "ea9f72d3524fbbee047bf813c7112ba49b9cfbb4820902790001b0ba23160ee4",
+    "verified_archive_bytes": 3600544499,
+    "lossless_archive_verified_before_retirement": true,
+    "model_bytes_retained": false
+  },
+  "selected_evaluation": {
+    "validation_metrics_sha256": "e71881357345fc5709bc3b49c45a879afafa84b5e4f20cd6694473d9d15d5af6",
+    "heldout_test_metrics_sha256": "67ac382e2295aa47b1b7ebf50cbc001a49e180cb9b36fa35b10274066ed011ae"
+  },
+  "policy": "Final model checkpoint retained losslessly; selected model bytes intentionally not retained after both archives were verified.",
+  "limitation": "All validation-selected scalar/evaluation/provenance records remain; the selected model cannot be re-evaluated without an independently retained copy. VM loss can still destroy final model bytes."
+}

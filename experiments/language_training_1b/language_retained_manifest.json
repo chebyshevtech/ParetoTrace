@@ -1,0 +1,9 @@
+{
+  "files": {
+    "language_retained_v31.py": {
+      "sha256": "1b76f16c1113d98fb7cb1ac90197015e08a2bb9ebed3906f59bb6be42da22992",
+      "local_source": "archive/versions/preferred-before-consolidation-20260922/src/paretotrace_fast_path_v31.py",
+      "scope": "byte-for-byte retained production scalar-refinement kernel; exact segment step then explicit damping"
+    }
+  }
+}

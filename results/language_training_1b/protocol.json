@@ -1,0 +1,98 @@
+{
+  "version": "language_training_v1",
+  "model": "EleutherAI/pythia-1b-deduped",
+  "arms": [
+    "direct",
+    "uniform",
+    "cagrad",
+    "fa",
+    "periodic",
+    "famo"
+  ],
+  "development_seed": 49100,
+  "reporting_seeds": [
+    49201,
+    49202,
+    49203
+  ],
+  "learning_rates": [
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "development_steps": 100,
+  "reporting_steps": 200,
+  "batch_size": 32,
+  "validation_every": 100,
+  "systems": {
+    "direct": {
+      "method": "direct",
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      }
+    },
+    "uniform": {
+      "method": "uniform",
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      }
+    },
+    "cagrad": {
+      "method": "cagrad",
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      }
+    },
+    "fa": {
+      "method": "fa",
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      }
+    },
+    "famo": {
+      "method": "famo",
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      }
+    },
+    "periodic": {
+      "method": "periodic",
+      "system": {
+        "mode": "cached",
+        "row_chunk": 256,
+        "scratch_mib": 32,
+        "reconstruction": "operator"
+      },
+      "method_options": {
+        "periodic_backend": "factor"
+      }
+    }
+  },
+  "pilot_sha256": "7b05a00675ecff8bb3be373c0344c1228970ac669dd11b2bfa97037c2cc820c1",
+  "optimizer": "plain SGD; no momentum, weight decay or gradient clipping; full-parameter training in eval mode",
+  "method_settings": "fixed published/retained defaults; periodic every5updates, damping.5; each method receives same3LR development budget",
+  "loss": "answer-only cross-entropy; EOS/padding ignored; identical shared attention precision for every method",
+  "selection": "minimum development validation worst-task CE across post-start checkpoints; lower LR breaks ties; no test access",
+  "primary_endpoint": "final heldout worst-task answer CE; paired Direct-minus-Uniform and periodic-minus-FA differences",
+  "secondary": "all six methods, all three seeds, per-task CE and teacher-forced answer exact match; validation-selected and final results; update/total wall/memory",
+  "scope": "bounded-budget full-parameter adaptation, not convergence or standard full-dataset benchmark training",
+  "completed_checkpoint_policy": "final-only",
+  "checkpoint_backup": "metadata",
+  "checkpoint_slot_budget_bytes": null,
+  "checkpoint_recovery_scope": "Models/rule/RNG remain on VM; Drive contains numerical/provenance records only; VM loss requires independently retained model bytes"
+}

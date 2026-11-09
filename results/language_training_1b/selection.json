@@ -1,0 +1,115 @@
+{
+  "protocol_sha256": "94d9b7d6f0b9ffba7dbf2849f1f8bc8e17dc45fcbd9d38d6e29688193e632804",
+  "candidates": {
+    "direct": [
+      {
+        "lr": 0.0001,
+        "score": 2.0458910135785118,
+        "label": "development_direct_seed49100_lr0.0001"
+      },
+      {
+        "lr": 0.0003,
+        "score": 1.2665927618509158,
+        "label": "development_direct_seed49100_lr0.0003"
+      },
+      {
+        "lr": 0.001,
+        "score": 0.9730200744015747,
+        "label": "development_direct_seed49100_lr0.001"
+      }
+    ],
+    "uniform": [
+      {
+        "lr": 0.0001,
+        "score": 1.1159311969095143,
+        "label": "development_uniform_seed49100_lr0.0001"
+      },
+      {
+        "lr": 0.0003,
+        "score": 0.7269908547023078,
+        "label": "development_uniform_seed49100_lr0.0003"
+      },
+      {
+        "lr": 0.001,
+        "score": 0.6066510445089079,
+        "label": "development_uniform_seed49100_lr0.001"
+      }
+    ],
+    "cagrad": [
+      {
+        "lr": 0.0001,
+        "score": 1.1479042149148881,
+        "label": "development_cagrad_seed49100_lr0.0001"
+      },
+      {
+        "lr": 0.0003,
+        "score": 0.742474720289465,
+        "label": "development_cagrad_seed49100_lr0.0003"
+      },
+      {
+        "lr": 0.001,
+        "score": 0.6166056699003093,
+        "label": "development_cagrad_seed49100_lr0.001"
+      }
+    ],
+    "fa": [
+      {
+        "lr": 0.0001,
+        "score": 1.059704068582505,
+        "label": "development_fa_seed49100_lr0.0001"
+      },
+      {
+        "lr": 0.0003,
+        "score": 0.6412052977393614,
+        "label": "development_fa_seed49100_lr0.0003"
+      },
+      {
+        "lr": 0.001,
+        "score": 0.6845876235165633,
+        "label": "development_fa_seed49100_lr0.001"
+      }
+    ],
+    "periodic": [
+      {
+        "lr": 0.0001,
+        "score": 1.396758863586001,
+        "label": "development_periodic_seed49100_lr0.0001"
+      },
+      {
+        "lr": 0.0003,
+        "score": 0.8636089933715994,
+        "label": "development_periodic_seed49100_lr0.0003"
+      },
+      {
+        "lr": 0.001,
+        "score": 0.6605838616960682,
+        "label": "development_periodic_seed49100_lr0.001"
+      }
+    ],
+    "famo": [
+      {
+        "lr": 0.0001,
+        "score": 1.455970779148629,
+        "label": "development_famo_seed49100_lr0.0001"
+      },
+      {
+        "lr": 0.0003,
+        "score": 0.9820767049022834,
+        "label": "development_famo_seed49100_lr0.0003"
+      },
+      {
+        "lr": 0.001,
+        "score": 0.702875527604192,
+        "label": "development_famo_seed49100_lr0.001"
+      }
+    ]
+  },
+  "rates": {
+    "direct": 0.001,
+    "uniform": 0.001,
+    "cagrad": 0.001,
+    "fa": 0.0003,
+    "periodic": 0.001,
+    "famo": 0.001
+  }
+}
