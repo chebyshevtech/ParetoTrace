@@ -1,0 +1,16 @@
+{
+ "stages": [
+  "development_relaxed"
+ ],
+ "stage": "done",
+ "utc": 1794302379.3666282,
+ "sources_match": true,
+ "source_mismatches": [],
+ "pip_returncode": 0,
+ "versions": "4.57.1 0.22.2 0.36.2 2.14.1+cu130",
+ "pool_matches_frozen": true,
+ "command": "/usr/bin/python3 -u /content/rebuttal/certified_1b/certified_1b_driver.py --stage development_relaxed",
+ "download_pythia_1b_returncode": 0,
+ "stage_development_relaxed_returncode": 0,
+ "complete": true
+}

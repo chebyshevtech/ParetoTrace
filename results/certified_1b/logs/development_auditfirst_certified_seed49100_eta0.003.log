@@ -1,0 +1,11 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794293693.044527   15787 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794293693.105758   15787 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794293695.374780   15787 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794293695.375288   15787 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+{"arm": "auditfirst_certified", "seed": 49100, "step": 50, "elapsed": 270}
+{"arm": "auditfirst_certified", "seed": 49100, "step": 100, "elapsed": 523}
+CERTIFIED_1B_COMPLETE auditfirst_certified 49100 0.003

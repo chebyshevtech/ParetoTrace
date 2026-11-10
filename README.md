@@ -16,7 +16,7 @@ python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on s
 python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
 ```
 
-`check_claims.py` exits with status 0 only if every check passes. It currently runs 428
+`check_claims.py` exits with status 0 only if every check passes. It currently runs 508
 checks.
 
 `CLAIMS.md` lists every claim in the response with its source file. It also marks the
@@ -52,12 +52,13 @@ The Stream modules:
 | CelebA-40 training, 20 paired seeds | P8RF W1/Q1, 6wXk Q1 | `experiments/celeba_training/` | `results/celeba_training/` |
 | QM9, seven methods, three seeds | P8RF Q1, 6wXk Q1 | `experiments/qm9/` | `results/qm9/` |
 | Matched recovery benchmark on Pythia-160M and Pythia-1B, plus the 1B training-update costs | P8RF Q8, 6wXk Q2, ZNzr Q1 | `experiments/language_benchmark/`, `paretotrace/` | `results/language_benchmark/` |
-| **Pythia-1B training** (six rules, three paired seeds, frozen protocol, 36 runs) | 6wXk Q2, P8RF Q1, General response (3/4) | `experiments/language_training_1b/` | `results/language_training_1b/` |
+| **Pythia-1B training** (six rules, three paired seeds, frozen protocol, 36 runs) | 6wXk Q2, P8RF Q1, General response (3/3) | `experiments/language_training_1b/` | `results/language_training_1b/` |
 | Live CelebA recovery at fixed states | P8RF Q2/Q3/Q7, ZNzr Q2 | `experiments/recovery_study/` | `results/recovery_study/` |
 | Live CelebA training, sharp vs scalar endpoint, 12 runs | P8RF Q7, 6wXk Q3 | `experiments/sharp_training/` | `results/sharp_training/` |
 | **Target-aware Stream** (live timing and replay) | All threads | `experiments/query_rule/`, `audits/replay_query_rules.py` | `results/query_rule/` |
 | **Target-aware Stream, live training** (3 seeds × 300 updates, paired with the 12-run study) | P8RF Q7, 6wXk Q3, ZNzr Q2 | `experiments/target_aware_training/` | `results/target_aware_training/` |
-| **Per-update guarantee studies** (CelebA-40: study A with frozen heads, study B with six arms × 3 seeds) and uniform's responses along training | General response (1/4, 2/4), P8RF Q2/Q4, 6wXk Q1 | `experiments/certified_step/`, `audits/uniform_along_training.py` | `results/certified_step/` |
+| **Per-update guarantee studies** (CelebA-40: study A with frozen heads, study B with six arms × 3 seeds) and uniform's responses along training | General response (1/3, 2/3), P8RF Q2/Q4, 6wXk Q1 | `experiments/certified_step/`, `audits/uniform_along_training.py` | `results/certified_step/` |
+| **Pythia-1B under the verified step** (study C: five arms and one companion × 3 seeds, frozen protocol with two logged amendments, 18 reporting and 27 development runs) | General response (1/3, 2/3), P8RF Q1/Q4, 6wXk Q2 | `experiments/certified_1b/` | `results/certified_1b/` |
 
 ## The per-update guarantee
 
@@ -70,7 +71,7 @@ The Stream modules:
 - Scope: the guarantee covers each update's minibatch, in floating point. It bounds no held-out or population
   loss and does not cover momentum or Adam.
 
-Both studies below use CelebA-40, three seeds, 300 plain-SGD updates per arm, and the data order of the earlier studies.
+Studies A and B below use CelebA-40, three seeds, 300 plain-SGD updates per arm, and the data order of the earlier studies.
 - *Fixed step:* 0.02, the learning rate selected for the momentum-trained CelebA study, which is untuned for
   plain SGD.
 - *Certified step:* it starts at 0.02 and halves, up to 20 trials, until Equation (27) holds for all 40
@@ -93,7 +94,7 @@ only on the shared trunk. Driver: `experiments/certified_step/protected_finetune
 | MGDA-UB, certified | 894/900 | 0 | 0.587 | 68.5% |
 
 - **Exact MGDA.** It kept the full step at 878 of 900 updates and ended within 0.0002 BCE of its fixed-step run.
-- **Endpoint and audits.** The prespecified endpoint is −0.018, with exact MGDA lower on 3 of 3 seeds. All 54
+- **Endpoint and audits.** The prespecified endpoint is −0.018 [−0.021, −0.014], with exact MGDA lower on 3 of 3 seeds. All 54
   audits passed. In this version the head first-order term is zero everywhere, including inside the audit.
 - **Held-out losses.** No arm protects them: 7 to 12 of 40 attributes per seed end with a higher validation BCE than
   at the start.
@@ -121,7 +122,7 @@ Driver: `experiments/certified_step/certified_step_training.py`.
 
 - **Uniform certifiability.** The private heads' gradients turned a negative trunk response positive at 634 of
   uniform's certified updates, so uniform stayed certifiable.
-- **Primary endpoint:** +0.013, with uniform lower on 3 of 3 seeds.
+- **Primary endpoint:** +0.013 [+0.002, +0.023], with uniform lower on 3 of 3 seeds.
 - **Audits:** all 54 passed.
 - **Stream:** certified Stream matched exact MGDA to within 0.0002 BCE, at 0.58 GiB against 8.04 GiB, with no
   fallback.
@@ -137,8 +138,75 @@ Code and data: `audits/uniform_along_training.py`, `audits/extract_uniform_respo
   - CIFAR-10 at M = 100, the 8 stored Grams in this repository: at all 8.
   - The 103 recorded Grams: at 2.
 
-**Environment.** Both studies shared the A100 with a Pythia-1B job, so their timings are not compared with any
+**Environment.** Studies A and B shared the A100 with a Pythia-1B job, so their timings are not compared with any
 other study.
+
+**Study C: Pythia-1B trained under the verified step, three seeds.** Every parameter is shared by the eight tasks,
+so there are no private heads. Code: `experiments/certified_1b/` (`certified_language_1b.py` runs one arm and seed,
+`certified_1b_driver.py` runs the stages and the freeze, `run_certified_1b.py` is the VM runner,
+`analyze_certified_1b.py` the analysis). Results: `results/certified_1b/`, with `protocol.json` and `analysis.json`.
+- *Setup.* Plain SGD on all parameters, batch 32, 200 updates per arm, with the seeds (49201 to 49203) and batch
+  sequences of the Pythia-1B campaign below. The 14 campaign sources the study imports are byte-identical to the
+  frozen campaign files.
+- *Arms.* Uniform at a fixed step (unprotected), and four rules under the verified step: uniform, exact MGDA
+  (Direct), audit-first (uniform when its one-action audit shows every response positive, otherwise exact MGDA,
+  after Corollary 4 and Algorithm 1) and FAMO.
+- *Verified step.* If every exact first-order response is positive, take the largest η0·2^-k, k < 20, with
+  L_i(after) ≤ L_i(before) − c·η·s_i for all eight tasks, otherwise hold. Equation (27) uses c = 1/2, and any
+  0 < c < 1 keeps strict decrease on every task.
+- *Selection.* On development seed 49100 (100 updates, validation split only), each arm chose η0 from 1e-3, 3e-3
+  and 1e-2, and each certified arm c from 1/2 and 1e-4, by final validation worst-task answer cross-entropy (ties
+  to c = 1/2, then the smaller η0). The protocol records every candidate, the selection and two amendments, both
+  logged after development runs and before any reporting run. The first added c = 1e-4. The second
+  (`extension_plan.json`) extended the fixed step's grid from 1e-3, the campaign's tuned rate, to 3e-3 and 1e-2, and
+  the fixed step chose 1e-2, the largest. A companion run of audit-first at c = 1/2 (its best η0, 1e-3) gives the
+  descriptive contrast in c.
+- *Primary endpoint* (fixed in the protocol): certified audit-first minus certified uniform, final held-out
+  worst-task answer cross-entropy, paired by seed.
+
+| Arm | c, η0 | Refused | Held | Updates raising a loss | Worst-task test CE | Mean test CE | Seconds per update |
+|---|---|---|---|---|---|---|---|
+| Uniform, fixed | n/a, 1e-2 | n/a | n/a | 577/600 | 0.685 | 0.503 | 2.01 |
+| Uniform, certified | 1e-4, 3e-3 | 448/600 | 1 | 0 | 1.069 | 0.543 | 2.34 |
+| Exact MGDA, certified | 1e-4, 3e-3 | 0/600 | 0 | 0 | 0.927 | 0.455 | 3.13 |
+| Audit-first, certified | 1e-4, 3e-3 | 0/600 | 1 | 0 | 1.050 | 0.477 | 3.84 |
+| FAMO, certified | 1e-4, 3e-3 | 394/600 | 0 | 0 | 1.523 | 0.666 | 2.34 |
+| Audit-first, certified (companion) | 1/2, 1e-3 | 0/600 | 3 | 0 | 1.044 | 0.446 | 3.87 |
+
+Held-out answer cross-entropy, means of three seeds. Medians of the update time, which includes the step rule and
+excludes the audits. The fixed step's time includes the loss evaluations that record each task's change (0.8 s of
+its 2.0 s), which a plain uniform update (1.20 s, in the benchmark above) skips. Paired differences, with descriptive Student-t 95% intervals (df = 2):
+
+- **Primary endpoint:** −0.019 [−0.931, +0.892], audit-first lower on 2 of 3 seeds, not separated. Uniform passed
+  the audit at 128 of 600 updates.
+- **Prespecified secondaries:** exact MGDA minus uniform, both certified, −0.142 [−0.426, +0.143], exact MGDA lower
+  on 3 of 3. FAMO minus uniform +0.454 [+0.048, +0.860].
+- **Descriptive, not prespecified:** audit-first minus exact MGDA +0.123 [−0.511, +0.757], and the two bullets below
+  on the fixed step.
+- **Price of the guarantee:** for the same direction, certified uniform minus the fixed step +0.383 [+0.044, +0.723]
+  (higher on 3 of 3). Certified exact MGDA minus the fixed step, +0.241 [−0.201, +0.684] in worst-task CE
+  (higher on 3 of 3) and −0.048 [−0.231, +0.135] in mean CE. Outside the 45 audited updates the certified arms
+  peaked at 15.7 GiB per update, as Direct's plain update does, against 12.7 GiB for the fixed step. The untimed
+  audits peaked at 25.8 GiB.
+- **The constant** (prespecified as descriptive): audit-first at c = 1e-4 minus c = 1/2, +0.006 [−0.531, +0.542]. On the development seed,
+  c = 1e-4 gave the lower validation worst-task loss at all 12 pairs of rule and starting step. On the reporting
+  seeds, audit-first's validation worst-task loss after 100 updates was 0.805 at c = 1e-4 against 1.066 at c = 1/2
+  (lower on 3 of 3), and its median accepted step 0.0015 against 0.00025.
+- **Exact MGDA:** all 1,477 exact-MGDA updates (Direct and audit-first's fallbacks) took a verified step. Every
+  hold was on a uniform-weighted update.
+- **The unprotected step** raised some task's minibatch loss at 577 of 600 updates. The largest single-task rise
+  per such update had median 0.40 and exceeded 1 at 106 updates (83 after update 10), and the largest of all took a
+  task from 14.5 to 51.6 (seed 49203, update 2).
+- **Held-out losses** are not protected: in the four certified arms of the table, 32 of 96 per-task validation
+  losses rose between updates 100 and 200.
+- **Audits:** 45 independent autodiff audits of the responses that decide the gate (one task gradient at a time),
+  all passed, with maximum relative error 8e-6.
+- **Against the campaign** (descriptive, same seeds and batches, different step rules): certified exact MGDA minus
+  the campaign's unprotected Direct (rate 1e-3, the top of that grid), −0.100 [−0.226, +0.027], lower on 3 of 3.
+- **Provenance.** Three driver versions ran, each released: `v1/` for the smoke and c = 1/2 development runs, `v2/`
+  for the c = 1e-4 development runs, and the top-level driver for the extension and every reporting run. The study
+  script changed once, to take c as an argument, and `check_claims.py` confirms that diff line by line. Every
+  reporting run records the frozen protocol's hash and the hashes of its sources. No run failed.
 
 ## The improvement: target-aware Stream
 
@@ -205,14 +273,15 @@ held-out worst-task cross-entropy, with descriptive Student-t 95% intervals (df 
 
 Five rules chose the largest rate in the grid. Direct's validation-selected checkpoint was its last (update 200) on
 every seed, and uniform's was update 100 on every seed. The study measures bounded-budget adaptation, not convergence.
-It did not use the verified step, so it speaks to training quality only.
+It did not use the verified step, so it speaks to training quality only. Study C (above) trains the same model
+under the verified step with the same seeds and batches.
 
 **The guarantee at 1B.** Every parameter is shared across the eight tasks, and the Direct runs logged the exact
 8×8 Gram of the task gradients at every update. Along the three confirmatory Direct runs, uniform's first-order
 response was negative for some task at 401 of 600 updates (311 by more than 1% of the mean Gram diagonal), so the
 verified step's gate would refuse uniform there. Exact MGDA's margin was positive at all 600 (below 1e-4 of that
 scale at 3 near-stationary updates). These are first-order checks along Direct's trajectory, not runs of the
-verified step. The records are in `results/language_training_1b/runs/*direct*/updates/`, hash-bound to each
+verified step, which study C runs. The records are in `results/language_training_1b/runs/*direct*/updates/`, hash-bound to each
 run's `metrics.json`.
 
 **Provenance.** `experiments/language_training_1b/` holds the 26 frozen campaign sources byte for byte (their hashes
@@ -229,6 +298,7 @@ from the 36 `runs/*/metrics.json` files and compares them with `campaign_analysi
 
 - **Datasets and model checkpoints.** The drivers download the data at pinned revisions,
   with hashes recorded in the protocols.
+- **Model checkpoints of study C**, which saves none.
 - **The 36 trained Pythia-1B models** (about 4 GB each). The analyzer verified them on the training
   machine, so it cannot be re-run from this repository. The checker re-derives every stated number from the
   per-run metrics instead.

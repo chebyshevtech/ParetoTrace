@@ -517,5 +517,193 @@ check('1B first-order: uniform response negative for some task (the verified ste
 check('1B first-order: uniform response below -1% of the mean Gram diagonal', UR1_, 311)
 check('1B first-order: exact MGDA margin positive at every update', MGP_, 600)
 
+# ---------------- Pythia-1B trained under the verified step (results/certified_1b)
+import difflib
+STATED_CB = {  # configuration: (final worst-task test CE, final mean test CE, refused updates, updates raising a task's minibatch loss)
+    'uniform_fixed': (0.685, 0.503, 0, 577), 'uniform_certified': (1.069, 0.543, 448, 0), 'direct_certified': (0.927, 0.455, 0, 0),
+    'auditfirst_certified': (1.050, 0.477, 0, 0), 'famo_certified': (1.523, 0.666, 394, 0), 'auditfirst_certified_c0.5': (1.044, 0.446, 0, 0)}
+STATED_CB_CONTRASTS = [  # (first, second, mean, t95 low, t95 high, seeds where first is lower), held-out worst-task CE
+    ('auditfirst_certified', 'uniform_certified', -0.019, -0.931, 0.892, 2),  # the primary endpoint
+    ('direct_certified', 'uniform_certified', -0.142, -0.426, 0.143, 3),
+    ('auditfirst_certified', 'direct_certified', 0.123, -0.511, 0.757, 1),
+    ('famo_certified', 'uniform_certified', 0.454, 0.048, 0.860, 0),
+    ('auditfirst_certified', 'auditfirst_certified_c0.5', 0.006, -0.531, 0.542, 2)]
+STATED_CB_AUDITS = (45, 45)
+STATED_CB_DEV_COUNTS = (15, 12)
+CB = RES / 'certified_1b'
+CBX = ROOT / 'experiments/certified_1b'
+PC = load('certified_1b/protocol.json')
+PC_SHA = hashlib.sha256((CB / 'protocol.json').read_bytes()).hexdigest()
+def cb_run(d_):
+    m_ = json.loads((d_ / 'metrics.json').read_text())
+    rows_, ok_ = [], True
+    for blk_ in m_['update_blocks']:
+        f_ = d_ / blk_['file']
+        ok_ = ok_ and hashlib.sha256(f_.read_bytes()).hexdigest() == blk_['sha256']
+        rows_ += json.loads(f_.read_text())
+    return m_, rows_, ok_ and [r_['step'] for r_ in rows_] == list(range(m_['steps']))
+CBR, CB_OK = {}, True
+for d_ in sorted((CB / 'runs').iterdir()):
+    m_, rows_, ok_ = cb_run(d_)
+    CB_OK = CB_OK and ok_ and m_['complete'] is True
+    c_ = m_['config']
+    CBR[(c_['phase'], c_['arm'], c_['seed'], c_['eta0'], c_['c'])] = (m_, rows_)
+check('1B verified step: every update record hash-bound to its run and complete', CB_OK, True)
+DEVC = {k_: v_ for k_, v_ in CBR.items() if k_[0] == 'development'}
+check('1B verified step: development runs at c = 1/2 and c = 1e-4', (sum(k_[4] == .5 for k_ in DEVC), sum(k_[4] == 1e-4 for k_ in DEVC)), STATED_CB_DEV_COUNTS)
+check('1B verified step: no development run evaluated the test split', any(v_[0]['heldout_test_evaluated'] for v_ in DEVC.values()), False)
+# Selection reproduces from the development records (failed runs carry no metrics and cannot be selected)
+sel_ = {}
+for arm_ in PC['arms']:
+    cand_ = [(v_[0]['final_validation']['worst_ce'], k_[4] != .5, k_[3], k_[4]) for k_, v_ in DEVC.items() if k_[1] == arm_]
+    best_ = min(cand_)
+    sel_[arm_] = (best_[3], best_[2])
+check('1B verified step: frozen (c, eta0) per arm reproduces from development validation', {a_: (PC['c'][a_], PC['eta0'][a_]) for a_ in sel_}, sel_)
+check('1B verified step: protocol candidates equal the development records',
+      sorted((a_, r_['c'], r_['eta0']) for a_, rs_ in PC['candidates'].items() for r_ in rs_ if r_['completed']),
+      sorted((k_[1], k_[4], k_[3]) for k_ in DEVC))
+# Sources: confirmatory runs bound to the frozen protocol and to the released code
+CFC = {k_: v_ for k_, v_ in CBR.items() if k_[0] == 'confirmatory'}
+check('1B verified step: every confirmatory run bound to the frozen protocol hash', all(v_[0]['identity']['protocol_sha256'] == PC_SHA for v_ in CFC.values()), True)
+check('1B verified step: every confirmatory run used the protocol sources', all(v_[0]['identity']['sources'] == PC['sources'] for v_ in CFC.values()), True)
+check('1B verified step: released study and driver equal the protocol sources',
+      {n_: hashlib.sha256((CBX / n_).read_bytes()).hexdigest() for n_ in ('certified_language_1b.py', 'certified_1b_driver.py')},
+      {n_: PC['sources'][n_] for n_ in ('certified_language_1b.py', 'certified_1b_driver.py')})
+check('1B verified step: its 14 campaign sources equal the frozen 1B campaign files',
+      (sum(n_ in FROZEN for n_ in PC['sources']), all(PC['sources'][n_] == FROZEN[n_] for n_ in PC['sources'] if n_ in FROZEN)), (14, True))
+V1_ = hashlib.sha256((CBX / 'v1/certified_language_1b.py').read_bytes()).hexdigest()
+REL_ = PC['sources']['certified_language_1b.py']
+def stage_source(k_):  # v1 for the first (c = 1/2) development stage, the released source for every later run
+    return V1_ if (k_[4] == .5 and (k_[1] != 'uniform_fixed' or k_[3] == .001)) else REL_
+check('1B verified step: each development run used its stage\'s study source (v1 at c = 1/2, released after)',
+      all(v_[0]['identity']['sources']['certified_language_1b.py'] == stage_source(k_) for k_, v_ in DEVC.items()), True)
+def code_body(p_):
+    s_ = p_.read_text()
+    return s_[s_.index('"""', 3) + 3:].splitlines()
+# Outside the module docstring, the released study differs from v1 (used by the c = 1/2 development runs) only by threading
+# the constant c through as an argument and checking it against the frozen protocol. These are all the changed lines:
+V1_TO_RELEASED = ['-def update(model, params, b, arm, eta0, famo, audit):', '+def update(model, params, b, arm, eta0, famo, audit, c):', '-                bound = L0 - C * eta * s', '+                bound = L0 - c * eta * s', "+    p.add_argument('--c', type=float, default=C, help='sufficient-decrease constant, 0 < c < 1; Equation (27) uses 1/2')", '+    if not 0 < a.c < 1:', "+        raise ValueError('c must lie in (0, 1)')", "-              'validation_every': a.validation_every, 'c': C, 'halvings': HALVINGS, 'batch_size': 32, 'model': MODEL,", "+              'validation_every': a.validation_every, 'c': a.c, 'halvings': HALVINGS, 'batch_size': 32, 'model': MODEL,", "-        if a.seed not in protocol['confirmatory_seeds'] or a.steps != protocol['confirmatory_steps'] or a.eta0 != protocol['eta0'][a.arm] \\", "-                or a.validation_every != protocol['validation_every'] or a.arm not in protocol['arms']:", "+        allowed = [(arm, protocol['c'][arm], protocol['eta0'][arm]) for arm in protocol['arms']]", "+        allowed += [(x['arm'], x['c'], x['eta0']) for x in protocol.get('companions', [])]", "+        if a.seed not in protocol['confirmatory_seeds'] or a.steps != protocol['confirmatory_steps'] \\", "+                or a.validation_every != protocol['validation_every'] or (a.arm, a.c, a.eta0) not in allowed:", "-                row = update(model, params, b, a.arm, a.eta0, famo, a.arm != 'uniform_fixed' and step in audit_steps)", "+                row = update(model, params, b, a.arm, a.eta0, famo, a.arm != 'uniform_fixed' and step in audit_steps, a.c)", "-        print('CERTIFIED_1B_COMPLETE', a.arm, a.seed, a.eta0, flush=True)", "+        print('CERTIFIED_1B_COMPLETE', a.arm, a.seed, a.eta0, a.c, flush=True)"]
+code_diff_ = [l_ for l_ in difflib.unified_diff(code_body(CBX / 'v1/certified_language_1b.py'), code_body(CBX / 'certified_language_1b.py'), lineterm='', n=0)
+              if l_[:1] in '+-' and not l_.startswith(('+++', '---'))]
+check('1B verified step: v1 to released study code diff is exactly the c argument and its protocol check', code_diff_, V1_TO_RELEASED)
+# Confirmatory aggregates recomputed from the run files
+CONF_KEY = {(a_, PC['c'][a_], PC['eta0'][a_]): a_ for a_ in PC['arms']}
+CONF_KEY.update({(x_['arm'], x_['c'], x_['eta0']): '%s_c%g' % (x_['arm'], x_['c']) for x_ in PC['companions']})
+CBC = {(CONF_KEY[(k_[1], k_[4], k_[3])], k_[2]): v_ for k_, v_ in CFC.items()}
+SC = tuple(PC['confirmatory_seeds'])
+check('1B verified step: confirmatory runs, configurations by seeds', (len(CBC), sorted({k_[0] for k_ in CBC})), (18, sorted(CONF_KEY.values())))
+check('1B verified step: every confirmatory run took 200 updates', all(v_[0]['steps'] == 200 for v_ in CBC.values()), True)
+def cb_mean(key_, ep_, m_):
+    return st.mean(CBC[(key_, s_)][0][ep_][m_] for s_ in SC)
+def cb_rows(key_):
+    return [r_ for s_ in SC for r_ in CBC[(key_, s_)][1]]
+for key_, (w_, mce_, refused_, raised_) in STATED_CB.items():
+    check(f'1B verified step: {key_} final worst-task test CE', round(cb_mean(key_, 'final_test', 'worst_ce'), 3), w_)
+    check(f'1B verified step: {key_} final mean test CE', round(cb_mean(key_, 'final_test', 'mean_ce'), 3), mce_)
+    check(f'1B verified step: {key_} refused (not certified) updates', sum(r_['status'] == 'not_certified' for r_ in cb_rows(key_)), refused_)
+    check(f'1B verified step: {key_} updates raising some task minibatch loss', sum(r_['raised_tasks'] > 0 for r_ in cb_rows(key_)), raised_)
+# The guarantee, re-verified per accepted step in the training code's own floating-point order
+eq27_ok_, n_acc_, cert_raise_ = True, 0, 0
+for key_ in CONF_KEY.values():
+    if key_ == 'uniform_fixed':
+        continue
+    for s_ in SC:
+        m_, rows_ = CBC[(key_, s_)]
+        c_ = m_['config']['c']
+        for r_ in rows_:
+            cert_raise_ += int(r_['raised_tasks'] > 0)
+            if r_['status'] == 'accepted':
+                n_acc_ += 1
+                bound_ = np.asarray(r_['task_losses_before']) - c_ * r_['accepted_eta'] * np.asarray(r_['first_order_response'])
+                eq27_ok_ = eq27_ok_ and bool((np.asarray(r_['task_losses_after']) <= bound_).all()) and min(r_['first_order_response']) > 0
+            elif r_['status'] in ('not_certified', 'no_admissible_step'):
+                eq27_ok_ = eq27_ok_ and r_['task_losses_after'] == r_['task_losses_before'] and r_['accepted_eta'] is None
+check('1B verified step: every accepted certified step satisfies Equation (27) for every task, holds leave losses unchanged', eq27_ok_, True)
+check('1B verified step: certified updates raising some task minibatch loss', cert_raise_, 0)
+AUD_ = [r_['native_audit'] for v_ in CBC.values() for r_ in v_[1] if 'native_audit' in r_]
+check('1B verified step: native autograd audits of the responses, passed of run', (sum(a_['passed'] for a_ in AUD_), len(AUD_)), STATED_CB_AUDITS)
+# Paired contrasts on the frozen endpoint
+for (a_, b_, mean_, lo_, hi_, nlow_) in STATED_CB_CONTRASTS:
+    d_ = [CBC[(a_, s_)][0]['final_test']['worst_ce'] - CBC[(b_, s_)][0]['final_test']['worst_ce'] for s_ in SC]
+    m_, l_, h_ = tci(d_)
+    check(f'1B verified step: {a_}-{b_} mean', round(m_, 3), mean_)
+    check(f'1B verified step: {a_}-{b_} CI', (round(l_, 3), round(h_, 3)), (lo_, hi_))
+    check(f'1B verified step: {a_}-{b_} seeds where {a_} is lower', sum(x_ < 0 for x_ in d_), nlow_)
+CBA = load('certified_1b/analysis.json')
+check('1B verified step: analysis primary contrast agrees with the run files',
+      bool(abs(CBA['primary']['mean'] - st.mean(CBC[('auditfirst_certified', s_)][0]['final_test']['worst_ce'] - CBC[('uniform_certified', s_)][0]['final_test']['worst_ce'] for s_ in SC)) < 1e-12), True)
+# Protocol facts stated in the response
+check('1B verified step: development grids, development length, halvings and logged amendments',
+      (PC['eta_grid'], PC['c_grid'], PC['development_steps'], PC['halvings'], len(PC['amendments'])), ([0.001, 0.003, 0.01], [0.5, 0.0001], 100, 20, 2))
+check('1B verified step: the fixed step selected the largest rate', PC['eta0']['uniform_fixed'] == max(PC['eta_grid']), True)
+check('1B verified step: released extension plan equals the protocol\'s and the recorded copy',
+      (hashlib.sha256((CBX / 'extension_plan.json').read_bytes()).hexdigest() == PC['extension_plan_sha256'],
+       (CBX / 'extension_plan.json').read_bytes() == (CB / 'extension_plan.json').read_bytes()), (True, True))
+V2D_ = hashlib.sha256((CBX / 'v2/certified_1b_driver.py').read_bytes()).hexdigest()
+V1D_ = hashlib.sha256((CBX / 'v1/certified_1b_driver.py').read_bytes()).hexdigest()
+def stage_driver(k_):  # v1 for the smoke and c = 1/2 stage, v2 for the c = 1e-4 stage, the released driver for the extension and reporting runs
+    if k_[0] == 'smoke':
+        return V1D_
+    if k_[0] == 'development':
+        return V2D_ if k_[4] == 1e-4 else (V1D_ if stage_source(k_) == V1_ else PC['sources']['certified_1b_driver.py'])
+    return PC['sources']['certified_1b_driver.py']
+check('1B verified step: every run used its stage\'s released driver (v1, v2 or the protocol\'s)',
+      all(v_[0]['identity']['sources']['certified_1b_driver.py'] == stage_driver(k_) for k_, v_ in CBR.items()), True)
+# Refusals, holds and the exact-MGDA updates
+MG_ = [r_ for key_ in ('direct_certified', 'auditfirst_certified', 'auditfirst_certified_c0.5') for r_ in cb_rows(key_) if r_['weighting'] == 'exact MGDA']
+check('1B verified step: exact-MGDA updates, and all took a verified step', (len(MG_), all(r_['status'] == 'accepted' for r_ in MG_)), (1477, True))
+check('1B verified step: certified exact MGDA never refused or held', sum(r_['status'] == 'accepted' for r_ in cb_rows('direct_certified')), 600)
+check('1B verified step: certified uniform passed the gate', sum(r_['eligible'] is True for r_ in cb_rows('uniform_certified')), 152)
+# The unprotected step's largest single-task rise
+big_ = max(((r_['task_losses_after'][j_] - r_['task_losses_before'][j_], r_['task_losses_before'][j_], r_['task_losses_after'][j_])
+            for r_ in cb_rows('uniform_fixed') for j_ in range(len(r_['task_losses_before']))))
+check('1B verified step: unprotected step\'s largest single-task minibatch rise, from and to', (round(big_[1], 1), round(big_[2], 1)), (14.5, 51.6))
+# Held-out losses are not protected: per-task validation losses that rose between updates 100 and 200, certified table arms
+def cb_val(m_, n_):
+    h_ = next(x_ for x_ in m_['history'] if x_['after_updates'] == n_)
+    return {t_['task']: t_['answer_ce'] for t_ in h_['validation']['tasks']}
+rose_, pairs_ = 0, 0
+for key_ in ('uniform_certified', 'direct_certified', 'auditfirst_certified', 'famo_certified'):
+    for s_ in SC:
+        a_, b_ = cb_val(CBC[(key_, s_)][0], 100), cb_val(CBC[(key_, s_)][0], 200)
+        rose_ += sum(b_[t_] > a_[t_] for t_ in a_); pairs_ += len(a_)
+check('1B verified step: per-task validation losses of the certified arms that rose between updates 100 and 200', (rose_, pairs_), (32, 96))
+# The price against the unprotected step, cost per update
+dp_ = [CBC[('direct_certified', s_)][0]['final_test']['worst_ce'] - CBC[('uniform_fixed', s_)][0]['final_test']['worst_ce'] for s_ in SC]
+check('1B verified step: certified exact MGDA minus unprotected uniform, worst-task test CE (2 d.p.), seeds where higher', (round(st.mean(dp_), 2), sum(x_ > 0 for x_ in dp_)), (0.24, 3))
+dm_ = [CBC[('direct_certified', s_)][0]['final_test']['mean_ce'] - CBC[('uniform_fixed', s_)][0]['final_test']['mean_ce'] for s_ in SC]
+m_, l_, h_ = tci(dm_)
+check('1B verified step: mean test CE level between certified exact MGDA and unprotected uniform (t95 spans 0)', bool(l_ < 0 < h_), True)
+check('1B verified step: median update seconds, certified exact MGDA, certified audit-first and the fixed step',
+      tuple(round(float(np.median([r_['update_seconds'] for r_ in cb_rows(k_)])), 1) for k_ in ('direct_certified', 'auditfirst_certified', 'uniform_fixed')), (3.1, 3.8, 2.0))
+check('1B verified step: peak GiB of updates outside the audits, certified exact MGDA and the fixed step',
+      tuple(round(max(r_['peak_allocated_bytes'] for r_ in cb_rows(k_) if 'native_audit' not in r_) / 2**30, 1) for k_ in ('direct_certified', 'uniform_fixed')), (15.7, 12.7))
+check('1B verified step: peak GiB of the 45 audited updates (audits untimed, README)',
+      round(max(r_['peak_allocated_bytes'] for k_ in CONF_KEY.values() for r_ in cb_rows(k_) if 'native_audit' in r_) / 2**30, 1), 25.8)
+check('1B verified step: fixed-step time includes the loss evaluations, step phase median seconds',
+      round(float(np.median([r_['step_seconds'] for r_ in cb_rows('uniform_fixed')])), 1), 0.8)
+# Same direction with and without the guarantee, audit-first's uniform share, and the six-rule study's Direct
+du_ = [CBC[('uniform_certified', s_)][0]['final_test']['worst_ce'] - CBC[('uniform_fixed', s_)][0]['final_test']['worst_ce'] for s_ in SC]
+check('1B verified step: certified uniform minus the fixed step, worst-task test CE (2 d.p.), seeds where higher', (round(st.mean(du_), 2), sum(x_ > 0 for x_ in du_)), (0.38, 3))
+check('1B verified step: audit-first used uniform at', sum(r_['weighting'] == 'uniform' for r_ in cb_rows('auditfirst_certified')), 128)
+dd_ = [CBC[('direct_certified', s_)][0]['final_test']['worst_ce'] - RM[('confirmatory', 'direct', s_, 0.001)]['final_test']['worst_ce'] for s_ in SC]
+check('1B verified step: certified exact MGDA below the six-rule study\'s Direct (same seeds and batches), seeds', sum(x_ < 0 for x_ in dd_), 3)
+# Studies A and B primary endpoints with descriptive t-intervals (general response 2/3)
+for lab_, D_ in (('study A', A2), ('certified-step', cs)):
+    m_, l_, h_ = tci([D_[('direct_certified', s_)]['final_train']['worst_bce'] - D_[('uniform_certified', s_)]['final_train']['worst_bce'] for s_ in CS_SEEDS])
+    check(f'{lab_} primary endpoint 95% t-interval', (round(l_, 3), round(h_, 3)), {'study A': (-0.021, -0.014), 'certified-step': (0.002, 0.023)}[lab_])
+# The sufficient-decrease constant (reply to P8RF, Q4)
+DV_ = {(k_[1], k_[3], k_[4]): v_[0]['final_validation']['worst_ce'] for k_, v_ in DEVC.items() if k_[1] != 'uniform_fixed'}
+check('1B verified step: development, c = 1e-4 below c = 1/2 in validation worst-task loss, pairs of rule and starting step',
+      (sum(DV_[(a_, e_, 1e-4)] < DV_[(a_, e_, .5)] for a_ in PC['arms'] if a_ != 'uniform_fixed' for e_ in PC['eta_grid']), len(DV_) // 2), (12, 12))
+check('1B verified step: development, audit-first at each constant\'s best start',
+      tuple(round(min(DV_[('auditfirst_certified', e_, c_)] for e_ in PC['eta_grid']), 3) for c_ in (.5, 1e-4)), (1.018, 0.707))
+v100_ = [(cb_val(CBC[('auditfirst_certified', s_)][0], 100), cb_val(CBC[('auditfirst_certified_c0.5', s_)][0], 100)) for s_ in SC]
+w100_ = [(max(a_.values()), max(b_.values())) for a_, b_ in v100_]
+check('1B verified step: reporting seeds, audit-first validation worst-task loss after 100 updates, c = 1e-4 and c = 1/2, seeds lower',
+      (round(st.mean(a_ for a_, b_ in w100_), 3), round(st.mean(b_ for a_, b_ in w100_), 3), sum(a_ < b_ for a_, b_ in w100_)), (0.805, 1.066, 3))
+check('1B verified step: reporting seeds, audit-first median accepted step at c = 1e-4 and c = 1/2',
+      tuple(float(np.median([r_['accepted_eta'] for r_ in cb_rows(k_) if r_['status'] == 'accepted'])) for k_ in ('auditfirst_certified', 'auditfirst_certified_c0.5')), (0.0015, 0.00025))
+
 print('\n%d claims failed' % len(FAILS) if FAILS else '\nALL CLAIMS PASS')
 sys.exit(1 if FAILS else 0)

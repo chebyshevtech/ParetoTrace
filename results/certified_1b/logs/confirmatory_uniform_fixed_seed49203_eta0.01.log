@@ -1,0 +1,13 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794312022.392608   91053 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794312022.452710   91053 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794312024.704143   91053 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794312024.704656   91053 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+{"arm": "uniform_fixed", "seed": 49203, "step": 50, "elapsed": 130}
+{"arm": "uniform_fixed", "seed": 49203, "step": 100, "elapsed": 231}
+{"arm": "uniform_fixed", "seed": 49203, "step": 150, "elapsed": 342}
+{"arm": "uniform_fixed", "seed": 49203, "step": 200, "elapsed": 442}
+CERTIFIED_1B_COMPLETE uniform_fixed 49203 0.01 0.5

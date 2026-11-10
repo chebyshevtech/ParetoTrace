@@ -1,0 +1,3502 @@
+[
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 9.328407049179077
+   }
+  ],
+  "task_losses_before": [
+   7.78363561630249,
+   3.0510923862457275,
+   5.850436210632324,
+   7.250847816467285,
+   7.90877628326416,
+   8.825363159179688,
+   6.484784126281738,
+   7.5659685134887695
+  ],
+  "task_losses_after": [
+   5.57020378112793,
+   12.379499435424805,
+   8.299461364746094,
+   8.470314979553223,
+   5.62799072265625,
+   4.203603744506836,
+   6.924020767211914,
+   4.1754608154296875
+  ],
+  "realized_change": [
+   -2.2134318351745605,
+   9.328407049179077,
+   2.4490251541137695,
+   1.2194671630859375,
+   -2.28078556060791,
+   -4.621759414672852,
+   0.4392366409301758,
+   -3.390507698059082
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 9.328407049179077,
+  "worst_task_before": 8.825363159179688,
+  "worst_task_after": 12.379499435424805,
+  "phase_seconds": {
+   "backward": 0.7603895510001166
+  },
+  "direction_seconds": 1.1798647180003172,
+  "step_seconds": 0.8322511660007876,
+  "update_seconds": 2.012115884001105,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 0,
+  "batch_identity_sha256": "5503c745dc2fd052f9c8841ca21c28d36f537044584c79c8eb45ca81d8505cb8"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 15.873493194580078
+   }
+  ],
+  "task_losses_before": [
+   5.339203357696533,
+   7.920806884765625,
+   8.222455978393555,
+   8.016637802124023,
+   5.4183502197265625,
+   5.229545593261719,
+   7.5297532081604,
+   6.127125263214111
+  ],
+  "task_losses_after": [
+   19.447628021240234,
+   14.351544380187988,
+   14.229979515075684,
+   16.59964370727539,
+   17.068113327026367,
+   21.103038787841797,
+   19.357460021972656,
+   16.819866180419922
+  ],
+  "realized_change": [
+   14.108424663543701,
+   6.430737495422363,
+   6.007523536682129,
+   8.583005905151367,
+   11.649763107299805,
+   15.873493194580078,
+   11.827706813812256,
+   10.69274091720581
+  ],
+  "raised_tasks": 8,
+  "max_task_change": 15.873493194580078,
+  "worst_task_before": 8.222455978393555,
+  "worst_task_after": 21.103038787841797,
+  "phase_seconds": {
+   "backward": 0.7525963019979827
+  },
+  "direction_seconds": 1.1667721669982711,
+  "step_seconds": 0.8298994849974406,
+  "update_seconds": 1.9966716519957117,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 1,
+  "batch_identity_sha256": "bdafced5d6ac09da929708b9c66bc9ab1872b10b81b6f35dafe3d532b208b626"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 37.03552722930908
+   }
+  ],
+  "task_losses_before": [
+   19.811004638671875,
+   14.062119483947754,
+   14.528925895690918,
+   16.335302352905273,
+   17.93885612487793,
+   16.41927719116211,
+   20.073930740356445,
+   17.982738494873047
+  ],
+  "task_losses_after": [
+   21.23634910583496,
+   48.001953125,
+   51.564453125,
+   44.968894958496094,
+   29.20940399169922,
+   45.09528350830078,
+   29.48574447631836,
+   36.44935989379883
+  ],
+  "realized_change": [
+   1.425344467163086,
+   33.939833641052246,
+   37.03552722930908,
+   28.63359260559082,
+   11.270547866821289,
+   28.676006317138672,
+   9.411813735961914,
+   18.46662139892578
+  ],
+  "raised_tasks": 8,
+  "max_task_change": 37.03552722930908,
+  "worst_task_before": 20.073930740356445,
+  "worst_task_after": 51.564453125,
+  "phase_seconds": {
+   "backward": 0.7525391620001756
+  },
+  "direction_seconds": 1.1669546800003445,
+  "step_seconds": 0.8298491040004592,
+  "update_seconds": 1.9968037840008037,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 2,
+  "batch_identity_sha256": "570e83dc4b5f2dc8ccbc7bdb9266f93afce6a1f9a4dccf6c459d5db8a8147d45"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 7.573841094970703
+   }
+  ],
+  "task_losses_before": [
+   29.450302124023438,
+   46.2764892578125,
+   49.92427444458008,
+   22.43212890625,
+   36.79011535644531,
+   29.784767150878906,
+   37.059898376464844,
+   21.49372100830078
+  ],
+  "task_losses_after": [
+   28.530895233154297,
+   23.16449546813965,
+   23.978652954101562,
+   30.005970001220703,
+   27.269399642944336,
+   27.730789184570312,
+   27.138538360595703,
+   28.486465454101562
+  ],
+  "realized_change": [
+   -0.9194068908691406,
+   -23.11199378967285,
+   -25.945621490478516,
+   7.573841094970703,
+   -9.520715713500977,
+   -2.0539779663085938,
+   -9.92136001586914,
+   6.992744445800781
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 7.573841094970703,
+  "worst_task_before": 49.92427444458008,
+  "worst_task_after": 30.005970001220703,
+  "phase_seconds": {
+   "backward": 0.7525259069989261
+  },
+  "direction_seconds": 1.1669007160016918,
+  "step_seconds": 0.8298244959987642,
+  "update_seconds": 1.996725212000456,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 3,
+  "batch_identity_sha256": "26192759618102183332817f3a7f4a01922e0e134874c4bf2394e27b52ea3e90"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.1601924896240234
+   }
+  ],
+  "task_losses_before": [
+   26.642080307006836,
+   23.1763916015625,
+   22.910926818847656,
+   28.723432540893555,
+   27.756240844726562,
+   28.566524505615234,
+   26.71800994873047,
+   28.54743194580078
+  ],
+  "task_losses_after": [
+   18.2363338470459,
+   8.014212608337402,
+   8.595662117004395,
+   11.64010238647461,
+   19.93364906311035,
+   16.4603271484375,
+   18.41061782836914,
+   29.707624435424805
+  ],
+  "realized_change": [
+   -8.405746459960938,
+   -15.162178993225098,
+   -14.315264701843262,
+   -17.083330154418945,
+   -7.822591781616211,
+   -12.106197357177734,
+   -8.307392120361328,
+   1.1601924896240234
+  ],
+  "raised_tasks": 1,
+  "max_task_change": 1.1601924896240234,
+  "worst_task_before": 28.723432540893555,
+  "worst_task_after": 29.707624435424805,
+  "phase_seconds": {
+   "backward": 0.7527466339997773
+  },
+  "direction_seconds": 1.1676874949989724,
+  "step_seconds": 0.8316601090009499,
+  "update_seconds": 1.9993476039999223,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 4,
+  "batch_identity_sha256": "0208b0fa8f587676ed7cbd6d47f6a3606e7c5f5efda31d0da5dd0243af5fefe3"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 10.907146453857422
+   }
+  ],
+  "task_losses_before": [
+   14.252464294433594,
+   6.804437637329102,
+   7.463703155517578,
+   10.264392852783203,
+   10.121822357177734,
+   24.52904510498047,
+   20.07306671142578,
+   23.874927520751953
+  ],
+  "task_losses_after": [
+   13.205185890197754,
+   17.711584091186523,
+   17.7203311920166,
+   11.180662155151367,
+   11.120668411254883,
+   13.775951385498047,
+   11.616392135620117,
+   13.720405578613281
+  ],
+  "realized_change": [
+   -1.0472784042358398,
+   10.907146453857422,
+   10.256628036499023,
+   0.9162693023681641,
+   0.9988460540771484,
+   -10.753093719482422,
+   -8.456674575805664,
+   -10.154521942138672
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 10.907146453857422,
+  "worst_task_before": 24.52904510498047,
+  "worst_task_after": 17.7203311920166,
+  "phase_seconds": {
+   "backward": 0.7529615480016218
+  },
+  "direction_seconds": 1.1673918360029347,
+  "step_seconds": 0.8303219680019538,
+  "update_seconds": 1.9977138040048885,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 5,
+  "batch_identity_sha256": "471c8792a61ecce4744cfc7cd6738831455f9bf174dbcfd340f8e2bc3dbd78fe"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 4.34600830078125
+   }
+  ],
+  "task_losses_before": [
+   14.819720268249512,
+   17.708770751953125,
+   18.556398391723633,
+   11.175687789916992,
+   9.932794570922852,
+   12.134661674499512,
+   13.20833969116211,
+   12.121889114379883
+  ],
+  "task_losses_after": [
+   18.333410263061523,
+   22.054779052734375,
+   22.312267303466797,
+   14.649309158325195,
+   9.97876262664795,
+   11.423646926879883,
+   15.519850730895996,
+   11.249484062194824
+  ],
+  "realized_change": [
+   3.5136899948120117,
+   4.34600830078125,
+   3.755868911743164,
+   3.473621368408203,
+   0.045968055725097656,
+   -0.7110147476196289,
+   2.3115110397338867,
+   -0.8724050521850586
+  ],
+  "raised_tasks": 6,
+  "max_task_change": 4.34600830078125,
+  "worst_task_before": 18.556398391723633,
+  "worst_task_after": 22.312267303466797,
+  "phase_seconds": {
+   "backward": 0.7525657590012997
+  },
+  "direction_seconds": 1.1668148379976628,
+  "step_seconds": 0.8298354150028899,
+  "update_seconds": 1.9966502530005528,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 6,
+  "batch_identity_sha256": "ec8326ec3e27ed314c74c245955d0bf132e11360d9a51958e8e3c34d12a6b0e4"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 3.0905885696411133
+   }
+  ],
+  "task_losses_before": [
+   11.557576179504395,
+   21.796825408935547,
+   22.310897827148438,
+   22.624916076660156,
+   12.806280136108398,
+   16.964284896850586,
+   9.985812187194824,
+   14.03457260131836
+  ],
+  "task_losses_after": [
+   13.24801254272461,
+   17.362016677856445,
+   17.86326026916504,
+   17.932598114013672,
+   14.01386833190918,
+   15.816457748413086,
+   13.076400756835938,
+   14.853280067443848
+  ],
+  "realized_change": [
+   1.6904363632202148,
+   -4.434808731079102,
+   -4.447637557983398,
+   -4.692317962646484,
+   1.2075881958007812,
+   -1.1478271484375,
+   3.0905885696411133,
+   0.8187074661254883
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 3.0905885696411133,
+  "worst_task_before": 22.624916076660156,
+  "worst_task_after": 17.932598114013672,
+  "phase_seconds": {
+   "backward": 0.7524935889996414
+  },
+  "direction_seconds": 1.1666988500001025,
+  "step_seconds": 0.8297255769975891,
+  "update_seconds": 1.9964244269976916,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 7,
+  "batch_identity_sha256": "a21bd1d019648ccd88a5fdd23dd153619db9d43a2f4d7a40c1391e6f2a911de5"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": -1.445535659790039
+   }
+  ],
+  "task_losses_before": [
+   12.257506370544434,
+   17.130146026611328,
+   17.62541961669922,
+   14.280136108398438,
+   14.280675888061523,
+   12.268381118774414,
+   13.24764633178711,
+   14.886817932128906
+  ],
+  "task_losses_after": [
+   1.496208906173706,
+   12.362831115722656,
+   16.17988395690918,
+   10.134464263916016,
+   9.950944900512695,
+   1.5858289003372192,
+   5.785277843475342,
+   5.309971332550049
+  ],
+  "realized_change": [
+   -10.761297464370728,
+   -4.767314910888672,
+   -1.445535659790039,
+   -4.145671844482422,
+   -4.329730987548828,
+   -10.682552218437195,
+   -7.462368488311768,
+   -9.576846599578857
+  ],
+  "raised_tasks": 0,
+  "max_task_change": -1.445535659790039,
+  "worst_task_before": 17.62541961669922,
+  "worst_task_after": 16.17988395690918,
+  "phase_seconds": {
+   "backward": 0.7524621520024084
+  },
+  "direction_seconds": 1.1665420980025374,
+  "step_seconds": 0.8296478029988066,
+  "update_seconds": 1.996189901001344,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 8,
+  "batch_identity_sha256": "e811ac6dad69490a230ecf0959f5c0f06c89f220558f30f5e7a0896fce7c669b"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 8.118033170700073
+   }
+  ],
+  "task_losses_before": [
+   9.784614562988281,
+   14.202613830566406,
+   12.397165298461914,
+   5.841217994689941,
+   5.718954563140869,
+   9.648134231567383,
+   5.996582508087158,
+   1.0523598194122314
+  ],
+  "task_losses_after": [
+   11.465584754943848,
+   14.594083786010742,
+   13.436147689819336,
+   8.294549942016602,
+   8.030749320983887,
+   13.301198959350586,
+   6.571849346160889,
+   9.170392990112305
+  ],
+  "realized_change": [
+   1.6809701919555664,
+   0.39146995544433594,
+   1.0389823913574219,
+   2.45333194732666,
+   2.3117947578430176,
+   3.653064727783203,
+   0.5752668380737305,
+   8.118033170700073
+  ],
+  "raised_tasks": 8,
+  "max_task_change": 8.118033170700073,
+  "worst_task_before": 14.202613830566406,
+  "worst_task_after": 14.594083786010742,
+  "phase_seconds": {
+   "backward": 0.7524536060009268
+  },
+  "direction_seconds": 1.1667286369993235,
+  "step_seconds": 0.8301191110003856,
+  "update_seconds": 1.996847747999709,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 9,
+  "batch_identity_sha256": "c7368ce786a42e97f8b356bdec303a5f249ab66526442ee28271e5ad29625164"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 4.269201755523682
+   }
+  ],
+  "task_losses_before": [
+   6.0557780265808105,
+   15.794008255004883,
+   15.719264030456543,
+   6.757446765899658,
+   9.571931838989258,
+   9.84479808807373,
+   9.523378372192383,
+   14.92575454711914
+  ],
+  "task_losses_after": [
+   10.324979782104492,
+   15.461023330688477,
+   15.457893371582031,
+   9.415717124938965,
+   12.683149337768555,
+   12.806478500366211,
+   12.735030174255371,
+   15.833641052246094
+  ],
+  "realized_change": [
+   4.269201755523682,
+   -0.33298492431640625,
+   -0.2613706588745117,
+   2.6582703590393066,
+   3.111217498779297,
+   2.9616804122924805,
+   3.2116518020629883,
+   0.9078865051269531
+  ],
+  "raised_tasks": 6,
+  "max_task_change": 4.269201755523682,
+  "worst_task_before": 15.794008255004883,
+  "worst_task_after": 15.833641052246094,
+  "phase_seconds": {
+   "backward": 0.7524744549991738
+  },
+  "direction_seconds": 1.1669359289990098,
+  "step_seconds": 0.8302658000029624,
+  "update_seconds": 1.9972017290019721,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 10,
+  "batch_identity_sha256": "cedecb4e23fabd7990ca5e7693c23f3a29bdd4cb254370eff621e18ba98c3097"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.8194198608398438
+   }
+  ],
+  "task_losses_before": [
+   15.094629287719727,
+   14.388509750366211,
+   14.393739700317383,
+   9.425350189208984,
+   13.388044357299805,
+   11.847667694091797,
+   15.89169692993164,
+   14.39590072631836
+  ],
+  "task_losses_after": [
+   5.2140913009643555,
+   6.547823905944824,
+   6.553239822387695,
+   10.244770050048828,
+   7.18883752822876,
+   9.329795837402344,
+   6.385408401489258,
+   4.129641056060791
+  ],
+  "realized_change": [
+   -9.880537986755371,
+   -7.840685844421387,
+   -7.8404998779296875,
+   0.8194198608398438,
+   -6.199206829071045,
+   -2.517871856689453,
+   -9.506288528442383,
+   -10.266259670257568
+  ],
+  "raised_tasks": 1,
+  "max_task_change": 0.8194198608398438,
+  "worst_task_before": 15.89169692993164,
+  "worst_task_after": 10.244770050048828,
+  "phase_seconds": {
+   "backward": 0.7525055819969566
+  },
+  "direction_seconds": 1.1668372620006267,
+  "step_seconds": 0.8299390109968954,
+  "update_seconds": 1.996776272997522,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 11,
+  "batch_identity_sha256": "222bcb0abed8c7597a472a34a59c74c63cb17959cd2fafc529b4009106c6155a"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": -0.7764723300933838
+   }
+  ],
+  "task_losses_before": [
+   6.3355326652526855,
+   6.1145782470703125,
+   7.3846893310546875,
+   10.222009658813477,
+   10.012166023254395,
+   5.38776159286499,
+   10.900352478027344,
+   3.037891149520874
+  ],
+  "task_losses_after": [
+   4.283772945404053,
+   4.706615924835205,
+   4.925246238708496,
+   8.25048828125,
+   8.116695404052734,
+   3.710312843322754,
+   9.194499969482422,
+   2.2614188194274902
+  ],
+  "realized_change": [
+   -2.051759719848633,
+   -1.4079623222351074,
+   -2.4594430923461914,
+   -1.9715213775634766,
+   -1.8954706192016602,
+   -1.6774487495422363,
+   -1.7058525085449219,
+   -0.7764723300933838
+  ],
+  "raised_tasks": 0,
+  "max_task_change": -0.7764723300933838,
+  "worst_task_before": 10.900352478027344,
+  "worst_task_after": 9.194499969482422,
+  "phase_seconds": {
+   "backward": 0.7525294709994341
+  },
+  "direction_seconds": 1.1670134870000766,
+  "step_seconds": 0.8300082160021702,
+  "update_seconds": 1.9970217030022468,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 12,
+  "batch_identity_sha256": "6d1dd83a436f3bdb3e8abdd8624263d0278856ff9b50c0a408ab7835ae175ed4"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.3751029968261719
+   }
+  ],
+  "task_losses_before": [
+   5.323718070983887,
+   4.703037261962891,
+   4.724710941314697,
+   6.138095378875732,
+   4.701200008392334,
+   6.503789901733398,
+   3.5978991985321045,
+   3.5896084308624268
+  ],
+  "task_losses_after": [
+   4.4927873611450195,
+   5.0781402587890625,
+   5.065123558044434,
+   5.296328067779541,
+   4.060676097869873,
+   6.090137481689453,
+   2.7270443439483643,
+   2.737233877182007
+  ],
+  "realized_change": [
+   -0.8309307098388672,
+   0.3751029968261719,
+   0.34041261672973633,
+   -0.8417673110961914,
+   -0.6405239105224609,
+   -0.4136524200439453,
+   -0.8708548545837402,
+   -0.8523745536804199
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 0.3751029968261719,
+  "worst_task_before": 6.503789901733398,
+  "worst_task_after": 6.090137481689453,
+  "phase_seconds": {
+   "backward": 0.7525068909999391
+  },
+  "direction_seconds": 1.1668134769970493,
+  "step_seconds": 0.830029143999127,
+  "update_seconds": 1.9968426209961763,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 13,
+  "batch_identity_sha256": "640de5061c65f5c536eb31b28f5681183131990d88434c8dcedeeaa3f5b3c8fd"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 4.4541120529174805
+   }
+  ],
+  "task_losses_before": [
+   4.543736457824707,
+   4.652274131774902,
+   5.521328449249268,
+   4.807439804077148,
+   3.3027544021606445,
+   3.5315136909484863,
+   5.807772636413574,
+   3.2244760990142822
+  ],
+  "task_losses_after": [
+   8.192792892456055,
+   6.1617608070373535,
+   6.784497261047363,
+   8.31619644165039,
+   6.109208583831787,
+   6.213705539703369,
+   10.261884689331055,
+   6.054230213165283
+  ],
+  "realized_change": [
+   3.6490564346313477,
+   1.5094866752624512,
+   1.2631688117980957,
+   3.508756637573242,
+   2.8064541816711426,
+   2.682191848754883,
+   4.4541120529174805,
+   2.829754114151001
+  ],
+  "raised_tasks": 8,
+  "max_task_change": 4.4541120529174805,
+  "worst_task_before": 5.807772636413574,
+  "worst_task_after": 10.261884689331055,
+  "phase_seconds": {
+   "backward": 0.7525033550009539
+  },
+  "direction_seconds": 1.1670185799994215,
+  "step_seconds": 0.8297224399975676,
+  "update_seconds": 1.996741019996989,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 14,
+  "batch_identity_sha256": "2b528149d05bf0584dab789af42d27aaa37cac6bcad52b512ed1416330c4500d"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 2.6448426246643066
+   }
+  ],
+  "task_losses_before": [
+   6.589756011962891,
+   6.448069095611572,
+   5.879662036895752,
+   9.968371391296387,
+   7.182642936706543,
+   7.8443074226379395,
+   8.167146682739258,
+   7.073461532592773
+  ],
+  "task_losses_after": [
+   5.241705894470215,
+   8.782979965209961,
+   8.524504661560059,
+   9.210677146911621,
+   3.603583335876465,
+   8.830729484558105,
+   7.168546676635742,
+   3.6861894130706787
+  ],
+  "realized_change": [
+   -1.3480501174926758,
+   2.3349108695983887,
+   2.6448426246643066,
+   -0.7576942443847656,
+   -3.579059600830078,
+   0.986422061920166,
+   -0.9986000061035156,
+   -3.3872721195220947
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 2.6448426246643066,
+  "worst_task_before": 9.968371391296387,
+  "worst_task_after": 9.210677146911621,
+  "phase_seconds": {
+   "backward": 0.7525162820020341
+  },
+  "direction_seconds": 1.1671392210009799,
+  "step_seconds": 0.8303323250001995,
+  "update_seconds": 1.9974715460011794,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 15,
+  "batch_identity_sha256": "6d3ce9d910673956d2fe5e0ae93ca9ca1d525a58ba95d0fdcaeed520fe04d099"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 9.369624137878418
+   }
+  ],
+  "task_losses_before": [
+   9.57728385925293,
+   8.801873207092285,
+   8.905455589294434,
+   7.216070175170898,
+   7.222460746765137,
+   2.138230323791504,
+   7.199936866760254,
+   3.704733371734619
+  ],
+  "task_losses_after": [
+   5.7588958740234375,
+   6.631516933441162,
+   6.621152877807617,
+   6.989667892456055,
+   6.8903045654296875,
+   11.507854461669922,
+   6.762803077697754,
+   9.67911148071289
+  ],
+  "realized_change": [
+   -3.818387985229492,
+   -2.170356273651123,
+   -2.2843027114868164,
+   -0.22640228271484375,
+   -0.3321561813354492,
+   9.369624137878418,
+   -0.4371337890625,
+   5.9743781089782715
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 9.369624137878418,
+  "worst_task_before": 9.57728385925293,
+  "worst_task_after": 11.507854461669922,
+  "phase_seconds": {
+   "backward": 0.7524646909987496
+  },
+  "direction_seconds": 1.1667228730002535,
+  "step_seconds": 0.8298476429990842,
+  "update_seconds": 1.9965705159993377,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 16,
+  "batch_identity_sha256": "df7412e10fa4ca6b6aa9bb36ce8bd2fb0dfd8017780bd2595448fcc9d3913afc"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": -1.644446849822998
+   }
+  ],
+  "task_losses_before": [
+   7.4120917320251465,
+   6.040037155151367,
+   7.244255542755127,
+   7.347489833831787,
+   6.843437194824219,
+   8.565324783325195,
+   6.7055134773254395,
+   11.259713172912598
+  ],
+  "task_losses_after": [
+   5.697708606719971,
+   3.77081561088562,
+   4.176915168762207,
+   5.4688801765441895,
+   5.107523441314697,
+   6.481165885925293,
+   5.061066627502441,
+   8.891019821166992
+  ],
+  "realized_change": [
+   -1.7143831253051758,
+   -2.269221544265747,
+   -3.06734037399292,
+   -1.8786096572875977,
+   -1.7359137535095215,
+   -2.0841588973999023,
+   -1.644446849822998,
+   -2.3686933517456055
+  ],
+  "raised_tasks": 0,
+  "max_task_change": -1.644446849822998,
+  "worst_task_before": 11.259713172912598,
+  "worst_task_after": 8.891019821166992,
+  "phase_seconds": {
+   "backward": 0.7524585989995103
+  },
+  "direction_seconds": 1.1668095210006868,
+  "step_seconds": 0.8307701779995114,
+  "update_seconds": 1.9975796990001982,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 17,
+  "batch_identity_sha256": "e2436cfed7ac2fe03e0a69466f01f621466a01c49893c1523e6c0f8b1a1bc995"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.1515672206878662
+   }
+  ],
+  "task_losses_before": [
+   5.056883811950684,
+   3.5713937282562256,
+   3.589205026626587,
+   5.419578552246094,
+   3.820323944091797,
+   6.8152971267700195,
+   5.046338081359863,
+   7.525592803955078
+  ],
+  "task_losses_after": [
+   4.843778610229492,
+   4.722960948944092,
+   4.7094831466674805,
+   5.013866424560547,
+   4.475475311279297,
+   5.769908905029297,
+   4.829406261444092,
+   6.327174663543701
+  ],
+  "realized_change": [
+   -0.2131052017211914,
+   1.1515672206878662,
+   1.1202781200408936,
+   -0.4057121276855469,
+   0.6551513671875,
+   -1.0453882217407227,
+   -0.21693181991577148,
+   -1.198418140411377
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 1.1515672206878662,
+  "worst_task_before": 7.525592803955078,
+  "worst_task_after": 6.327174663543701,
+  "phase_seconds": {
+   "backward": 0.7525346740003442
+  },
+  "direction_seconds": 1.166916352998669,
+  "step_seconds": 0.8299954309986788,
+  "update_seconds": 1.9969117839973478,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 18,
+  "batch_identity_sha256": "a6ef64bece90d7536b3646c9fe3159040c595c8a961321bcdc709885b90a1609"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.15184307098388672
+   }
+  ],
+  "task_losses_before": [
+   4.849639892578125,
+   4.73374080657959,
+   5.066624641418457,
+   4.6456298828125,
+   5.619846820831299,
+   6.753901481628418,
+   4.0417256355285645,
+   6.956324577331543
+  ],
+  "task_losses_after": [
+   4.018712043762207,
+   2.773491144180298,
+   3.0712456703186035,
+   3.0146303176879883,
+   5.232125282287598,
+   6.029041767120361,
+   3.6955389976501465,
+   7.10816764831543
+  ],
+  "realized_change": [
+   -0.830927848815918,
+   -1.960249662399292,
+   -1.9953789710998535,
+   -1.6309995651245117,
+   -0.38772153854370117,
+   -0.7248597145080566,
+   -0.34618663787841797,
+   0.15184307098388672
+  ],
+  "raised_tasks": 1,
+  "max_task_change": 0.15184307098388672,
+  "worst_task_before": 6.956324577331543,
+  "worst_task_after": 7.10816764831543,
+  "phase_seconds": {
+   "backward": 0.7525378630016348
+  },
+  "direction_seconds": 1.1669544319993292,
+  "step_seconds": 0.8299304690008285,
+  "update_seconds": 1.9968849010001577,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 19,
+  "batch_identity_sha256": "35d94ae23bfcbb1598f64537da8e7a9c8d28e84eb87819a6297806c39e81ba38"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": -0.959630012512207
+   }
+  ],
+  "task_losses_before": [
+   3.625715970993042,
+   3.3305554389953613,
+   3.639824390411377,
+   3.763665199279785,
+   4.039682388305664,
+   5.263491630554199,
+   4.437371730804443,
+   5.961542129516602
+  ],
+  "task_losses_after": [
+   1.545428991317749,
+   2.257558822631836,
+   2.68019437789917,
+   1.5864465236663818,
+   1.6486921310424805,
+   2.3570401668548584,
+   1.7689459323883057,
+   2.5199851989746094
+  ],
+  "realized_change": [
+   -2.080286979675293,
+   -1.0729966163635254,
+   -0.959630012512207,
+   -2.1772186756134033,
+   -2.3909902572631836,
+   -2.906451463699341,
+   -2.6684257984161377,
+   -3.441556930541992
+  ],
+  "raised_tasks": 0,
+  "max_task_change": -0.959630012512207,
+  "worst_task_before": 5.961542129516602,
+  "worst_task_after": 2.68019437789917,
+  "phase_seconds": {
+   "backward": 0.7525340190004499
+  },
+  "direction_seconds": 1.166878693999024,
+  "step_seconds": 0.830065370999364,
+  "update_seconds": 1.996944064998388,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 20,
+  "batch_identity_sha256": "948fc1268c55fc3234a50509df4dc4aabd46566e5fb33e3272a497b5cab18781"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.08462834358215332
+   }
+  ],
+  "task_losses_before": [
+   2.095625877380371,
+   2.25001859664917,
+   1.8763222694396973,
+   1.5122321844100952,
+   2.681119441986084,
+   2.000617504119873,
+   2.418166160583496,
+   2.5249457359313965
+  ],
+  "task_losses_after": [
+   1.4568760395050049,
+   2.3346469402313232,
+   1.945451259613037,
+   1.4127612113952637,
+   1.81978178024292,
+   1.5870001316070557,
+   1.7531589269638062,
+   1.6787452697753906
+  ],
+  "realized_change": [
+   -0.6387498378753662,
+   0.08462834358215332,
+   0.06912899017333984,
+   -0.09947097301483154,
+   -0.8613376617431641,
+   -0.4136173725128174,
+   -0.6650072336196899,
+   -0.8462004661560059
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 0.08462834358215332,
+  "worst_task_before": 2.681119441986084,
+  "worst_task_after": 2.3346469402313232,
+  "phase_seconds": {
+   "backward": 0.7525727379979799
+  },
+  "direction_seconds": 1.1670186219998868,
+  "step_seconds": 0.8301615979980852,
+  "update_seconds": 1.997180219997972,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 21,
+  "batch_identity_sha256": "beed595d616c27ed0a378133501e58050535b8ebf102afd4598bb904e95e47dd"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.1372251510620117
+   }
+  ],
+  "task_losses_before": [
+   1.3485103845596313,
+   1.9090358018875122,
+   2.831843852996826,
+   1.590120553970337,
+   1.6093941926956177,
+   1.3717707395553589,
+   1.2700164318084717,
+   1.3063801527023315
+  ],
+  "task_losses_after": [
+   1.6466598510742188,
+   2.6397600173950195,
+   3.969069004058838,
+   2.391927719116211,
+   1.963069200515747,
+   2.15645170211792,
+   1.7265493869781494,
+   1.596815824508667
+  ],
+  "realized_change": [
+   0.2981494665145874,
+   0.7307242155075073,
+   1.1372251510620117,
+   0.801807165145874,
+   0.3536750078201294,
+   0.784680962562561,
+   0.45653295516967773,
+   0.29043567180633545
+  ],
+  "raised_tasks": 8,
+  "max_task_change": 1.1372251510620117,
+  "worst_task_before": 2.831843852996826,
+  "worst_task_after": 3.969069004058838,
+  "phase_seconds": {
+   "backward": 0.7526243850006722
+  },
+  "direction_seconds": 1.1669917819999682,
+  "step_seconds": 0.8298971539988997,
+  "update_seconds": 1.996888935998868,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 22,
+  "batch_identity_sha256": "74f352180a5f49c030508474cb0c3e11d24ee0001a3ab4ed60e6e561133bdbbf"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.5813767910003662
+   }
+  ],
+  "task_losses_before": [
+   1.768352746963501,
+   2.023627758026123,
+   2.666860342025757,
+   2.138279438018799,
+   1.8080222606658936,
+   2.170928716659546,
+   2.0459837913513184,
+   1.5552659034729004
+  ],
+  "task_losses_after": [
+   3.349729537963867,
+   2.7186121940612793,
+   3.270801067352295,
+   3.261589527130127,
+   2.862529754638672,
+   3.3929080963134766,
+   3.532477855682373,
+   2.9110031127929688
+  ],
+  "realized_change": [
+   1.5813767910003662,
+   0.6949844360351562,
+   0.6039407253265381,
+   1.1233100891113281,
+   1.0545074939727783,
+   1.2219793796539307,
+   1.4864940643310547,
+   1.3557372093200684
+  ],
+  "raised_tasks": 8,
+  "max_task_change": 1.5813767910003662,
+  "worst_task_before": 2.666860342025757,
+  "worst_task_after": 3.532477855682373,
+  "phase_seconds": {
+   "backward": 0.7525907080016623
+  },
+  "direction_seconds": 1.1670099519978976,
+  "step_seconds": 0.8299927379994188,
+  "update_seconds": 1.9970026899973163,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 23,
+  "batch_identity_sha256": "88a7a05b2a64f21662e66eaf5c036e978b742cfbc94b76186ed0aaf5187962fa"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": -0.47284936904907227
+   }
+  ],
+  "task_losses_before": [
+   2.839198112487793,
+   2.7143325805664062,
+   3.278505802154541,
+   3.7513270378112793,
+   3.697727680206299,
+   2.542691707611084,
+   3.5291171073913574,
+   2.899419069290161
+  ],
+  "task_losses_after": [
+   1.2562912702560425,
+   2.241483211517334,
+   2.5609116554260254,
+   2.0533640384674072,
+   0.7875416874885559,
+   1.8968391418457031,
+   1.5712970495224,
+   1.2384905815124512
+  ],
+  "realized_change": [
+   -1.5829068422317505,
+   -0.47284936904907227,
+   -0.7175941467285156,
+   -1.697962999343872,
+   -2.910185992717743,
+   -0.6458525657653809,
+   -1.9578200578689575,
+   -1.66092848777771
+  ],
+  "raised_tasks": 0,
+  "max_task_change": -0.47284936904907227,
+  "worst_task_before": 3.7513270378112793,
+  "worst_task_after": 2.5609116554260254,
+  "phase_seconds": {
+   "backward": 0.7525384879991179
+  },
+  "direction_seconds": 1.1669131070011645,
+  "step_seconds": 0.8299794749982539,
+  "update_seconds": 1.9968925819994183,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 24,
+  "batch_identity_sha256": "9a0c50f50c63df8606cd6b38bf473389a6cab93e5f6971e0a64751a72c911245"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.691778302192688
+   }
+  ],
+  "task_losses_before": [
+   1.1235342025756836,
+   2.7380778789520264,
+   2.5728676319122314,
+   2.163788318634033,
+   1.0210844278335571,
+   1.4277660846710205,
+   1.2233586311340332,
+   0.9114469289779663
+  ],
+  "task_losses_after": [
+   1.5173050165176392,
+   2.4545743465423584,
+   2.2848610877990723,
+   1.681969165802002,
+   1.4726241827011108,
+   1.6237125396728516,
+   1.5379564762115479,
+   1.6032252311706543
+  ],
+  "realized_change": [
+   0.39377081394195557,
+   -0.28350353240966797,
+   -0.2880065441131592,
+   -0.48181915283203125,
+   0.4515397548675537,
+   0.19594645500183105,
+   0.31459784507751465,
+   0.691778302192688
+  ],
+  "raised_tasks": 5,
+  "max_task_change": 0.691778302192688,
+  "worst_task_before": 2.7380778789520264,
+  "worst_task_after": 2.4545743465423584,
+  "phase_seconds": {
+   "backward": 0.7525145610015898
+  },
+  "direction_seconds": 1.1668475559999933,
+  "step_seconds": 0.8298294250016625,
+  "update_seconds": 1.9966769810016558,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 25,
+  "batch_identity_sha256": "08cb303e2ec3a0e9b2f6a1b81cb43e97c5012ec6b1deb0e16d02fd7d705f8fe4"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.4872081279754639
+   }
+  ],
+  "task_losses_before": [
+   1.5251034498214722,
+   2.0041656494140625,
+   2.5065388679504395,
+   1.7140326499938965,
+   1.6813054084777832,
+   1.6343576908111572,
+   1.465572714805603,
+   1.6582529544830322
+  ],
+  "task_losses_after": [
+   2.628032922744751,
+   1.9128284454345703,
+   3.2381093502044678,
+   3.2012407779693604,
+   1.1460875272750854,
+   1.37861967086792,
+   1.6904785633087158,
+   1.0307962894439697
+  ],
+  "realized_change": [
+   1.1029294729232788,
+   -0.09133720397949219,
+   0.7315704822540283,
+   1.4872081279754639,
+   -0.5352178812026978,
+   -0.2557380199432373,
+   0.2249058485031128,
+   -0.6274566650390625
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 1.4872081279754639,
+  "worst_task_before": 2.5065388679504395,
+  "worst_task_after": 3.2381093502044678,
+  "phase_seconds": {
+   "backward": 0.7525080980012717
+  },
+  "direction_seconds": 1.166847113003314,
+  "step_seconds": 0.8298119069986569,
+  "update_seconds": 1.996659020001971,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 26,
+  "batch_identity_sha256": "9acc744bab78e5d51aaef099e7d7a026a1897e72d42084da73cbac32ba8ccf13"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.3692808747291565
+   }
+  ],
+  "task_losses_before": [
+   1.8214584589004517,
+   2.5161664485931396,
+   2.580181121826172,
+   2.3169639110565186,
+   1.1182258129119873,
+   2.170269012451172,
+   0.9858394861221313,
+   0.7803468108177185
+  ],
+  "task_losses_after": [
+   2.964109420776367,
+   2.9587502479553223,
+   3.076028823852539,
+   3.0186874866485596,
+   1.8620141744613647,
+   3.088984966278076,
+   2.013489246368408,
+   2.149627685546875
+  ],
+  "realized_change": [
+   1.1426509618759155,
+   0.4425837993621826,
+   0.4958477020263672,
+   0.701723575592041,
+   0.7437883615493774,
+   0.9187159538269043,
+   1.0276497602462769,
+   1.3692808747291565
+  ],
+  "raised_tasks": 8,
+  "max_task_change": 1.3692808747291565,
+  "worst_task_before": 2.580181121826172,
+  "worst_task_after": 3.088984966278076,
+  "phase_seconds": {
+   "backward": 0.7524918070012063
+  },
+  "direction_seconds": 1.1668514289995073,
+  "step_seconds": 0.8301131920015905,
+  "update_seconds": 1.9969646210010978,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 27,
+  "batch_identity_sha256": "e207fde07637b84af4e1cbb103341b17d487007202e788161ffdafc91eb0bbc8"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.4208405017852783
+   }
+  ],
+  "task_losses_before": [
+   2.021397829055786,
+   2.955349922180176,
+   3.104496955871582,
+   2.058112859725952,
+   2.0666534900665283,
+   2.0094552040100098,
+   3.062739610671997,
+   2.009255886077881
+  ],
+  "task_losses_after": [
+   2.3624987602233887,
+   1.4572482109069824,
+   1.500509262084961,
+   2.2917447090148926,
+   2.4874939918518066,
+   2.253427743911743,
+   2.528424024581909,
+   1.743120789527893
+  ],
+  "realized_change": [
+   0.34110093116760254,
+   -1.4981017112731934,
+   -1.603987693786621,
+   0.23363184928894043,
+   0.4208405017852783,
+   0.2439725399017334,
+   -0.5343155860900879,
+   -0.2661350965499878
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 0.4208405017852783,
+  "worst_task_before": 3.104496955871582,
+  "worst_task_after": 2.528424024581909,
+  "phase_seconds": {
+   "backward": 0.7525493649991404
+  },
+  "direction_seconds": 1.1671113909978885,
+  "step_seconds": 0.8300847790014814,
+  "update_seconds": 1.9971961699993699,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 28,
+  "batch_identity_sha256": "9758d643fd74af39c2ddb769dc398837b349b86802b9ccc79524e8fff89e6ec6"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.06571650505065918
+   }
+  ],
+  "task_losses_before": [
+   2.2772908210754395,
+   1.4508850574493408,
+   1.0003222227096558,
+   2.7140214443206787,
+   2.453691005706787,
+   2.862743377685547,
+   1.0895516872406006,
+   2.9606239795684814
+  ],
+  "task_losses_after": [
+   1.8718549013137817,
+   1.5166015625,
+   1.0497088432312012,
+   2.072516441345215,
+   1.8394865989685059,
+   1.854264736175537,
+   0.9808335304260254,
+   2.139580249786377
+  ],
+  "realized_change": [
+   -0.4054359197616577,
+   0.06571650505065918,
+   0.04938662052154541,
+   -0.6415050029754639,
+   -0.6142044067382812,
+   -1.0084786415100098,
+   -0.1087181568145752,
+   -0.8210437297821045
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 0.06571650505065918,
+  "worst_task_before": 2.9606239795684814,
+  "worst_task_after": 2.139580249786377,
+  "phase_seconds": {
+   "backward": 0.7524578850025136
+  },
+  "direction_seconds": 1.166831844002445,
+  "step_seconds": 0.8304813190006826,
+  "update_seconds": 1.9973131630031276,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 29,
+  "batch_identity_sha256": "631bb2f11e19674084fe0ad5065b770ffd6185361b7237edfd1d86d8b91de78c"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 2.2150280475616455
+   }
+  ],
+  "task_losses_before": [
+   2.118601083755493,
+   1.9961740970611572,
+   1.0219535827636719,
+   1.4789559841156006,
+   2.2800073623657227,
+   1.450317144393921,
+   1.786423683166504,
+   1.7808854579925537
+  ],
+  "task_losses_after": [
+   0.07386263459920883,
+   3.5918352603912354,
+   3.2369816303253174,
+   2.375088691711426,
+   0.7633077502250671,
+   2.3768107891082764,
+   1.5077104568481445,
+   0.8401927351951599
+  ],
+  "realized_change": [
+   -2.0447384491562843,
+   1.5956611633300781,
+   2.2150280475616455,
+   0.8961327075958252,
+   -1.5166996121406555,
+   0.9264936447143555,
+   -0.2787132263183594,
+   -0.9406927227973938
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 2.2150280475616455,
+  "worst_task_before": 2.2800073623657227,
+  "worst_task_after": 3.5918352603912354,
+  "phase_seconds": {
+   "backward": 0.7525281359994551
+  },
+  "direction_seconds": 1.1668638820010528,
+  "step_seconds": 0.8298660969994671,
+  "update_seconds": 1.99672997900052,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 30,
+  "batch_identity_sha256": "2e777ff0c801efe3c763ecca65f41b359e4f79b69584aea20cc47ca388ba8ed5"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.010353684425354
+   }
+  ],
+  "task_losses_before": [
+   0.7815512418746948,
+   3.350861072540283,
+   3.4851274490356445,
+   2.9127140045166016,
+   1.541434645652771,
+   1.6715481281280518,
+   2.95207142829895,
+   0.8078104257583618
+  ],
+  "task_losses_after": [
+   1.537856101989746,
+   1.8307815790176392,
+   1.8340198993682861,
+   0.5816431641578674,
+   1.6085046529769897,
+   1.6388435363769531,
+   0.930662214756012,
+   1.8181641101837158
+  ],
+  "realized_change": [
+   0.7563048601150513,
+   -1.520079493522644,
+   -1.6511075496673584,
+   -2.331070840358734,
+   0.06707000732421875,
+   -0.03270459175109863,
+   -2.0214092135429382,
+   1.010353684425354
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 1.010353684425354,
+  "worst_task_before": 3.4851274490356445,
+  "worst_task_after": 1.8340198993682861,
+  "phase_seconds": {
+   "backward": 0.7525893390011333
+  },
+  "direction_seconds": 1.1667656879981223,
+  "step_seconds": 0.8299389489984605,
+  "update_seconds": 1.9967046369965828,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 31,
+  "batch_identity_sha256": "ee7a1546a6330c363e3c18fb10eb123d6cfcb34699e66575b9834b3e29d8f467"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.5926245450973511
+   }
+  ],
+  "task_losses_before": [
+   1.5365725755691528,
+   2.000943899154663,
+   1.8252893686294556,
+   1.0863813161849976,
+   1.3323974609375,
+   1.4665859937667847,
+   1.738083839416504,
+   1.642233967781067
+  ],
+  "task_losses_after": [
+   0.9157542586326599,
+   1.4787753820419312,
+   1.2438709735870361,
+   1.6790058612823486,
+   1.0331076383590698,
+   1.2063617706298828,
+   0.5919822454452515,
+   0.6632765531539917
+  ],
+  "realized_change": [
+   -0.6208183169364929,
+   -0.5221685171127319,
+   -0.5814183950424194,
+   0.5926245450973511,
+   -0.2992898225784302,
+   -0.26022422313690186,
+   -1.1461015939712524,
+   -0.9789574146270752
+  ],
+  "raised_tasks": 1,
+  "max_task_change": 0.5926245450973511,
+  "worst_task_before": 2.000943899154663,
+  "worst_task_after": 1.6790058612823486,
+  "phase_seconds": {
+   "backward": 0.7525566719996277
+  },
+  "direction_seconds": 1.167125097999815,
+  "step_seconds": 0.8296663379987876,
+  "update_seconds": 1.9967914359986025,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 32,
+  "batch_identity_sha256": "9a400c15d88e91764b39c84649bfc30024f93648c223dd44a6e1785cdfa3531b"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.5989466905593872
+   }
+  ],
+  "task_losses_before": [
+   1.0954664945602417,
+   1.4834461212158203,
+   0.9476112723350525,
+   2.1079750061035156,
+   1.024930715560913,
+   1.1691179275512695,
+   1.0520743131637573,
+   0.4844745397567749
+  ],
+  "task_losses_after": [
+   0.554119884967804,
+   1.6605432033538818,
+   0.7097636461257935,
+   1.2959551811218262,
+   0.8905401229858398,
+   1.1761338710784912,
+   0.8236352205276489,
+   1.083421230316162
+  ],
+  "realized_change": [
+   -0.5413466095924377,
+   0.17709708213806152,
+   -0.23784762620925903,
+   -0.8120198249816895,
+   -0.13439059257507324,
+   0.00701594352722168,
+   -0.2284390926361084,
+   0.5989466905593872
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 0.5989466905593872,
+  "worst_task_before": 2.1079750061035156,
+  "worst_task_after": 1.6605432033538818,
+  "phase_seconds": {
+   "backward": 0.7526319089993194
+  },
+  "direction_seconds": 1.167045499998494,
+  "step_seconds": 0.8300613510000403,
+  "update_seconds": 1.9971068509985344,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 33,
+  "batch_identity_sha256": "e8ea89779fb141d89b736d7455b60131ff01fc35b74b704f62613a18db8aa883"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.7631534934043884
+   }
+  ],
+  "task_losses_before": [
+   0.49172282218933105,
+   0.6986912488937378,
+   0.7304087281227112,
+   1.300809621810913,
+   1.1873446702957153,
+   1.1628937721252441,
+   1.1334378719329834,
+   0.8021644949913025
+  ],
+  "task_losses_after": [
+   0.9096581339836121,
+   1.3593735694885254,
+   1.4935622215270996,
+   1.2993452548980713,
+   0.6980994343757629,
+   0.8154215812683105,
+   0.7201188802719116,
+   0.6789485216140747
+  ],
+  "realized_change": [
+   0.417935311794281,
+   0.6606823205947876,
+   0.7631534934043884,
+   -0.0014643669128417969,
+   -0.4892452359199524,
+   -0.3474721908569336,
+   -0.4133189916610718,
+   -0.12321597337722778
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 0.7631534934043884,
+  "worst_task_before": 1.300809621810913,
+  "worst_task_after": 1.4935622215270996,
+  "phase_seconds": {
+   "backward": 0.7529427699992084
+  },
+  "direction_seconds": 1.168259019999823,
+  "step_seconds": 0.8301874549979402,
+  "update_seconds": 1.9984464749977633,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 34,
+  "batch_identity_sha256": "3f9b192a03b798b7cef99c9d8865b9de2aa369984f63f0788e13b0b478da8fc9"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.8066588640213013
+   }
+  ],
+  "task_losses_before": [
+   0.681303858757019,
+   1.367780089378357,
+   2.1832778453826904,
+   1.3054988384246826,
+   0.9170308113098145,
+   0.8443506360054016,
+   1.1931357383728027,
+   0.6703653335571289
+  ],
+  "task_losses_after": [
+   1.4879627227783203,
+   0.7505049705505371,
+   1.9277706146240234,
+   0.4896708130836487,
+   0.7238941192626953,
+   1.3395740985870361,
+   0.6366288065910339,
+   1.2650344371795654
+  ],
+  "realized_change": [
+   0.8066588640213013,
+   -0.6172751188278198,
+   -0.255507230758667,
+   -0.8158280253410339,
+   -0.19313669204711914,
+   0.4952234625816345,
+   -0.5565069317817688,
+   0.5946691036224365
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 0.8066588640213013,
+  "worst_task_before": 2.1832778453826904,
+  "worst_task_after": 1.9277706146240234,
+  "phase_seconds": {
+   "backward": 0.7532202860020334
+  },
+  "direction_seconds": 1.1685988789977273,
+  "step_seconds": 0.8304541950019484,
+  "update_seconds": 1.9990530739996757,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 35,
+  "batch_identity_sha256": "556763f9c22af74878317d1838060dd19509a114d961b08aac839d2ff380c4b5"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.6920366287231445
+   }
+  ],
+  "task_losses_before": [
+   0.6450374126434326,
+   0.7465711236000061,
+   1.8757233619689941,
+   0.9897009134292603,
+   1.9175786972045898,
+   1.8452948331832886,
+   1.4899635314941406,
+   1.2780007123947144
+  ],
+  "task_losses_after": [
+   1.3370740413665771,
+   1.389932632446289,
+   1.9021278619766235,
+   1.1875971555709839,
+   0.5817957520484924,
+   0.6785407066345215,
+   0.7706987261772156,
+   0.7588621377944946
+  ],
+  "realized_change": [
+   0.6920366287231445,
+   0.643361508846283,
+   0.026404500007629395,
+   0.19789624214172363,
+   -1.3357829451560974,
+   -1.166754126548767,
+   -0.719264805316925,
+   -0.5191385746002197
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 0.6920366287231445,
+  "worst_task_before": 1.9175786972045898,
+  "worst_task_after": 1.9021278619766235,
+  "phase_seconds": {
+   "backward": 0.7527102550011477
+  },
+  "direction_seconds": 1.1670474109996576,
+  "step_seconds": 0.829921597000066,
+  "update_seconds": 1.9969690079997235,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 36,
+  "batch_identity_sha256": "116ba2a1083b2de84c95059348c20b2fde85dbd9241ece76ae0ac7cbc8ecc91d"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.8687848448753357
+   }
+  ],
+  "task_losses_before": [
+   0.47563987970352173,
+   1.9906011819839478,
+   1.5011730194091797,
+   1.2527397871017456,
+   1.069043517112732,
+   1.4868272542953491,
+   1.0521125793457031,
+   0.8214690685272217
+  ],
+  "task_losses_after": [
+   1.3444247245788574,
+   1.8387038707733154,
+   0.6821868419647217,
+   0.9103802442550659,
+   0.6860020160675049,
+   0.6671560406684875,
+   0.7852113842964172,
+   1.0176024436950684
+  ],
+  "realized_change": [
+   0.8687848448753357,
+   -0.15189731121063232,
+   -0.818986177444458,
+   -0.3423595428466797,
+   -0.38304150104522705,
+   -0.8196712136268616,
+   -0.2669011950492859,
+   0.19613337516784668
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 0.8687848448753357,
+  "worst_task_before": 1.9906011819839478,
+  "worst_task_after": 1.8387038707733154,
+  "phase_seconds": {
+   "backward": 0.752472805997968
+  },
+  "direction_seconds": 1.1670172090016422,
+  "step_seconds": 0.8300134750024881,
+  "update_seconds": 1.9970306840041303,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 37,
+  "batch_identity_sha256": "b7be236d2dfcc56c8d19cd152a4e615161adbcb609c4069685b22bd70e9b6638"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.7543855905532837
+   }
+  ],
+  "task_losses_before": [
+   1.3576165437698364,
+   1.4485456943511963,
+   1.4611029624938965,
+   0.7081608772277832,
+   1.0041941404342651,
+   1.1207401752471924,
+   0.784230649471283,
+   0.98734450340271
+  ],
+  "task_losses_after": [
+   0.37886756658554077,
+   1.5023781061172485,
+   1.6191664934158325,
+   1.462546467781067,
+   0.5371723771095276,
+   0.7110318541526794,
+   0.9876163005828857,
+   0.5591278076171875
+  ],
+  "realized_change": [
+   -0.9787489771842957,
+   0.053832411766052246,
+   0.15806353092193604,
+   0.7543855905532837,
+   -0.46702176332473755,
+   -0.40970832109451294,
+   0.20338565111160278,
+   -0.42821669578552246
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 0.7543855905532837,
+  "worst_task_before": 1.4611029624938965,
+  "worst_task_after": 1.6191664934158325,
+  "phase_seconds": {
+   "backward": 0.7524950899969554
+  },
+  "direction_seconds": 1.166709704000823,
+  "step_seconds": 0.8298453360002895,
+  "update_seconds": 1.9965550400011125,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 38,
+  "batch_identity_sha256": "ed6a187bc7d3f5a1fb0dcbe8bd157aaf406dd777a60cef55432115ee2ea489d0"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.6677814722061157
+   }
+  ],
+  "task_losses_before": [
+   0.560816764831543,
+   1.2815905809402466,
+   1.360119104385376,
+   1.1665191650390625,
+   0.8245889544487,
+   0.7033858299255371,
+   0.6014057397842407,
+   0.5623647570610046
+  ],
+  "task_losses_after": [
+   0.7074311375617981,
+   0.9712672829627991,
+   0.986728310585022,
+   0.9180048108100891,
+   1.1067662239074707,
+   0.785484790802002,
+   1.2691872119903564,
+   0.7022539377212524
+  ],
+  "realized_change": [
+   0.14661437273025513,
+   -0.3103232979774475,
+   -0.373390793800354,
+   -0.2485143542289734,
+   0.28217726945877075,
+   0.08209896087646484,
+   0.6677814722061157,
+   0.1398891806602478
+  ],
+  "raised_tasks": 5,
+  "max_task_change": 0.6677814722061157,
+  "worst_task_before": 1.360119104385376,
+  "worst_task_after": 1.2691872119903564,
+  "phase_seconds": {
+   "backward": 0.752575094000349
+  },
+  "direction_seconds": 1.1669040529995982,
+  "step_seconds": 0.8304213340015849,
+  "update_seconds": 1.9973253870011831,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 39,
+  "batch_identity_sha256": "fa06a616ec45e5c48438716dc9fc47672ff6f95289c409914928841282e7035b"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.3306965231895447
+   }
+  ],
+  "task_losses_before": [
+   1.2388856410980225,
+   0.6164405345916748,
+   0.5939728617668152,
+   0.8504616022109985,
+   0.7529261112213135,
+   1.3539321422576904,
+   1.3538753986358643,
+   0.9902616143226624
+  ],
+  "task_losses_after": [
+   0.07484004646539688,
+   1.7814197540283203,
+   1.9246693849563599,
+   1.6941882371902466,
+   1.1924023628234863,
+   0.5539335012435913,
+   0.9820589423179626,
+   0.4823554754257202
+  ],
+  "realized_change": [
+   -1.1640455946326256,
+   1.1649792194366455,
+   1.3306965231895447,
+   0.843726634979248,
+   0.43947625160217285,
+   -0.7999986410140991,
+   -0.3718164563179016,
+   -0.5079061388969421
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 1.3306965231895447,
+  "worst_task_before": 1.3539321422576904,
+  "worst_task_after": 1.9246693849563599,
+  "phase_seconds": {
+   "backward": 0.7525026839975908
+  },
+  "direction_seconds": 1.1670154690000345,
+  "step_seconds": 0.8301099419986713,
+  "update_seconds": 1.9971254109987058,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 40,
+  "batch_identity_sha256": "afc4ab56b1a9b5754887276fe1987fa9b0221e51662c83710d75934a0d520780"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 2.025075316429138
+   }
+  ],
+  "task_losses_before": [
+   1.3354803323745728,
+   2.0183591842651367,
+   1.9244111776351929,
+   1.7441567182540894,
+   1.1938247680664062,
+   0.9428617358207703,
+   1.3775806427001953,
+   0.4792860746383667
+  ],
+  "task_losses_after": [
+   1.1122634410858154,
+   1.3503714799880981,
+   0.9131600856781006,
+   0.4310603141784668,
+   1.1130106449127197,
+   1.9520397186279297,
+   1.0865815877914429,
+   2.504361391067505
+  ],
+  "realized_change": [
+   -0.22321689128875732,
+   -0.6679877042770386,
+   -1.0112510919570923,
+   -1.3130964040756226,
+   -0.08081412315368652,
+   1.0091779828071594,
+   -0.29099905490875244,
+   2.025075316429138
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 2.025075316429138,
+  "worst_task_before": 2.0183591842651367,
+  "worst_task_after": 2.504361391067505,
+  "phase_seconds": {
+   "backward": 0.7524898409974412
+  },
+  "direction_seconds": 1.1677681410001242,
+  "step_seconds": 0.8305441089978558,
+  "update_seconds": 1.99831224999798,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 41,
+  "batch_identity_sha256": "1b270efe749b7816b6c1e99d82d90d9da3061f1161f6e9551ae7ea28304dc7ea"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.5421949625015259
+   }
+  ],
+  "task_losses_before": [
+   1.0338221788406372,
+   0.8892947435379028,
+   1.922972321510315,
+   0.5375518798828125,
+   1.1179416179656982,
+   1.2642650604248047,
+   0.4051339328289032,
+   1.8211687803268433
+  ],
+  "task_losses_after": [
+   1.576017141342163,
+   0.5213682651519775,
+   1.3926334381103516,
+   0.6057119965553284,
+   1.6490103006362915,
+   1.124707579612732,
+   0.46069246530532837,
+   1.0580750703811646
+  ],
+  "realized_change": [
+   0.5421949625015259,
+   -0.3679264783859253,
+   -0.5303388833999634,
+   0.06816011667251587,
+   0.5310686826705933,
+   -0.13955748081207275,
+   0.05555853247642517,
+   -0.7630937099456787
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 0.5421949625015259,
+  "worst_task_before": 1.922972321510315,
+  "worst_task_after": 1.6490103006362915,
+  "phase_seconds": {
+   "backward": 0.7525397790013812
+  },
+  "direction_seconds": 1.166957977002312,
+  "step_seconds": 0.830139705001784,
+  "update_seconds": 1.997097682004096,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 42,
+  "batch_identity_sha256": "ec8d8c14fda518b68feb3928217701091351161571e681da27e4aeb29f1389b0"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.524882972240448
+   }
+  ],
+  "task_losses_before": [
+   1.8577759265899658,
+   0.531635582447052,
+   1.3374128341674805,
+   0.9405468702316284,
+   2.301208019256592,
+   1.3072128295898438,
+   0.9703458547592163,
+   1.0653138160705566
+  ],
+  "task_losses_after": [
+   0.48095810413360596,
+   1.0565185546875,
+   1.5606880187988281,
+   1.2421389818191528,
+   0.35486361384391785,
+   0.736912190914154,
+   0.9361326694488525,
+   0.5923380851745605
+  ],
+  "realized_change": [
+   -1.3768178224563599,
+   0.524882972240448,
+   0.22327518463134766,
+   0.3015921115875244,
+   -1.946344405412674,
+   -0.5703006386756897,
+   -0.03421318531036377,
+   -0.4729757308959961
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 0.524882972240448,
+  "worst_task_before": 2.301208019256592,
+  "worst_task_after": 1.5606880187988281,
+  "phase_seconds": {
+   "backward": 0.7525504639997962
+  },
+  "direction_seconds": 1.166857586002152,
+  "step_seconds": 0.83086793700204,
+  "update_seconds": 1.997725523004192,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 43,
+  "batch_identity_sha256": "6ab17a09fae7235bc0293572d3259abf0cb7201f4c4a7bf25ca5f69a23fbdb74"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.2464235126972198
+   }
+  ],
+  "task_losses_before": [
+   1.1045207977294922,
+   1.033365249633789,
+   1.3505537509918213,
+   1.3143231868743896,
+   0.8817390203475952,
+   0.7010053396224976,
+   0.7918123602867126,
+   0.3836512267589569
+  ],
+  "task_losses_after": [
+   0.3339075446128845,
+   0.6536955833435059,
+   1.0989024639129639,
+   0.5984388589859009,
+   0.849402129650116,
+   1.267050862312317,
+   1.3554234504699707,
+   1.6300747394561768
+  ],
+  "realized_change": [
+   -0.7706132531166077,
+   -0.3796696662902832,
+   -0.2516512870788574,
+   -0.7158843278884888,
+   -0.03233689069747925,
+   0.5660455226898193,
+   0.5636110901832581,
+   1.2464235126972198
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 1.2464235126972198,
+  "worst_task_before": 1.3505537509918213,
+  "worst_task_after": 1.6300747394561768,
+  "phase_seconds": {
+   "backward": 0.752465931000188
+  },
+  "direction_seconds": 1.1668288660002872,
+  "step_seconds": 0.8305981680023251,
+  "update_seconds": 1.9974270340026123,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 44,
+  "batch_identity_sha256": "48516e6e3dcf601ab81dd872f1a94418e6bc87843f3152a7e40214f51da8e346"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.21858155727386475
+   }
+  ],
+  "task_losses_before": [
+   0.5311142206192017,
+   1.0949562788009644,
+   1.0947623252868652,
+   0.5092508792877197,
+   0.8206061124801636,
+   1.3187739849090576,
+   0.7993321418762207,
+   0.7039292454719543
+  ],
+  "task_losses_after": [
+   0.7285504937171936,
+   0.8970116972923279,
+   0.9066027998924255,
+   0.7278324365615845,
+   0.6256653070449829,
+   0.9152734279632568,
+   0.6090648174285889,
+   0.47026073932647705
+  ],
+  "realized_change": [
+   0.19743627309799194,
+   -0.19794458150863647,
+   -0.1881595253944397,
+   0.21858155727386475,
+   -0.19494080543518066,
+   -0.4035005569458008,
+   -0.19026732444763184,
+   -0.2336685061454773
+  ],
+  "raised_tasks": 2,
+  "max_task_change": 0.21858155727386475,
+  "worst_task_before": 1.3187739849090576,
+  "worst_task_after": 0.9152734279632568,
+  "phase_seconds": {
+   "backward": 0.7524956470006146
+  },
+  "direction_seconds": 1.1679517890006537,
+  "step_seconds": 0.8308020170006785,
+  "update_seconds": 1.9987538060013321,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 45,
+  "batch_identity_sha256": "4e6a25e23fd3f34394ae04f93d97024232763917d43bbe86371ad322fdbd00bb"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.5790228843688965
+   }
+  ],
+  "task_losses_before": [
+   0.9101032614707947,
+   1.1598048210144043,
+   1.2070965766906738,
+   0.7829774618148804,
+   0.8508004546165466,
+   0.9380007982254028,
+   0.781507134437561,
+   0.8545867204666138
+  ],
+  "task_losses_after": [
+   0.8361031413078308,
+   1.5431973934173584,
+   1.7861194610595703,
+   1.3273249864578247,
+   0.6705480813980103,
+   0.43795108795166016,
+   0.7219456434249878,
+   0.4001358151435852
+  ],
+  "realized_change": [
+   -0.07400012016296387,
+   0.3833925724029541,
+   0.5790228843688965,
+   0.5443475246429443,
+   -0.18025237321853638,
+   -0.5000497102737427,
+   -0.05956149101257324,
+   -0.45445090532302856
+  ],
+  "raised_tasks": 3,
+  "max_task_change": 0.5790228843688965,
+  "worst_task_before": 1.2070965766906738,
+  "worst_task_after": 1.7861194610595703,
+  "phase_seconds": {
+   "backward": 0.7525301109999418
+  },
+  "direction_seconds": 1.1677089139993768,
+  "step_seconds": 0.830667516001995,
+  "update_seconds": 1.9983764300013718,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 46,
+  "batch_identity_sha256": "cfe78e062236661a860b6791c3eacbcce448f7c3dfd3452d076f3d31960a4efe"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 1.2284291982650757
+   }
+  ],
+  "task_losses_before": [
+   0.6857495903968811,
+   1.7339545488357544,
+   1.5579500198364258,
+   1.330856442451477,
+   0.660040020942688,
+   0.839208722114563,
+   0.9570783972740173,
+   0.3836303949356079
+  ],
+  "task_losses_after": [
+   1.2454380989074707,
+   1.4082800149917603,
+   0.9091073274612427,
+   0.5531293153762817,
+   1.3194929361343384,
+   1.418130874633789,
+   0.7640513181686401,
+   1.6120595932006836
+  ],
+  "realized_change": [
+   0.5596885085105896,
+   -0.32567453384399414,
+   -0.6488426923751831,
+   -0.7777271270751953,
+   0.6594529151916504,
+   0.5789221525192261,
+   -0.1930270791053772,
+   1.2284291982650757
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 1.2284291982650757,
+  "worst_task_before": 1.7339545488357544,
+  "worst_task_after": 1.6120595932006836,
+  "phase_seconds": {
+   "backward": 0.7524679329981154
+  },
+  "direction_seconds": 1.1680050430004485,
+  "step_seconds": 0.830760728000314,
+  "update_seconds": 1.9987657710007625,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 47,
+  "batch_identity_sha256": "4e689eafdf4c8d2e60df3d561949805fd8d7acf1e46330460067365dac68dbca"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.12158650159835815
+   }
+  ],
+  "task_losses_before": [
+   0.5229096412658691,
+   0.8541159629821777,
+   0.2812173664569855,
+   1.0161174535751343,
+   0.41532978415489197,
+   1.35176682472229,
+   0.3761780261993408,
+   1.6019518375396729
+  ],
+  "task_losses_after": [
+   0.6444961428642273,
+   0.8668040037155151,
+   0.25252479314804077,
+   0.8006377220153809,
+   0.42364367842674255,
+   0.857130765914917,
+   0.40211930871009827,
+   0.8249777555465698
+  ],
+  "realized_change": [
+   0.12158650159835815,
+   0.012688040733337402,
+   -0.028692573308944702,
+   -0.21547973155975342,
+   0.008313894271850586,
+   -0.49463605880737305,
+   0.025941282510757446,
+   -0.776974081993103
+  ],
+  "raised_tasks": 4,
+  "max_task_change": 0.12158650159835815,
+  "worst_task_before": 1.6019518375396729,
+  "worst_task_after": 0.8668040037155151,
+  "phase_seconds": {
+   "backward": 0.7526165979979851
+  },
+  "direction_seconds": 1.1679513000017323,
+  "step_seconds": 0.8358900899984292,
+  "update_seconds": 2.0038413900001615,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 48,
+  "batch_identity_sha256": "3a03917f5840946e5a7ab8926f69f9590ca0867b56b3cce475fd9c39b0630fb1"
+ },
+ {
+  "arm": "uniform_fixed",
+  "weighting": "uniform",
+  "weights": [
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125,
+   0.125
+  ],
+  "first_order_response": null,
+  "min_first_order_response": null,
+  "adaptive_actions": 0,
+  "status": "fixed",
+  "eligible": null,
+  "accepted_eta": 0.01,
+  "trials": [
+   {
+    "eta": 0.01,
+    "max_task_change": 0.18299949169158936
+   }
+  ],
+  "task_losses_before": [
+   0.512986421585083,
+   0.8514183759689331,
+   0.9052543640136719,
+   0.708750307559967,
+   0.5402015447616577,
+   0.8839654922485352,
+   0.9385541081428528,
+   0.6368453502655029
+  ],
+  "task_losses_after": [
+   0.6557937860488892,
+   0.9816596508026123,
+   1.0882538557052612,
+   0.7101773023605347,
+   0.5926214456558228,
+   0.6408270001411438,
+   0.599938690662384,
+   0.512204647064209
+  ],
+  "realized_change": [
+   0.14280736446380615,
+   0.1302412748336792,
+   0.18299949169158936,
+   0.001426994800567627,
+   0.05241990089416504,
+   -0.24313849210739136,
+   -0.33861541748046875,
+   -0.12464070320129395
+  ],
+  "raised_tasks": 5,
+  "max_task_change": 0.18299949169158936,
+  "worst_task_before": 0.9385541081428528,
+  "worst_task_after": 1.0882538557052612,
+  "phase_seconds": {
+   "backward": 0.7528015919997415
+  },
+  "direction_seconds": 1.169907333998708,
+  "step_seconds": 0.8344183600020187,
+  "update_seconds": 2.004325694000727,
+  "peak_allocated_bytes": 13641005056,
+  "timing_scope": "direction (capture, actions or Gram and QP, reconstruction) plus the step rule; the native audit is untimed",
+  "step": 49,
+  "batch_identity_sha256": "17b4b9cbd57b3ce7f53d8e348f60ab96c0972ac289e54b9625c81ed5c4cc219a"
+ }
+]

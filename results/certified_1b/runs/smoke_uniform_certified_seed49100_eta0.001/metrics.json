@@ -1,0 +1,342 @@
+{
+ "complete": true,
+ "config": {
+  "arm": "uniform_certified",
+  "seed": 49100,
+  "phase": "smoke",
+  "eta0": 0.001,
+  "steps": 3,
+  "validation_every": 3,
+  "c": 0.5,
+  "halvings": 20,
+  "batch_size": 32,
+  "model": "EleutherAI/pythia-1b-deduped",
+  "optimizer": "plain SGD; no momentum, weight decay or clipping; full-parameter training in eval mode"
+ },
+ "identity": {
+  "sources": {
+   "certified_language_1b.py": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483",
+   "certified_1b_driver.py": "b87884db05cbb12ba043e65c46cea1068c8225e7ec65739d02e37c2a4b8c7a84",
+   "language_common.py": "87f9720737656b2650ffcf463464cecc55871bf7403cd62efcfd1d4b83e2bff4",
+   "language_training_methods.py": "7c2fd9397849ff6b5ce2df5ca1845bfed6f3c45e89e33561ce4aceb484484cf2",
+   "language_training_rebuttal.py": "8c43e059db44c0c17d319fd8c154f630e81e98fb85e7f974b03918bf5ceeca93",
+   "attention_precision.py": "a1b2c67ed471e1f0b41eecb1bcde2cb8dc98d7334804bca3d289e87331fbb83e",
+   "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+   "v46_factorized_jacobian.py": "4d98d256ab815800a4158ee3a15862bea4d36296ce8e51072d67d63f447668df",
+   "v46_factorized_exact.py": "6984919555b4e58947f6701413204eb6d84ecc4f451f63b61e833a104b804305",
+   "v46_supervised_head.py": "31abf06743c453c9c12848d7f98233a15738a58a97bd1209287145ccf432a4d8",
+   "language_tokenizer_contract.py": "1d59d9786f4a4ff753f42ec92cebbcd7bf02a9b0d5a3e13761ccfc1a7184c655",
+   "checkpoint_archive.py": "168cdf882f2e97f06acb44503b4e9a18b15d0c7a383f1839d84a9d5320b3f56e",
+   "language_checkpoint_storage.py": "9eb4cf25d4d77c7453e9387fe546d82a308faef472929a536f6b6b87bd293239",
+   "native_language_dual_reference.py": "f6f26170c755835b0f3313a0b2917005ccf8afceac1b26fcac864c0f648fe307",
+   "paretotrace_online_factor.py": "4b8e834d529b2feb9ed76eb81f1e2d530eb83b7453effb03b846c172240c04bd",
+   "drive_checkpoint_slots.py": "98f3e1e1cfde7a4bf4378caa53ba3e0f61cf005f1fd7107e6cb4f5197ca9e830"
+  },
+  "attention": {
+   "softmax_dtype": "float64",
+   "original_source_sha256": "6747c2be076a33cc7abc6f15abdb4208f2a1b6a82cbad70ad8fe54d5fa292520",
+   "executed_source_sha256": "9d4af3acc11d24a74045d3571609ab3ce19ad1c2c5fa5ad9d0edf7b007289b06",
+   "scope": "shared by all methods; forward and backward arithmetic change"
+  },
+  "data": {
+   "dataset": "tasksource/tasksource-instruct",
+   "revision": "4cdba593d93bf1e32c0fd1731d84c6780136fe51",
+   "tasks": [
+    "glue/mnli",
+    "glue/qnli",
+    "glue/rte",
+    "super_glue/cb",
+    "anli/a1",
+    "sick/label",
+    "snli",
+    "scitail/snli_format"
+   ],
+   "caps": {
+    "train": 2048,
+    "validation": 128,
+    "test": 256
+   },
+   "scope": "New maintained-dataset split protocol, not historical v0 reproduction",
+   "historical_unavailable_revision": "938647aeeb6b04ff7d584b62164aa67d4c8915a8",
+   "task_rename": "sick/entailment_AB -> sick/label",
+   "tokenizer_model": "EleutherAI/pythia-160m-deduped",
+   "tokenizer_revision": "c54a0e0b28cc667b6f278803024438d57f847b5d",
+   "rows_scanned": {
+    "train": 890383,
+    "validation": 58153,
+    "test": 113137
+   },
+   "duplicates_removed": {
+    "train": 2,
+    "validation": 0,
+    "test": 0
+   },
+   "counts": {
+    "train": {
+     "glue/mnli": 2048,
+     "glue/qnli": 2048,
+     "glue/rte": 2048,
+     "super_glue/cb": 250,
+     "anli/a1": 2048,
+     "sick/label": 2048,
+     "snli": 2048,
+     "scitail/snli_format": 2048
+    },
+    "validation": {
+     "glue/mnli": 128,
+     "glue/qnli": 128,
+     "glue/rte": 128,
+     "super_glue/cb": 28,
+     "anli/a1": 128,
+     "sick/label": 128,
+     "snli": 128,
+     "scitail/snli_format": 128
+    },
+    "test": {
+     "glue/mnli": 256,
+     "glue/qnli": 250,
+     "glue/rte": 139,
+     "super_glue/cb": 28,
+     "anli/a1": 256,
+     "sick/label": 256,
+     "snli": 256,
+     "scitail/snli_format": 256
+    }
+   },
+   "loss": "mean answer-token CE per example, then mean per task; EOS ignored",
+   "pool_sha256": "7168eea3ca22eca16fc3877cb22ec8ec0d45d27c38a03730155adfdf7d5afbed"
+  },
+  "model": {
+   "model": "EleutherAI/pythia-1b-deduped",
+   "revision": "d1988145ec1cf1e76d786cd05af9f53e8b1c95cc",
+   "cache_path": "/root/.cache/huggingface/hub/models--EleutherAI--pythia-1b-deduped/snapshots/d1988145ec1cf1e76d786cd05af9f53e8b1c95cc"
+  },
+  "tokenizer_contract": {
+   "data_tokenizer_model": "EleutherAI/pythia-160m-deduped",
+   "data_tokenizer_revision": "c54a0e0b28cc667b6f278803024438d57f847b5d",
+   "target_tokenizer_model": "EleutherAI/pythia-1b-deduped",
+   "target_revision": "d1988145ec1cf1e76d786cd05af9f53e8b1c95cc",
+   "data_padding_eos_id": 0,
+   "target_tokenizer_eos_attribute": null,
+   "model_config_eos": 2,
+   "generation_eos_differs_from_data_eos": true,
+   "generation_used": false,
+   "encoding_backend_sha256": "dc2f66c2b3397abbb81d703554eb001d2ae2c08060495f57d10759fc51fab16d",
+   "scope": "identical vocabulary, merges, added tokens, normalizer, pre-tokenizer and decoder; frozen data IDs unchanged; generation EOS metadata is unused by teacher-forced loss and all padding/EOS labels are ignored"
+  }
+ },
+ "steps": 3,
+ "update_blocks": [
+  {
+   "file": "updates/00000000_00000002.json",
+   "sha256": "870a44d0ad4557b081e2e6c1d5a4f56030bb2636fa1f28739e1408f24f1df33a",
+   "first_step": 0,
+   "last_step": 2,
+   "rows": 3
+  }
+ ],
+ "history": [
+  {
+   "after_updates": 0,
+   "validation": {
+    "tasks": [
+     {
+      "task": "glue/mnli",
+      "examples": 128,
+      "answer_ce": 7.9741369895637035,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "glue/qnli",
+      "examples": 128,
+      "answer_ce": 3.8866871912032366,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "glue/rte",
+      "examples": 128,
+      "answer_ce": 5.216978709213436,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "super_glue/cb",
+      "examples": 28,
+      "answer_ce": 7.390347821371896,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "anli/a1",
+      "examples": 128,
+      "answer_ce": 9.347676143050194,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "sick/label",
+      "examples": 128,
+      "answer_ce": 7.860882604494691,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "snli",
+      "examples": 128,
+      "answer_ce": 7.813262443989515,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "scitail/snli_format",
+      "examples": 128,
+      "answer_ce": 6.9269222393631935,
+      "teacher_forced_answer_exact_match": 0.0
+     }
+    ],
+    "mean_ce": 7.052111767781233,
+    "worst_ce": 9.347676143050194,
+    "mean_answer_exact_match": 0.0,
+    "worst_answer_exact_match": 0.0,
+    "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+   }
+  },
+  {
+   "after_updates": 3,
+   "validation": {
+    "tasks": [
+     {
+      "task": "glue/mnli",
+      "examples": 128,
+      "answer_ce": 1.198822661419399,
+      "teacher_forced_answer_exact_match": 0.3046875
+     },
+     {
+      "task": "glue/qnli",
+      "examples": 128,
+      "answer_ce": 0.799575213866774,
+      "teacher_forced_answer_exact_match": 0.375
+     },
+     {
+      "task": "glue/rte",
+      "examples": 128,
+      "answer_ce": 1.5875403656391427,
+      "teacher_forced_answer_exact_match": 0.359375
+     },
+     {
+      "task": "super_glue/cb",
+      "examples": 28,
+      "answer_ce": 2.7262979362692152,
+      "teacher_forced_answer_exact_match": 0.0
+     },
+     {
+      "task": "anli/a1",
+      "examples": 128,
+      "answer_ce": 2.932364465901628,
+      "teacher_forced_answer_exact_match": 0.21875
+     },
+     {
+      "task": "sick/label",
+      "examples": 128,
+      "answer_ce": 1.2070352921728045,
+      "teacher_forced_answer_exact_match": 0.09375
+     },
+     {
+      "task": "snli",
+      "examples": 128,
+      "answer_ce": 1.2063499522628263,
+      "teacher_forced_answer_exact_match": 0.2421875
+     },
+     {
+      "task": "scitail/snli_format",
+      "examples": 128,
+      "answer_ce": 0.8702423851354979,
+      "teacher_forced_answer_exact_match": 0.5078125
+     }
+    ],
+    "mean_ce": 1.566028534083411,
+    "worst_ce": 2.932364465901628,
+    "mean_answer_exact_match": 0.2626953125,
+    "worst_answer_exact_match": 0.0,
+    "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+   }
+  }
+ ],
+ "final_validation": {
+  "tasks": [
+   {
+    "task": "glue/mnli",
+    "examples": 128,
+    "answer_ce": 1.198822661419399,
+    "teacher_forced_answer_exact_match": 0.3046875
+   },
+   {
+    "task": "glue/qnli",
+    "examples": 128,
+    "answer_ce": 0.799575213866774,
+    "teacher_forced_answer_exact_match": 0.375
+   },
+   {
+    "task": "glue/rte",
+    "examples": 128,
+    "answer_ce": 1.5875403656391427,
+    "teacher_forced_answer_exact_match": 0.359375
+   },
+   {
+    "task": "super_glue/cb",
+    "examples": 28,
+    "answer_ce": 2.7262979362692152,
+    "teacher_forced_answer_exact_match": 0.0
+   },
+   {
+    "task": "anli/a1",
+    "examples": 128,
+    "answer_ce": 2.932364465901628,
+    "teacher_forced_answer_exact_match": 0.21875
+   },
+   {
+    "task": "sick/label",
+    "examples": 128,
+    "answer_ce": 1.2070352921728045,
+    "teacher_forced_answer_exact_match": 0.09375
+   },
+   {
+    "task": "snli",
+    "examples": 128,
+    "answer_ce": 1.2063499522628263,
+    "teacher_forced_answer_exact_match": 0.2421875
+   },
+   {
+    "task": "scitail/snli_format",
+    "examples": 128,
+    "answer_ce": 0.8702423851354979,
+    "teacher_forced_answer_exact_match": 0.5078125
+   }
+  ],
+  "mean_ce": 1.566028534083411,
+  "worst_ce": 2.932364465901628,
+  "mean_answer_exact_match": 0.2626953125,
+  "worst_answer_exact_match": 0.0,
+  "accuracy_scope": "all supervised answer tokens correct under teacher forcing; not free-generation accuracy"
+ },
+ "heldout_test_evaluated": false,
+ "status_counts": {
+  "fixed": 0,
+  "accepted": 3,
+  "no_admissible_step": 0,
+  "not_certified": 0
+ },
+ "updates_raising_a_task": 0,
+ "weighting_counts": {
+  "uniform": 3,
+  "exact MGDA": 0,
+  "FAMO": 0
+ },
+ "accepted_eta_median": 0.00025,
+ "accepted_at_full_step": 1,
+ "update_seconds_sum": 10.073068837000164,
+ "update_seconds_median": 3.5527768289999813,
+ "peak_update_allocated_bytes": 27655380992,
+ "adaptive_actions": 3,
+ "audits": 3,
+ "audits_passed": 3,
+ "audit_max_relative_error": 2.8506497602960034e-07,
+ "wall_seconds": 72.89938095999992,
+ "torch": "2.14.1+cu130",
+ "gpu": "NVIDIA A100-SXM4-40GB"
+}

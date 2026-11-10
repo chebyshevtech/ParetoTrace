@@ -1,0 +1,20 @@
+{
+ "stages": [
+  "development_extension",
+  "freeze",
+  "confirmatory"
+ ],
+ "stage": "done",
+ "utc": 1794316408.8302972,
+ "sources_match": true,
+ "source_mismatches": [],
+ "pip_returncode": 0,
+ "versions": "4.57.1 0.22.2 0.36.2 2.14.1+cu130",
+ "pool_matches_frozen": true,
+ "command": "/usr/bin/python3 -u /content/rebuttal/certified_1b/certified_1b_driver.py --stage confirmatory",
+ "download_pythia_1b_returncode": 0,
+ "stage_development_extension_returncode": 0,
+ "stage_freeze_returncode": 0,
+ "stage_confirmatory_returncode": 0,
+ "complete": true
+}

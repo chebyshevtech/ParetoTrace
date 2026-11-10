@@ -1,0 +1,15 @@
+{
+ "amendment": "Second amendment, 10 November 2026, before any confirmatory run: the unprotected uniform step joins the development selection at eta 3e-3 and 1e-2 besides its campaign rate 1e-3, so every arm searches the same values. No certified rule's best c = 1e-4 configuration was at eta0 = 1e-2 (all four were best at 3e-3), so by the rule logged at 09:05 UTC no eta0 = 3e-2 runs were added.",
+ "runs": [
+  {
+   "arm": "uniform_fixed",
+   "eta0": 0.003,
+   "c": 0.5
+  },
+  {
+   "arm": "uniform_fixed",
+   "eta0": 0.01,
+   "c": 0.5
+  }
+ ]
+}

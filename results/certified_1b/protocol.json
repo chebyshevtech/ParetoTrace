@@ -1,0 +1,302 @@
+{
+ "version": "certified_1b_v3",
+ "arms": [
+  "uniform_fixed",
+  "uniform_certified",
+  "direct_certified",
+  "auditfirst_certified",
+  "famo_certified"
+ ],
+ "eta0": {
+  "uniform_fixed": 0.01,
+  "uniform_certified": 0.003,
+  "direct_certified": 0.003,
+  "auditfirst_certified": 0.003,
+  "famo_certified": 0.003
+ },
+ "c": {
+  "uniform_fixed": 0.5,
+  "uniform_certified": 0.0001,
+  "direct_certified": 0.0001,
+  "auditfirst_certified": 0.0001,
+  "famo_certified": 0.0001
+ },
+ "companions": [
+  {
+   "arm": "auditfirst_certified",
+   "c": 0.5,
+   "eta0": 0.001,
+   "role": "the primary rule at the other sufficient-decrease constant, for the descriptive c contrast"
+  }
+ ],
+ "eta_grid": [
+  0.001,
+  0.003,
+  0.01
+ ],
+ "c_grid": [
+  0.5,
+  0.0001
+ ],
+ "candidates": {
+  "uniform_fixed": [
+   {
+    "c": 0.5,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 0.6066199435736053,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 0.6800138436083216,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 0.5765598437615803,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   }
+  ],
+  "uniform_certified": [
+   {
+    "c": 0.5,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 1.2205314572784118,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 1.3296080509899184,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 1.2794182960642502,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 1.1067449521942763,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 0.9870396813857951,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 1.0254611522977939,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   }
+  ],
+  "direct_certified": [
+   {
+    "c": 0.5,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 1.1759458402520977,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 1.1980672985082492,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 1.2405095158828772,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 0.9516551310953218,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 0.8625445930556452,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 0.8852855233271839,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   }
+  ],
+  "auditfirst_certified": [
+   {
+    "c": 0.5,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 1.018401756111416,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 1.0478120090992888,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 1.050580352632096,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 0.8806239648110932,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 0.7066830828116508,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 0.8145179985731374,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   }
+  ],
+  "famo_certified": [
+   {
+    "c": 0.5,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 1.579474946076516,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 1.6502169177110773,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.5,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 1.6461815739457961,
+    "study_source_sha256": "c3cff7cb413c66b45b7f77a9afaf509fb2f69bca36f33ddca18438348860e483"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.001,
+    "completed": true,
+    "final_validation_worst_ce": 1.4685252603376284,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.003,
+    "completed": true,
+    "final_validation_worst_ce": 1.413843923913581,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   },
+   {
+    "c": 0.0001,
+    "eta0": 0.01,
+    "completed": true,
+    "final_validation_worst_ce": 1.6227112747728825,
+    "study_source_sha256": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc"
+   }
+  ]
+ },
+ "extension_plan": {
+  "amendment": "Second amendment, 10 November 2026, before any confirmatory run: the unprotected uniform step joins the development selection at eta 3e-3 and 1e-2 besides its campaign rate 1e-3, so every arm searches the same values. No certified rule's best c = 1e-4 configuration was at eta0 = 1e-2 (all four were best at 3e-3), so by the rule logged at 09:05 UTC no eta0 = 3e-2 runs were added.",
+  "runs": [
+   {
+    "arm": "uniform_fixed",
+    "eta0": 0.003,
+    "c": 0.5
+   },
+   {
+    "arm": "uniform_fixed",
+    "eta0": 0.01,
+    "c": 0.5
+   }
+  ]
+ },
+ "extension_plan_sha256": "94b1f835bac7ead477c3cfc7f49d6d37fe776c89c13f28314546d18b2a320afc",
+ "development_seed": 49100,
+ "development_steps": 100,
+ "confirmatory_seeds": [
+  49201,
+  49202,
+  49203
+ ],
+ "confirmatory_steps": 200,
+ "validation_every": 100,
+ "halvings": 20,
+ "sources": {
+  "certified_language_1b.py": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc",
+  "certified_1b_driver.py": "2f7e971e840fd3477291f1edf26a1e9c21b8a10ac1ac64971fbde353a692819b",
+  "language_common.py": "87f9720737656b2650ffcf463464cecc55871bf7403cd62efcfd1d4b83e2bff4",
+  "language_training_methods.py": "7c2fd9397849ff6b5ce2df5ca1845bfed6f3c45e89e33561ce4aceb484484cf2",
+  "language_training_rebuttal.py": "8c43e059db44c0c17d319fd8c154f630e81e98fb85e7f974b03918bf5ceeca93",
+  "attention_precision.py": "a1b2c67ed471e1f0b41eecb1bcde2cb8dc98d7334804bca3d289e87331fbb83e",
+  "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+  "v46_factorized_jacobian.py": "4d98d256ab815800a4158ee3a15862bea4d36296ce8e51072d67d63f447668df",
+  "v46_factorized_exact.py": "6984919555b4e58947f6701413204eb6d84ecc4f451f63b61e833a104b804305",
+  "v46_supervised_head.py": "31abf06743c453c9c12848d7f98233a15738a58a97bd1209287145ccf432a4d8",
+  "language_tokenizer_contract.py": "1d59d9786f4a4ff753f42ec92cebbcd7bf02a9b0d5a3e13761ccfc1a7184c655",
+  "checkpoint_archive.py": "168cdf882f2e97f06acb44503b4e9a18b15d0c7a383f1839d84a9d5320b3f56e",
+  "language_checkpoint_storage.py": "9eb4cf25d4d77c7453e9387fe546d82a308faef472929a536f6b6b87bd293239",
+  "native_language_dual_reference.py": "f6f26170c755835b0f3313a0b2917005ccf8afceac1b26fcac864c0f648fe307",
+  "paretotrace_online_factor.py": "4b8e834d529b2feb9ed76eb81f1e2d530eb83b7453effb03b846c172240c04bd",
+  "drive_checkpoint_slots.py": "98f3e1e1cfde7a4bf4378caa53ba3e0f61cf005f1fd7107e6cb4f5197ca9e830"
+ },
+ "selection": "per arm, the unprotected uniform step included, minimum final development validation worst-task answer CE over its development configurations (c_grid x eta_grid for certified rules, plus the extension plan); failed runs excluded; ties to c = 1/2, then the smaller eta0; no test access",
+ "amendments": [
+  "c = 1e-4 added to the development grid on 10 November 2026, after the c = 1/2 development runs showed accepted steps 2 to 15 times shorter than the unprotected step and before any confirmatory run; the c = 1/2 runs used the previous study source, which differs only by the --c argument (study_source_sha256 per candidate)",
+  "Second amendment, 10 November 2026, before any confirmatory run: the unprotected uniform step joins the development selection at eta 3e-3 and 1e-2 besides its campaign rate 1e-3, so every arm searches the same values. No certified rule's best c = 1e-4 configuration was at eta0 = 1e-2 (all four were best at 3e-3), so by the rule logged at 09:05 UTC no eta0 = 3e-2 runs were added."
+ ],
+ "primary_endpoint": "final held-out worst-task answer CE, paired by seed: auditfirst_certified minus uniform_certified",
+ "secondary": [
+  "direct_certified minus uniform_certified and famo_certified minus uniform_certified on the same endpoint",
+  "refusals (not_certified) and holds (no_admissible_step) per certified arm",
+  "updates raising some task minibatch loss: uniform_fixed against every certified arm (0 by construction)",
+  "each certified arm against the campaign unprotected arms of the same seed and batch sequence (descriptive)",
+  "accepted step sizes, seconds per update, peak memory, native audits",
+  "the primary rule at its selected constant minus its companion at the other constant (descriptive)"
+ ],
+ "scope": "plain-SGD same-minibatch guarantee in floating point at Pythia-1B; no momentum, population or held-out guarantee",
+ "utc_seconds": 1794303210.2299302
+}

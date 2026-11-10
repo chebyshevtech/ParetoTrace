@@ -1,0 +1,35 @@
+{
+ "config": {
+  "arm": "famo_certified",
+  "seed": 49100,
+  "phase": "development",
+  "eta0": 0.01,
+  "steps": 100,
+  "validation_every": 100,
+  "c": 0.0001,
+  "halvings": 20,
+  "batch_size": 32,
+  "model": "EleutherAI/pythia-1b-deduped",
+  "optimizer": "plain SGD; no momentum, weight decay or clipping; full-parameter training in eval mode"
+ },
+ "identity": {
+  "sources": {
+   "certified_language_1b.py": "754ef2f7c4a3f953a549760882a08b5bff29a1cf3e5458b6076bee3fd563abfc",
+   "certified_1b_driver.py": "32cb36f5cbe095b7c387321a006f2c45283c1bbc76d14c82c6725b5ced14ba33",
+   "language_common.py": "87f9720737656b2650ffcf463464cecc55871bf7403cd62efcfd1d4b83e2bff4",
+   "language_training_methods.py": "7c2fd9397849ff6b5ce2df5ca1845bfed6f3c45e89e33561ce4aceb484484cf2",
+   "language_training_rebuttal.py": "8c43e059db44c0c17d319fd8c154f630e81e98fb85e7f974b03918bf5ceeca93",
+   "attention_precision.py": "a1b2c67ed471e1f0b41eecb1bcde2cb8dc98d7334804bca3d289e87331fbb83e",
+   "simplex_qp.py": "512d1b501dc42f5ed26fca5cfad8eb65b38c6b64af58966ac0d30242f32fa8d3",
+   "v46_factorized_jacobian.py": "4d98d256ab815800a4158ee3a15862bea4d36296ce8e51072d67d63f447668df",
+   "v46_factorized_exact.py": "6984919555b4e58947f6701413204eb6d84ecc4f451f63b61e833a104b804305",
+   "v46_supervised_head.py": "31abf06743c453c9c12848d7f98233a15738a58a97bd1209287145ccf432a4d8",
+   "language_tokenizer_contract.py": "1d59d9786f4a4ff753f42ec92cebbcd7bf02a9b0d5a3e13761ccfc1a7184c655",
+   "checkpoint_archive.py": "168cdf882f2e97f06acb44503b4e9a18b15d0c7a383f1839d84a9d5320b3f56e",
+   "language_checkpoint_storage.py": "9eb4cf25d4d77c7453e9387fe546d82a308faef472929a536f6b6b87bd293239",
+   "native_language_dual_reference.py": "f6f26170c755835b0f3313a0b2917005ccf8afceac1b26fcac864c0f648fe307",
+   "paretotrace_online_factor.py": "4b8e834d529b2feb9ed76eb81f1e2d530eb83b7453effb03b846c172240c04bd",
+   "drive_checkpoint_slots.py": "98f3e1e1cfde7a4bf4378caa53ba3e0f61cf005f1fd7107e6cb4f5197ca9e830"
+  }
+ }
+}
