@@ -14,9 +14,10 @@ contains:
 pip install numpy scipy
 python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on stored Grams (about 90 s)
 python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
+python3 audits/verify_residual_rank.py # numerical check of the new residual-rank theorem (about 3 s)
 ```
 
-`check_claims.py` exits with status 0 only if every check passes. It currently runs 508
+`check_claims.py` exits with status 0 only if every check passes. It currently runs 511
 checks.
 
 `CLAIMS.md` lists every claim in the response with its source file. It also marks the
@@ -35,6 +36,7 @@ App. G); these are not re-derived.
 | `experiments/` | The drivers, exactly as executed, for each study below. |
 | `results/` | Outputs of each study, the stored Grams used for replay, and the historical run records cited in the response. |
 | `audits/` | Independent re-analysis: claims checker, replay, event-level summaries. |
+| `theory/` | Full proofs of results that are new in the response: the residual-rank action bound. |
 
 The Stream modules:
 
@@ -44,6 +46,13 @@ The Stream modules:
 | `stable_recovery_v2.py` | Target-aware query rule. |
 | `v46_baseline_frontier.py` | Wolfe simplex QP. |
 | `shared_native_actions.py` | Autodiff Gram actions. |
+
+## New theorem
+
+`theory/residual_rank_theorem.md` proves that the completion query rule closes the certification interval in at
+most min(M, rank R + 1) exact actions, where R is the geometry not yet contracted (reply to 6wXk, Q4).
+`audits/verify_residual_rank.py` checks the bound and both lemmas behind it on 608 random instances: none exceeds
+the bound, and 550 attain it exactly.
 
 ## Studies and where they appear in the response
 

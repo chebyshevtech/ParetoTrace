@@ -705,5 +705,20 @@ check('1B verified step: reporting seeds, audit-first validation worst-task loss
 check('1B verified step: reporting seeds, audit-first median accepted step at c = 1e-4 and c = 1/2',
       tuple(float(np.median([r_['accepted_eta'] for r_ in cb_rows(k_) if r_['status'] == 'accepted'])) for k_ in ('auditfirst_certified', 'auditfirst_certified_c0.5')), (0.0015, 0.00025))
 
+# ---------------- Residual-rank action bound: numerical check (theory/residual_rank_theorem.md)
+_spec_rr = _ilu.spec_from_file_location('verify_residual_rank', ROOT / 'audits' / 'verify_residual_rank.py')
+_rr = _ilu.module_from_spec(_spec_rr); _spec_rr.loader.exec_module(_rr)
+_rr_trials, _rr_fail, _rr_attained = _rr.check()[:3]
+check('residual-rank bound: random instances, failures, bound attained exactly', (_rr_trials, _rr_fail, _rr_attained), (608, 0, 550))
+# Any one designated task under the fixed step at Pythia-1B, and the median-step ratio of the two constants
+_tr = None
+for s_ in SC:
+    for r_ in CBC[('uniform_fixed', s_)][1]:
+        ch_ = np.asarray(r_['task_losses_after']) - np.asarray(r_['task_losses_before'])
+        _tr = (ch_ > 0).astype(int) if _tr is None else _tr + (ch_ > 0)
+check('1B verified step: fixed-step updates raising each designated task, fewest and most of 600', (int(_tr.min()), int(_tr.max())), (235, 285))
+_med = [float(np.median([r_['accepted_eta'] for r_ in cb_rows(k_) if r_['status'] == 'accepted'])) for k_ in ('auditfirst_certified', 'auditfirst_certified_c0.5')]
+check('1B verified step: median accepted step ratio, c = 1e-4 over c = 1/2', round(_med[0] / _med[1], 1), 6.0)
+
 print('\n%d claims failed' % len(FAILS) if FAILS else '\nALL CLAIMS PASS')
 sys.exit(1 if FAILS else 0)
