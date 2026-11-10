@@ -16,7 +16,7 @@ python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on s
 python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
 ```
 
-`check_claims.py` exits with status 0 only if every check passes. It currently runs 399
+`check_claims.py` exits with status 0 only if every check passes. It currently runs 423
 checks.
 
 `CLAIMS.md` lists every claim in the response with its source file. It also marks the

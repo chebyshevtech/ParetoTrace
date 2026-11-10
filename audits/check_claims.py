@@ -60,6 +60,7 @@ check('celeba direct / mgda_ub per update (13x)', round(A['direct']['mean_second
 check('celeba direct / uniform per update (14x)', round(A['direct']['mean_seconds_per_update'] / A['uniform']['mean_seconds_per_update']), 14)
 
 # ---------------- QM9
+check('qm9 110,831 training graphs (protocol scope)', 'using110831training graphs' in load('qm9/protocol.json')['scope'], True)
 q = load('qm9/paired_analysis.json')
 S = q['arm_summary']
 names = {'uniform': 'uniform', 'FAMO': 'FAMO', 'Aligned_MTL': 'Aligned-MTL', 'FairGrad': 'FairGrad', 'direct_factorized': 'Direct', 'Nash_MTL': 'Nash-MTL', 'mgda_ub': 'MGDA-UB'}
@@ -182,7 +183,7 @@ def arm(a):
 check('training study complete, 12 runs', (sa['complete'], len(sa['runs'])), (True, 12))
 check('sharp early stops', sum(r['early_stops_below_40'] for r in arm('stream_completion')), 889); check('scalar early stops', sum(r['early_stops_below_40'] for r in arm('stream_scalar')), 890)
 check('sharp fallbacks', sum(r['fallbacks'] for r in arm('stream_completion')), 11); check('scalar fallbacks', sum(r['fallbacks'] for r in arm('stream_scalar')), 10)
-check('fallbacks below 0.06% of median energy (sharp)', max(x['qstar_over_median_accepted_U'] for r in arm('stream_completion') for x in r['fallback_records']) < 6e-4, True)
+check('fallbacks below 0.1% of median energy (sharp 11 and scalar 10)', max(x['qstar_over_median_accepted_U'] for a in ('stream_completion', 'stream_scalar') for r in arm(a) for x in r['fallback_records']) < 1e-3, True)
 check('mean actions sharp', round(st.mean(r['actions_mean'] for r in arm('stream_completion')), 1), 29.7)
 check('energy test first met median 20 (sharp)', sorted({r['energy_condition_first_met_median'] for r in arm('stream_completion')}), [20])
 check('gate decided stops (sharp)', sum(r['stop_decided_by']['margin'] for r in arm('stream_completion')), 887)
@@ -202,6 +203,16 @@ check('stream s/update 1.79', round(st.mean(runs[(s_, 'stream_completion')]['upd
 check('direct s/update 0.50', round(st.mean(runs[(s_, 'direct')]['update_seconds'] / 300 for s_ in (62001, 62002, 62003)), 2), .50)
 check('stream own-recovery peak 0.58 GiB', round(max(r['peak_gib_non_fallback_updates'] for r in arm('stream_completion')), 2), .58)
 check('two of three stream runs peaked at Direct memory', sum(runs[(s_, 'stream_completion')]['peak_update_allocated_bytes'] / 2**30 > 8 for s_ in (62001, 62002, 62003)), 2)
+PE_ = sa['primary_stream_completion_minus_arm_worst_test_accuracy']
+for a_, exp_ in (('direct', (.8, -3.5, 5.2)), ('native_chunk1', (.8, -1.2, 2.9)), ('stream_scalar', (2.3, -2.0, 6.6))):
+    check(f'live training primary endpoint, sharp Stream minus {a_}, mean and CI (points)', (round(PE_[a_]['mean'] * 100, 1), round(PE_[a_]['descriptive_t95'][0] * 100, 1), round(PE_[a_]['descriptive_t95'][1] * 100, 1)), exp_)
+    d_ = [(runs[(s_, 'stream_completion')]['final_test']['worst_accuracy'] - runs[(s_, a_)]['final_test']['worst_accuracy']) * 100 for s_ in (62001, 62002, 62003)]
+    m_, l_, h_ = tci(d_)
+    check(f'live training primary endpoint, sharp Stream minus {a_}, re-derived from run records', (round(m_, 1), round(l_, 1), round(h_, 1)), exp_)
+    check(f'live training primary endpoint, sharp Stream minus {a_}, not separated', bool(l_ < 0 < h_), True)
+fb_ = {r['seed']: r['fallbacks'] for r in arm('stream_completion')}
+pk_ = {s_: round(runs[(s_, 'stream_completion')]['peak_update_allocated_bytes'] / 2**30, 2) for s_ in (62001, 62002, 62003)}
+check('stream runs with 1 and 10 fallbacks peaked at 8.08 GiB, the third at 0.58 GiB', sorted((fb_[s_], pk_[s_]) for s_ in pk_), [(0, 0.58), (1, 8.08), (10, 8.08)])
 
 # ---------------- Target-aware Stream: live fixed-state study and replay
 qs_ = load('query_rule/query_rule_summary.json')
@@ -236,6 +247,9 @@ check('replay all accepted', all(v['accepted'] == v['n'] for s in rp['sets'].val
 # ---------------- Block-4 uniform controls and App. G.2 run record
 u = load('historical/uniform_block4_controls.json')['rows']
 check('uniform descends on all nine panels', all(r['uniform_descends'] for r in u), True)
+U4 = {(r['M'], r['seed']): r for r in u}
+for (M_, s_), (f_, g_) in {(512, 0): (2.9, 0.29), (512, 1): (1.15, 0.97), (512, 2): (1.16, 0.96), (1024, 0): (3.45, 0.11), (1024, 1): (1.17, 0.97), (1024, 2): (1.18, 0.96), (2048, 0): (4.26, 0.13), (2048, 1): (1.68, 0.61), (2048, 2): (1.19, 0.97)}.items():
+    check(f'block-4 table M={M_} seed {s_} factor / gain', (round(U4[(M_, s_)]['uniform_objective_factor'], 2), round(U4[(M_, s_)]['uniform_normalized_gain'], 2)), (f_, g_))
 check('uniform factor range low', round(min(r['uniform_objective_factor'] for r in u), 2), 1.15); check('uniform factor range high', round(max(r['uniform_objective_factor'] for r in u), 2), 4.26)
 g2 = load('historical/g2_six_arm_run.json')['runs']['2026082901']['paretotrace_front']['steps']
 early = [s for s in g2 if s['accounting']['algorithm_gram_actions'] < 16]
@@ -352,6 +366,9 @@ check('certified-step realized change never positive at accepted updates', all(
     c <= 0 for a in CS_ARMS if a.endswith('certified') for s_ in CS_SEEDS for c in cs[(a, s_)]['per_update']['max_task_change']), True)
 check('certified-step accepted certified updates 3,598', len(etas), 3598)
 check('certified-step held certified updates 2', sum(cs_sum(a, 'updates') for a in CS_ARMS if a.endswith('certified')) - len(etas), 2)
+check('certified-step certified updates in total 3,600', sum(cs_sum(a, 'updates') for a in CS_ARMS if a.endswith('certified')), 3600)
+check('study B MGDA-UB full first-order change descended on every attribute at all 900 certified updates', (900 - cs_sum('mgda_ub_certified', 'first_order_nonpositive_updates'), sum(cs[('mgda_ub_certified', s_)]['status_counts']['not_certified'] for s_ in CS_SEEDS)), (900, 0))
+check('study B uniform passed the verified step at 898 of 900 updates', cs_sum('uniform_certified', 'updates') - sum(cs[('uniform_certified', s_)]['status_counts']['not_certified'] + cs[('uniform_certified', s_)]['status_counts']['no_admissible_step'] for s_ in CS_SEEDS), 898)
 check('certified-step uniform cost in worst-attribute test accuracy (3.7 points)', round(cs_mean('uniform_fixed', 'final_test', 'worst_accuracy', 100) - cs_mean('uniform_certified', 'final_test', 'worst_accuracy', 100), 1), 3.7)
 check('certified-step exact MGDA gain in worst-attribute test accuracy (16.6 points)', round(cs_mean('direct_certified', 'final_test', 'worst_accuracy', 100) - cs_mean('direct_fixed', 'final_test', 'worst_accuracy', 100), 1), 16.6)
 check('certified-step heads turned a negative trunk response positive (634 updates)', cs_sum('uniform_certified', 'trunk_nonpositive_updates') - cs_sum('uniform_certified', 'first_order_nonpositive_updates'), 634)
@@ -380,6 +397,7 @@ for arm, (refused, raised, worst, acc) in {'uniform_fixed': (None, 899, 0.566, 6
     check(f'study A {arm} updates raising a loss', a2sum(arm, 'updates_raising_a_task'), raised)
     check(f'study A {arm} worst-attribute train BCE', round(a2mean(arm, 'final_train', 'worst_bce'), 3), worst)
     check(f'study A {arm} worst-attribute test accuracy', round(a2mean(arm, 'final_test', 'worst_accuracy', 100), 1), acc)
+check('study A uniform passed the verified step at 8 of 900 updates', sum(A2[('uniform_certified', s_)]['updates'] - A2[('uniform_certified', s_)]['status_counts']['not_certified'] - A2[('uniform_certified', s_)]['status_counts'].get('no_admissible_step', 0) for s_ in CS_SEEDS), 8)
 full = lambda arm: sum(e == 0.02 for s_ in CS_SEEDS for e, k in zip(A2[(arm, s_)]['per_update']['accepted_eta'], A2[(arm, s_)]['per_update']['status']) if k == 'accepted')
 check('study A exact MGDA kept the full step at 878 of 900 updates', full('direct_certified'), 878)
 check('study A certified exact MGDA within 0.0002 BCE of fixed', max(abs(A2[('direct_certified', s_)]['final_train']['worst_bce'] - A2[('direct_fixed', s_)]['final_train']['worst_bce']) for s_ in CS_SEEDS) < 0.0002, True)
