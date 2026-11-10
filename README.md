@@ -1,28 +1,27 @@
-# ParetoTrace: reviewer repository for the author response
+# ParetoTrace
 
-This repository accompanies the author response to the ICLR 2027 reviews of
-*ParetoTrace: Minimax Recovery of MGDA Directions from Partial Gradient Geometry*. It
-contains:
+Minimax recovery of MGDA directions from partial gradient geometry. This repository contains:
 
-- the code for every new experiment in the response;
-- the results of those experiments;
-- scripts that re-derive every number the response states.
+- ParetoTrace-Direct and ParetoTrace-Stream, with matched controls
+- the drivers for every experiment below, exactly as executed
+- the results of those experiments and the run records they come from
+- scripts that re-derive every reported number, and full proofs of new results
 
-## Check the response in about two minutes (CPU only)
+## Reproduce the reported numbers (CPU only, about two minutes)
 
 ```bash
 pip install numpy scipy
 python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on stored Grams (about 90 s)
-python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
+python3 audits/check_claims.py         # re-derives every reported number, prints PASS/FAIL per check
 python3 audits/verify_residual_rank.py # numerical check of the new residual-rank theorem (about 3 s)
 ```
 
 `check_claims.py` exits with status 0 only if every check passes. It currently runs 511
 checks.
 
-`CLAIMS.md` lists every claim in the response with its source file. It also marks the
-claims that quote the submitted PDF itself (Tables 8, 9, 15, 18, 25, 26 and 27, and
-App. G); these are not re-derived.
+`CLAIMS.md` lists every reported result with its source file and checks. Numbers quoted from
+the paper itself (Tables 8, 9, 15, 18, 25, 26 and 27, and App. G) are listed separately and are
+not re-derived.
 
 ## Layout
 
@@ -34,9 +33,9 @@ App. G); these are not re-derived.
 | `paretotrace/direct_qm9/` | Direct for the QM9 graph network. |
 | `paretotrace/controls/` | Matched controls: adapted structured-NTK contraction orders and the GhostSuite column adapter. |
 | `experiments/` | The drivers, exactly as executed, for each study below. |
-| `results/` | Outputs of each study, the stored Grams used for replay, and the historical run records cited in the response. |
+| `results/` | Outputs of each study, the stored Grams used for replay, and the historical run records cited in the paper. |
 | `audits/` | Independent re-analysis: claims checker, replay, event-level summaries. |
-| `theory/` | Full proofs of results that are new in the response: the residual-rank action bound. |
+| `theory/` | Full proofs of new results: the residual-rank action bound. |
 
 The Stream modules:
 
@@ -50,24 +49,24 @@ The Stream modules:
 ## New theorem
 
 `theory/residual_rank_theorem.md` proves that the completion query rule closes the certification interval in at
-most min(M, rank R + 1) exact actions, where R is the geometry not yet contracted (reply to 6wXk, Q4).
+most min(M, rank R + 1) exact actions, where R is the geometry not yet contracted.
 `audits/verify_residual_rank.py` checks the bound and both lemmas behind it on 608 random instances: none exceeds
 the bound, and 550 attain it exactly.
 
-## Studies and where they appear in the response
+## Studies
 
-| Study | Response | Driver | Results |
-|---|---|---|---|
-| CelebA-40 training, 20 paired seeds | P8RF W1/Q1, 6wXk Q1 | `experiments/celeba_training/` | `results/celeba_training/` |
-| QM9, seven methods, three seeds | P8RF Q1, 6wXk Q1 | `experiments/qm9/` | `results/qm9/` |
-| Matched recovery benchmark on Pythia-160M and Pythia-1B, plus the 1B training-update costs | P8RF Q8, 6wXk Q2, ZNzr Q1 | `experiments/language_benchmark/`, `paretotrace/` | `results/language_benchmark/` |
-| **Pythia-1B training** (six rules, three paired seeds, frozen protocol, 36 runs) | 6wXk Q2, P8RF Q1, General response (3/3) | `experiments/language_training_1b/` | `results/language_training_1b/` |
-| Live CelebA recovery at fixed states | P8RF Q2/Q3/Q7, ZNzr Q2 | `experiments/recovery_study/` | `results/recovery_study/` |
-| Live CelebA training, sharp vs scalar endpoint, 12 runs | P8RF Q7, 6wXk Q3 | `experiments/sharp_training/` | `results/sharp_training/` |
-| **Target-aware Stream** (live timing and replay) | All threads | `experiments/query_rule/`, `audits/replay_query_rules.py` | `results/query_rule/` |
-| **Target-aware Stream, live training** (3 seeds × 300 updates, paired with the 12-run study) | P8RF Q7, 6wXk Q3, ZNzr Q2 | `experiments/target_aware_training/` | `results/target_aware_training/` |
-| **Per-update guarantee studies** (CelebA-40: study A with frozen heads, study B with six arms × 3 seeds) and uniform's responses along training | General response (1/3, 2/3), P8RF Q2/Q4, 6wXk Q1 | `experiments/certified_step/`, `audits/uniform_along_training.py` | `results/certified_step/` |
-| **Pythia-1B under the verified step** (study C: five arms and one companion × 3 seeds, frozen protocol with two logged amendments, 18 reporting and 27 development runs) | General response (1/3, 2/3), P8RF Q1/Q4, 6wXk Q2 | `experiments/certified_1b/` | `results/certified_1b/` |
+| Study | Driver | Results |
+|---|---|---|
+| CelebA-40 training, 20 paired seeds | `experiments/celeba_training/` | `results/celeba_training/` |
+| QM9, seven methods, three seeds | `experiments/qm9/` | `results/qm9/` |
+| Matched recovery benchmark on Pythia-160M and Pythia-1B, plus the 1B training-update costs | `experiments/language_benchmark/`, `paretotrace/` | `results/language_benchmark/` |
+| **Pythia-1B training** (six rules, three paired seeds, frozen protocol, 36 runs) | `experiments/language_training_1b/` | `results/language_training_1b/` |
+| Live CelebA recovery at fixed states | `experiments/recovery_study/` | `results/recovery_study/` |
+| Live CelebA training, sharp vs scalar endpoint, 12 runs | `experiments/sharp_training/` | `results/sharp_training/` |
+| **Target-aware Stream** (live timing and replay) | `experiments/query_rule/`, `audits/replay_query_rules.py` | `results/query_rule/` |
+| **Target-aware Stream, live training** (3 seeds × 300 updates, paired with the 12-run study) | `experiments/target_aware_training/` | `results/target_aware_training/` |
+| **Per-update guarantee studies** (CelebA-40: study A with frozen heads, study B with six arms × 3 seeds) and uniform's responses along training | `experiments/certified_step/`, `audits/uniform_along_training.py` | `results/certified_step/` |
+| **Pythia-1B under the verified step** (study C: five arms and one companion × 3 seeds, frozen protocol with two logged amendments, 18 reporting and 27 development runs) | `experiments/certified_1b/` | `results/certified_1b/` |
 
 ## The per-update guarantee
 

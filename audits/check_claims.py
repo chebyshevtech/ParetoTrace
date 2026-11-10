@@ -1,8 +1,8 @@
-"""Re-derive every number stated in the OpenReview response from the files in results/.
+"""Re-derive every reported number from the files in results/.
 
 Run from the repository root:  python3 audits/check_claims.py
 Prints one PASS/FAIL line per claim and exits non-zero on any failure. Numbers quoted
-from the submitted PDF itself (Tables 8, 9, 15, 18, 25, 26, 27, App. G text) are listed in
+from the paper itself (Tables 8, 9, 15, 18, 25, 26, 27, App. G text) are listed in
 CLAIMS.md and are not re-derived here. Query-rule replay numbers are read from
 results/query_rule/replay_results.json, produced by audits/replay_query_rules.py.
 """
@@ -688,11 +688,11 @@ check('1B verified step: certified uniform minus the fixed step, worst-task test
 check('1B verified step: audit-first used uniform at', sum(r_['weighting'] == 'uniform' for r_ in cb_rows('auditfirst_certified')), 128)
 dd_ = [CBC[('direct_certified', s_)][0]['final_test']['worst_ce'] - RM[('confirmatory', 'direct', s_, 0.001)]['final_test']['worst_ce'] for s_ in SC]
 check('1B verified step: certified exact MGDA below the six-rule study\'s Direct (same seeds and batches), seeds', sum(x_ < 0 for x_ in dd_), 3)
-# Studies A and B primary endpoints with descriptive t-intervals (general response 2/3)
+# Studies A and B primary endpoints with descriptive t-intervals
 for lab_, D_ in (('study A', A2), ('certified-step', cs)):
     m_, l_, h_ = tci([D_[('direct_certified', s_)]['final_train']['worst_bce'] - D_[('uniform_certified', s_)]['final_train']['worst_bce'] for s_ in CS_SEEDS])
     check(f'{lab_} primary endpoint 95% t-interval', (round(l_, 3), round(h_, 3)), {'study A': (-0.021, -0.014), 'certified-step': (0.002, 0.023)}[lab_])
-# The sufficient-decrease constant (reply to P8RF, Q4)
+# The sufficient-decrease constant
 DV_ = {(k_[1], k_[3], k_[4]): v_[0]['final_validation']['worst_ce'] for k_, v_ in DEVC.items() if k_[1] != 'uniform_fixed'}
 check('1B verified step: development, c = 1e-4 below c = 1/2 in validation worst-task loss, pairs of rule and starting step',
       (sum(DV_[(a_, e_, 1e-4)] < DV_[(a_, e_, .5)] for a_ in PC['arms'] if a_ != 'uniform_fixed' for e_ in PC['eta_grid']), len(DV_) // 2), (12, 12))

@@ -1,6 +1,6 @@
 # Residual-rank action bound for the completion query rule
 
-This theorem answers Reviewer 6wXk's question on how to choose query vectors. It bounds the number of exact
+This theorem concerns how to choose query vectors for ParetoTrace-Stream. It bounds the number of exact
 actions the completion query rule needs to close the certification interval, in terms of the rank of the geometry
 that has not yet been contracted. A numerical check is in `audits/verify_residual_rank.py`.
 
