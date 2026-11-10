@@ -1,4 +1,4 @@
-=== POST: General response (1/4), to all reviewers: the per-update guarantee
+=== POST: General response (1/3), to all reviewers: the per-update guarantee
 
 **In brief.** We thank the three reviewers. All three credit the theory. The shared practical question is whether exact MGDA recovery is worth running when uniform weighting matches or beats MGDA on held-out averages (P8RF W1, 6wXk W1). Our answer is a guarantee rather than an average. Where no objective's loss on the current batch may rise at any update, as for a protected safety or fairness loss, a verified step (the certified arms in our tables) provides that guarantee and a held-out average cannot. MGDA is the weighting the verified step never has to refuse for lack of a descent direction, and ParetoTrace computes or certifies it where native per-task differentiation runs out of memory. Two new studies show when that matters and what it costs.
 
@@ -7,16 +7,16 @@
 - MGDA is the weighting it never refuses for lack of a descent direction. For every unit $u$ and $\lambda\in\Delta$, $\min_i g_i^\top u\le(G\lambda)^\top u\le\Vert G\lambda\Vert$, while $g_i^\top G\lambda^\star\ge q^\star$ for every $i$. So $G\lambda^\star$ has the largest worst-task rate of descent per unit step, $\sqrt{q^\star}$, and in exact arithmetic its margin is positive at every non-stationary state. Under one smoothness constant $\beta$ and with $m>0$, the best step this bound licenses guarantees every task a decrease of $m^2/(2\beta q)$, which is largest at MGDA, where it equals $q^\star/(2\beta)$, since $m\le\lambda^{\star\top}K\lambda\le\sqrt{q^\star q}$.
 - ParetoTrace reads the margin of its in-span weights at no extra action (Theorem 2). It computes MGDA exactly at Pythia-1B, where native per-task differentiation ran out of memory in every configuration we tried (adapted structured-NTK contraction also fits, 1.03× slower).
 
-**What the new studies show** (CelebA-40 details in 2/4).
+**What the new studies show** (CelebA-40 details in 2/3).
 - *Private heads frozen*, so every attribute depends only on the shared trunk (three seeds): the verified step refused uniform at 892 of 900 updates and MGDA-UB at 894, so neither could train under it. Exact MGDA was never refused and kept the full 0.02 step at 878 of 900 updates, and even unverified its step raised no attribute's minibatch loss, against 899 of 900 updates for uniform's.
 - *Private heads trained*: their own gradients kept uniform certifiable at 898 of 900 updates, so there the direction did not decide certifiability, and uniform made slightly more progress under the guarantee.
 - *Pythia-1B, every parameter shared by eight tasks* (from the exact Grams our Direct training runs logged): uniform's first-order response was negative for some task at 401 of 600 updates, so the verified step would refuse it there, while exact MGDA's margin was positive at all 600. Native per-task differentiation ran out of memory at this scale.
-- *No verified step*: with trained heads, the fixed step raised some attribute's minibatch loss at 777 of 900 uniform updates, and at all 900 exact-MGDA updates, where it broke training (2/4).
+- *No verified step*: with trained heads, the fixed step raised some attribute's minibatch loss at 777 of 900 uniform updates, and at all 900 exact-MGDA updates, where it broke training (2/3).
 - *In practice*: any weighting's margin costs one action (Corollary 4), so a run can audit uniform first and recover exact MGDA only when uniform would be refused, as Algorithm 1 does for a held weighting. Uniform passed at 8 and 898 of 900 updates in the two studies.
 
 **Scope.** The guarantee is per update, on that minibatch, and in floating point. It bounds no held-out or population loss. It chains across updates only for an objective scored on the same fixed set at every update, which then never rises during the run. It does not cover momentum or Adam. None of our training-quality studies used it. Its price can be large: in Table 26 the certified arm's held-out worst-task loss was 77.48, against 6.40 for the same direction at the tuned step, though audited uniform under the same test reached 248.33. We have not run a safety benchmark, so we claim the property, not a safety outcome. Code, logs and a checker for every number are at https://github.com/chebyshevtech/ParetoTrace.
 
-=== POST: General response (2/4), the two guarantee studies (new)
+=== POST: General response (2/3), the two guarantee studies (new)
 
 Both studies use CelebA-40, three seeds, 300 plain-SGD updates per arm and the data order of our other training studies. The trunk moves along $-G\lambda$. Each private head moves along its own unweighted gradient unless frozen. The fixed step is 0.02, the learning rate selected for our momentum-trained CelebA study, so it is untuned for plain SGD. The certified step is tried only when every exact first-order response (private heads included) is positive. It takes the first of $0.02\cdot2^{-k}$, $k<20$, that satisfies Equation (27) for all 40 attributes, and otherwise holds. An accepted step cannot raise a loss by construction, so these studies measure refusals and cost. Each fixed its primary endpoint in advance: certified exact MGDA minus certified uniform in final worst-attribute training BCE.
 
@@ -46,40 +46,33 @@ Of the arms we ran, only the MGDA directions could train under the guarantee: un
 
 The heads' own gradients turned a negative trunk response positive at 634 of uniform's certified updates, so uniform stayed certifiable and made slightly more progress (primary endpoint +0.013, uniform lower on 3 of 3 seeds). Certification moved uniform's worst-attribute test accuracy from 65.3% to 61.5%. Certified exact MGDA reached 59.8%, against 64.7% for momentum-trained Direct at 300 updates (reply to P8RF Q7). The fixed step broke exact MGDA (worst-attribute BCE above $\ln2$), so that row is not a fair baseline. Certified Stream matched exact MGDA within 0.0002 BCE at 0.58 GiB against 8.04 GiB, with no fallback. Means over seeds, differences computed before rounding.
 
-=== POST: General response (3/4), other new results
-
-*Terms.* "Energy" is the MGDA objective $q(\lambda)=\Vert G\lambda\Vert^2$. The "response gate" is a descent target on the exact responses $(K\lambda)_i$. The "sharp endpoint" is the completion lower bound $L_{\rm sk}$ of Corollary 1, and the "scalar endpoint" is the squared-margin bound $\max(m,0)^2/U$. A Stream "fallback" is an exact recovery charged to Stream when the certificate cannot be resolved numerically.
+=== POST: General response (3/3), other new results, corrections and the revision
+*Terms.* "Energy" is $q(\lambda)=\Vert G\lambda\Vert^2$, the MGDA objective. The "sharp endpoint" is Corollary 1's lower bound $L_{\rm sk}$, the "scalar endpoint" is $\max(m,0)^2/U$, and a "fallback" is an exact recovery charged to Stream when its certificate is numerically unresolved.
 
 **New results**
-
-- **CelebA-40, 20 paired seeds (P8RF Q1).** Primary endpoint, Direct − MGDA-UB in worst-attribute test accuracy: +0.9 points [−4.1, +5.8], 9/20 seeds, not separated. Direct beats MGDA-UB on mean accuracy (19/20), mean balanced accuracy (19/20) and cross-entropy (20/20), but trails uniform on worst-attribute accuracy (−5.1 [−8.6, −1.7]) and cross-entropy. We retract the ordering of Section 6.1 and Table 18.
+- **CelebA-40, 20 paired seeds (P8RF Q1).** Primary endpoint, Direct − MGDA-UB in worst-attribute test accuracy: +0.9 points [−4.1, +5.8], 9/20 seeds, not separated. Direct beats MGDA-UB on mean accuracy (19/20), mean balanced accuracy (19/20) and cross-entropy (20/20), but trails uniform on worst-attribute accuracy and cross-entropy (correction 1).
 - **QM9, seven methods (P8RF Q1).** Over 2 epochs and 3 seeds, exact MGDA beats MGDA-UB on all three seeds (not significant), is level with FairGrad and Aligned-MTL, and trails uniform and FAMO.
-- **Pythia-1B training (6wXk Q2).** Six rules, three paired seeds, one learning-rate search each under a frozen protocol. Direct − uniform in held-out worst-task cross-entropy is +0.252 [+0.167, +0.337], uniform lower on 3/3 seeds, so exact MGDA does not train a better 1B model at this budget.
-- **Matched cost (P8RF Q8, ZNzr Q1).** Direct is 1.19–1.22× faster than the best adapted structured-NTK contraction on Pythia-160M and 1.03× at 1B. With eight tasks at 1B an exact update costs 1.2× MGDA-FA or FAMO, and native per-task differentiation ran out of memory on a 40 GB A100 in every configuration we tried. With 40 tasks on CelebA's small trunk it costs 13× MGDA-UB.
-- **Improved Stream: target-aware acquisition (all reviewers).** The new studies show that on conflicting tasks Stream's cost is set by its descent target, not by ε. So Stream now certifies the energy with the sharp endpoint and common descent with the exact margin, with strict descent ($\min_i(K\lambda)_i>0$) as the default target. Once the energy test passes, it queries the task with the smallest response. Validity is unchanged, since the lower bound holds for any transcript. Live on CelebA-40 (four held-out states, independent native audits), recovery time falls from 1.85 s to 1.08 s at 0.54 GiB (41% by medians, 37% by paired geometric mean over states), with every task descending and energy within 2.1% of optimal. The scalar endpoint cannot exploit this, because at ε = 0.05 it equals the margin test $m\ge0.976U$. In replay on 33 distinct CelebA states, 8 stored CIFAR-10 Grams at $M=100$ and the 103 recorded Grams, the sharp endpoint needs 37%, 59% and 29% fewer actions than the scalar one. Replay reproduces the action counts of all 60 live Stream recoveries exactly. Live training confirms it: over 900 CelebA-40 updates (three paired seeds), target-aware Stream certified 894 before full rank at a mean 19.5 of 40 actions and 1.14 s per update, against 29.7 actions and 1.79 s for the original rule, and every audited update descended. The sharp endpoint now decides most stops: 611 of 894 alone, against none under the 0.95 gate.
-- **Live CelebA-40 training (P8RF Q7, 6wXk Q3).** Under the original 0.95 target, Stream certified 889 of 900 updates before full rank (scalar endpoint: 890), with all 36 independent audits passing and all 11 fallbacks at near-stationary states.
-- **New theorem (6wXk Q4, ZNzr Q2).** The completion query rule closes the interval in at most $\min(M,\operatorname{rank}R+1)$ exact actions, where $R$ is the geometry not yet contracted (exact rank). Statement and proof sketch are in our reply to 6wXk.
-
-=== POST: General response (4/4), corrections and changes
+- **Pythia-1B training (6wXk Q2).** Six rules, three paired seeds, one learning-rate search each under a frozen protocol. Direct − uniform in held-out worst-task cross-entropy is +0.252 [+0.167, +0.337], uniform lower on 3/3 seeds.
+- **Matched cost (P8RF Q8, ZNzr Q1).** Direct is 1.19–1.22× faster than the best adapted structured-NTK contraction on Pythia-160M and 1.03× at 1B. With eight tasks at 1B an exact update costs 1.2× MGDA-FA or FAMO, and native per-task differentiation ran out of memory in every configuration we tried. With 40 tasks on CelebA's small trunk it costs 13× MGDA-UB.
+- **Target-aware Stream (6wXk Q4, ZNzr Q2).** On conflicting tasks Stream's cost is set by its descent target, not by ε. With strict descent as the target and queries aimed at the smallest response once the energy test passes, live CelebA-40 recovery falls from 1.85 s to 1.08 s at 0.54 GiB, every task descending and energy within 2.1% of optimal. In replay the sharp endpoint needs 37%, 59% and 29% fewer actions than the scalar one on 33 CelebA states, 8 stored CIFAR-10 Grams and the 103 recorded Grams. In live training it certified 894 of 900 updates before full rank at 1.14 s per update, against 1.79 s for the original rule.
+- **New theorem (6wXk Q4, ZNzr Q2).** The completion query rule closes the interval in at most $\min(M,\operatorname{rank}R+1)$ exact actions, where $R$ is the geometry not yet contracted (sketch in our reply to 6wXk).
 
 **Corrections to the submission**
-
-1. **CelebA ordering (§6.1, C.9.2, Table 18).** Retracted. Table 18 used two seeds and a 4k split. On 20 seeds and the full test set, Direct − uniform is −5.1 points [−8.6, −1.7]. The MGDA arms vary far more on this metric (seed SD 7–8 points, against 1.3 for uniform) than the two-seed spread suggested.
+1. **CelebA ordering (§6.1, C.9.2, Table 18).** Retracted. On 20 seeds and the full test set, Direct − uniform is −5.1 points [−8.6, −1.7]. The MGDA arms vary far more (seed SD 7–8 points, against 1.3 for uniform) than two seeds showed.
 2. **Efficiency headline.** The 14.9× figure leaves the abstract, replaced by the matched benchmark.
-3. **Table 1 provenance.** Blocks 2 and 6 record their rules in run outputs: the positive-part scalar bound with a 0.95 gate, and completion with a numerical slack. Block 6's arm named Direct acquired every column with identity actions, so the Table 26 caption and G.2's "Direct contracts all sixteen blocks" are withdrawn. Block 5 ran a periodic heuristic with no certificate. For blocks 1 and 4 only source code survives, so their Stream rows will be marked uncertified, not relabeled, and B.5's statement that block 4's gate is checkable in the released record is withdrawn. Block 5's abstract claim is withdrawn, including "all three seeds", which included the tuning seed.
-4. **Margin gate (remark after Corollary 1, A.5.7, B.5, C.1).** The positive-part bound is valid for either sign of $m$ and is what the code computes. A.5.7 refutes only the untruncated square of C.1. The gate is a descent target, not a validity condition.
-5. **App. G.** Its 19 live early stops occur at non-positive measured energy and are disjoint from the 37 replay certifications. The abstract will say that this run made no early stop at a state float32 resolves, and report the new live results instead.
-6. **C.6.6 and C.9.1.** The 5.07 and 1.257 factors score weights optimal for one minibatch on another, not the spread of $q^\star$, which is larger still (about 700× across five CelebA minibatches). C.6.6's conclusion stands with corrected evidence.
-7. **Trunk scope.** The MGDA-UB audit, and our new uniform and transfer checks, measure the shared-trunk direction. Private heads also descend on their own tasks. With heads trained, MGDA-UB's full first-order change descended on every attribute at all 900 certified updates of study B. We will state this wherever these results appear, the abstract included, with the full first-order change.
-8. **Abstract.** The 60/60 result will appear only beside the tuned-step comparison (Table 25).
-9. **Table 25.** Its 16 actions per step include the full-rank audit's columns, which are outside the update.
-10. **Algorithm 1.** On CelebA at batch 128 its across-update rule would rarely keep a weighting, so §5's description will be scoped to the agreeing regime.
+3. **Table 1 (P8RF Q6).** Block 6's arm named Direct acquired every column with identity actions, so the Table 26 caption and G.2's "Direct contracts all sixteen blocks" are withdrawn. Block 5 ran a periodic heuristic with no certificate, and its abstract claim, including "all three seeds", is withdrawn. Blocks 1 and 4 keep only source code, so their Stream rows will be marked uncertified, and B.5's sentence that block 4's gate is checkable in the released record is withdrawn.
+4. **Margin gate (A.5.7, B.5, C.1).** The positive-part bound is valid for either sign of $m$ and is what the code computes. The gate is a descent target, not a validity condition.
+5. **App. G.** Its 19 live early stops occur at non-positive measured energy, disjoint from the 37 replay certifications. The abstract will say so.
+6. **C.6.6 and C.9.1.** The 5.07 and 1.257 factors score weights optimal for one minibatch on another, not the spread of $q^\star$, which is larger still (about 700× across five CelebA minibatches).
+7. **Trunk scope.** The MGDA-UB audit and our uniform and transfer checks measure the shared-trunk direction. With heads trained, MGDA-UB's full first-order change descended on every attribute at all 900 certified updates of study B. Each such statement will say so.
+8. **Table 25.** The 60/60 result will appear only beside the tuned-step comparison, and its 16 actions per step include the full-rank audit's columns.
+9. **Algorithm 1.** On CelebA at batch 128 its across-update rule would rarely keep a weighting, so §5 will scope it to agreeing tasks.
 
-**Additions.** The new studies, including the certified-step study, target-aware Stream, the residual-rank theorem, an implementation section for Direct and its controls, one decision rule among Direct, native differentiation and Stream, and a map from each main result to the step it justifies and the experiment that tests it (posted in our reply to ZNzr). The introduction and conclusion will state the per-update guarantee, credit it to the verified step, say what MGDA adds, and state its scope.
+**Revision plan.** The abstract and introduction will lead with the per-update guarantee and its scope. In the main text, the 20-seed CelebA table replaces §6.1's two-seed ordering, the guarantee studies join §6.3, and the matched benchmark replaces the efficiency headline. QM9, the Pythia-1B studies, target-aware Stream, the residual-rank proof, an implementation section for Direct and the theory-to-experiment map (reply to ZNzr) go to the appendix.
 
-**Scope.** MGDA optimizes the current minibatch's common-descent direction, not held-out loss. Exact recovery beats MGDA-UB on CelebA's mean metrics, but trails uniform on worst-attribute accuracy and cross-entropy, and on held-out worst-task cross-entropy at Pythia-1B. Direct was the fastest exact route in most of our settings. Native differentiation was cheaper on QM9 and close on CelebA. Stream wins on time only at large M with agreeing gradients, and otherwise trades about 2× Direct's time for 93% less memory when it does not fall back to Direct.
+**Scope.** MGDA optimizes the current minibatch's common-descent direction, not held-out loss, and on our benchmarks exact recovery trails uniform on worst-task metrics. Stream wins on time only at large M with agreeing gradients.
 
-=== POST: Response to Reviewer P8RF (1/6)
+=== POST: Response to Reviewer P8RF (1/5)
 
 **In brief.** We ran the experiments asked for. Exact MGDA beats MGDA-UB on every CelebA mean metric, but the primary worst-attribute endpoint did not separate and uniform is better on it, so we retract the §6.1 ordering. The case for exact recovery is a per-update guarantee rather than an average. A verified step keeps every task's minibatch loss from rising, and MGDA is the weighting it never has to refuse for lack of a descent direction. With frozen private heads on CelebA-40 the step refused uniform at 892 of 900 updates and exact MGDA at none, while with trained heads uniform passed at 898 (general response). The new studies also exposed what sets Stream's cost on conflicting tasks, the descent target. Relaxing it to strict descent, with target-aware queries, cuts live recovery time from 1.85 s to 1.08 s. Every headline the reviewer questioned is withdrawn or relabeled.
 
@@ -108,7 +101,7 @@ Paired differences, with 95% t-intervals and seeds favoring the first arm (compu
 
 With the twenty seeds C.9.2 estimated, the primary endpoint still did not separate: the paired standard deviation was about 10 points, far above the two-seed spread C.9.2 assumed. The spread comes from the MGDA arms, which on some seeds push one attribute down to about 40% accuracy (seed SD 7–8 points, against 1.3 for uniform). Uniform has the best worst-attribute accuracy and cross-entropy. That reverses Table 18 (two seeds, 4k split, serial exact MGDA), and we retract its ordering. Exact MGDA beats its cheap surrogate on every mean metric and has the best balanced accuracy of the three. Direct costs 13× more per update than MGDA-UB here.
 
-=== POST: Response to Reviewer P8RF (2/6)
+=== POST: Response to Reviewer P8RF (2/5)
 
 *QM9 (new).* We ran LibMTL's QM9 benchmark with pinned upstream code and split: 11 targets, 110,831 training graphs. Seven methods took part, Direct, MGDA-UB, uniform, Nash-MTL, FairGrad, Aligned-MTL and FAMO, each with LibMTL's default settings and the same Adam learning rate, for two full-data epochs over three paired seeds. Normalized MAE is each target's MAE in units of its standard deviation, averaged over targets. The standard 300 epochs would need about 380 A100-hours for this suite, so this is an early-training comparison, not a convergence ranking.
 
@@ -131,7 +124,7 @@ On this small graph network a native per-task route is cheaper than Direct (0.32
 
 *What we conclude.* Exact recovery changes the trained model measurably. It beats MGDA-UB on every CelebA mean metric and on all three QM9 seeds (not significant), but MGDA itself is not the best training rule on these benchmarks. This matches C.1's Pythia-160M result and our new matched Pythia-1B study (reply to 6wXk, Q2): in both, uniform has lower worst-task cross-entropy than Direct on all three seeds. So the case for exact recovery is not a better average. It is the per-update guarantee: a verified step, which any weighting can attempt for one Gram action, never has to refuse MGDA for lack of a descent direction, and with frozen private heads on CelebA it refused uniform at 892 of 900 updates (general response). At Pythia-1B, along our Direct runs, uniform's first-order response was negative for some task at 401 of 600 updates, exact MGDA's at none. Elsewhere uniform passes: at 898 of 900 updates with trained heads, where it made slightly more progress than MGDA, and at all 60 in Table 25, where it lowered the worst task far less (246.34 against 65.91). When a practitioner needs that guarantee, we show how to compute or certify MGDA and what it costs. That cost depends on the setting. With eight tasks at Pythia-1B an exact update costs 1.2× MGDA-FA or FAMO, and native per-task differentiation ran out of memory (reply to 6wXk, Q2). With 40 tasks on CelebA's small trunk it costs 13× MGDA-UB, and on QM9 native differentiation is cheaper. We will revise the abstract and introduction accordingly, and replace C.6.6's "null training result" with these results.
 
-=== POST: Response to Reviewer P8RF (3/6)
+=== POST: Response to Reviewer P8RF (3/5)
 
 **Q2. Uniform on the block-4 panels, and a conflicting setting where Stream beats Direct.**
 
@@ -164,13 +157,13 @@ A 5% certificate therefore does not estimate a population quantity. It certifies
 
 ε does not set the cost here: actions at the four held-out states are 33, 36, 23 and 31 for every ε from 0.01 to 0.25. The descent target does. Relaxing it from the 0.95 gate to strict descent, with target-aware queries, cuts live recovery time from 1.85 s to 1.08 s, while every audited direction keeps its energy within 2.1% of optimal. C.6.6 saw the same on CIFAR-10 groups, where a looser ε did not help because descent bound.
 
-=== POST: Response to Reviewer P8RF (4/6)
+=== POST: Response to Reviewer P8RF (4/5)
 
 **Q4. The 60/60 safeguard and its cost in progress.**
 
 Agreed, and the abstract will report both numbers together. In Table 25, 59 of 60 updates accepted a step, and one refused and held the parameters. The safeguarded run reached worst-task training loss 65.91, against 5.45 for the same direction at the tuned step, and held-out worst-task loss 77.48 against 6.40 (Table 26). The guarantee is non-increase of every task loss on the current minibatch. It does not cover progress, the population loss or momentum. Under the same test the recovered direction lowered the worst task from 257.10 to 65.91 while audited uniform reached 246.34, so the direction matters there, but the test is costly.
 
-*The same rule on CelebA (new).* Table 25's acceptance test (Equation (27) with $c=1/2$, halving the step), tried only when every exact response is positive and started from 0.02, costs much less on CelebA-40 (general response, 2/4). With private heads trained, the certified arms accepted 3,598 of 3,600 updates at a median step of 0.00125, 16× below the fixed 0.02, and certified uniform reached worst-attribute training BCE 0.640 against 0.604 at the fixed step. With the private heads frozen, it kept exact MGDA's full step at 878 of 900 updates, so the certified run ended within 0.0002 BCE of the fixed-step run, while it refused uniform at 892 of 900. So the cost of the guarantee depends on the setting as much as on the rule.
+*The same rule on CelebA (new).* Table 25's acceptance test (Equation (27) with $c=1/2$, halving the step), tried only when every exact response is positive and started from 0.02, costs much less on CelebA-40 (general response, 2/3). With private heads trained, the certified arms accepted 3,598 of 3,600 updates at a median step of 0.00125, 16× below the fixed 0.02, and certified uniform reached worst-attribute training BCE 0.640 against 0.604 at the fixed step. With the private heads frozen, it kept exact MGDA's full step at 878 of 900 updates, so the certified run ended within 0.0002 BCE of the fixed-step run, while it refused uniform at 892 of 900. So the cost of the guarantee depends on the setting as much as on the rule.
 
 *An intermediate rule.* We did not test another rule. Any $c\in(0,1)$ keeps strict decrease, and a smaller $c$ accepts at least as large a step on the same grid, possibly much larger than the 2× change in the smoothness bound suggests, since acceptance depends on the realized losses. A non-increase test with a step floor is another candidate. The dataset revision behind Table 25 is no longer available, so we will test both on the maintained revision for the final version and claim nothing about them now.
 
@@ -196,7 +189,7 @@ Our Pythia-1B study tuned MGDA-FA on the same development seed as every other ru
 
 Block 5 ran a heuristic with no certificate (Q5). For blocks 1 and 4 the gate cannot be recovered, because no execution transcript was saved, so B.5's statement that block 4's gate is checkable in the released record is withdrawn. As the reviewer proposes, those Stream rows will be marked uncertified, and we do not relabel them. On validity, the positive-part bound $\max(m,0)^2/U$ is valid for either sign of $m$. A.5.7 refutes only the untruncated square written in C.1, so B.5's statement that the gate is required for validity is wrong.
 
-=== POST: Response to Reviewer P8RF (5/6)
+=== POST: Response to Reviewer P8RF (5/5)
 
 **Q7. Does the live certificate ever stop early away from Pareto-stationarity?**
 
@@ -212,26 +205,11 @@ That study also shows why the sharp endpoint saved only 2–3% there. At ε = 0.
 
 These are floating-point decisions checked by independent audits, not outward-rounded certificates for neural autodiff.
 
-=== POST: Response to Reviewer P8RF (6/6)
+**Q8. Comparison with ghost-Gram and structured-NTK computation.** We built a matched benchmark of complete recovery (capture, Gram, simplex solve, emitted direction) against both structured-NTK orders, an automatic choice, GhostSuite's product kernels (the code of Wang et al., 2025) adapted to task-mean columns, and native serial and batched differentiation. All arms share precision, keep tied-weight cross terms, select their configuration on development batches, and are compared only where the direction matched an independent native reference to $2\times10^{-5}$ on every trial. Direct is 1.19× and 1.22× faster than the best structured control on Pythia-160M at 8 and 32 objectives, and 1.03× at Pythia-1B, where native differentiation ran out of memory. The table, the stricter two-reference check and the relation to Table 9 are in our reply to ZNzr (Q1).
 
-**Q8. Comparison with ghost-Gram and structured-NTK computation.**
+**W2. Headline claims.** Agreed. The abstract and Table 1 changes are listed in our general response. Every headline that rests on one seed, a replay, an unrecorded rule or asymmetric tuning is removed or labeled where it is stated.
 
-We built a matched benchmark of complete recovery (capture, Gram, simplex solve, emitted direction). The controls are both structured-NTK orders (token-pair, parameter-row) and an automatic choice (structured-auto), GhostSuite's product kernels (the code of Wang et al., 2025) at a pinned revision adapted to task-mean columns, and native serial and batched differentiation. All arms share precision, keep tied-weight cross terms, select their configuration on development batches, and are compared only where the direction matched an independent native reference to $2\times10^{-5}$ on every trial.
-
-| Pythia-160M | Direct | Best structured control | GhostSuite adapter | Native serial |
-|---|---|---|---|---|
-| 8 objectives | 0.376 s, 4.11 GiB | 0.446 s, 4.11 GiB (1.19×) | 0.634 s, 4.11 GiB | 0.957 s, 9.11 GiB |
-| 32 objectives | 0.373 s, 4.11 GiB | 0.457 s, 4.11 GiB (1.22×) | 1.712 s, 4.11 GiB | 3.497 s, 23.6 GiB |
-
-These are pooled medians of nine timed trials, and ratios use unrounded medians. Direct beats the best structured control on every batch. Native batched differentiation took 1.006 s and 4.244 s, qualifying on 6 of 9 trials. TorchJD was not rerun: in Table 9 it was 1.49× slower than Direct at 8 objectives and out of memory at 32. This is not a rerun of Table 9. Both sizes use 32 examples, so the 32 objectives are single examples, while Table 9 split a larger batch. Direct's cost depends on the examples, not their grouping, while native differentiation pays one backward pass per objective. The GhostSuite arm computes one column at a time and is not an optimized all-pairs implementation.
-
-A stricter check required agreement with two FP32 native references at once. These references disagree at that tolerance on some trials, and pass rates were erratic: native serial passes 3/9 at 8 objectives, structured-auto 3/9 and 9/9, GhostSuite 9/9 and 0/9, Direct 3/9 at both sizes. We read this as reference noise near the tolerance and make no speed claim under it.
-
-*Pythia-1B (new, 8 objectives).* Direct 1.92 s at 15.7 GiB, best structured order 1.99 s (1.03× from unrounded medians), GhostSuite adapter 4.51 s. Native differentiation is out of memory in every configuration tried. Every contraction route passes every check at 1B, the stricter one included.
-
-**W2. Headline claims.** Agreed. The abstract and Table 1 changes are listed in our general response. Every headline that rests on one seed, a replay, an unrecorded rule or asymmetric tuning is removed or labeled where it is stated. On the sharp endpoint's role: under the original 0.95 target it decided few live stops, as the reviewer suspected. Under the target-aware Stream it decides the stop: it needs 37% fewer actions than the scalar endpoint on CelebA, and in live training it alone decided 611 of 894 stops (Q7).
-
-=== POST: Response to Reviewer 6wXk (1/3)
+=== POST: Response to Reviewer 6wXk (1/2)
 
 **In brief.** On our benchmarks exact MGDA is not a better generalization rule than uniform, and we now say so. Its case is a per-update guarantee. A verified step keeps every task's minibatch loss from rising, and MGDA is the weighting it never has to refuse for lack of a descent direction. With frozen private heads on CelebA-40 the step refused uniform at 892 of 900 updates and exact MGDA at none, while with trained heads uniform passed at 898. Exact recovery is affordable at Pythia-1B, where native differentiation ran out of memory. A redesigned safeguard stops early on 889 of 900 live updates, and strict descent with target-aware queries cuts live recovery from 1.85 s to 1.08 s.
 
@@ -264,7 +242,7 @@ Recovery times are medians over three held-out batches. Update times are means o
 
 *Training outcomes at 1B (new).* Six rules, plain SGD, 200 updates, three paired seeds. Each rule's learning rate was chosen from {1e-4, 3e-4, 1e-3} on a separate seed by validation worst-task loss, under a frozen protocol. All 36 runs are in the repository. Final held-out worst-task answer cross-entropy, mean of three seeds: uniform 0.774, periodic 0.781, MGDA-FA 0.818, CAGrad 0.846, FAMO 0.878, Direct 1.026. Primary endpoints: Direct − uniform +0.252 [+0.167, +0.337], uniform lower on 3/3 seeds, and periodic (held weights refined every five updates) − MGDA-FA −0.037 [−0.464, +0.390], periodic lower on 1/3, not separated. Direct also trails uniform on mean cross-entropy (0.438 against 0.375). Five rules chose the largest rate, and Direct's validation worst-task loss was still falling at 200 updates in every seed, while uniform's was lowest at 100. So at this budget exact MGDA does not train a better 1B model, as on Pythia-160M (W1). It did not use the verified step, but along its Direct runs the step's gate would have refused uniform at 401 of 600 updates and exact MGDA at none (general response).
 
-=== POST: Response to Reviewer 6wXk (2/3)
+=== POST: Response to Reviewer 6wXk (2/2)
 
 **W2 / Q3. Live certification versus replay, and how numerical safeguards affect it.**
 
@@ -272,17 +250,13 @@ The reviewer identifies a real gap, and our accounting in App. G was incomplete.
 
 *What we changed.* The new guard drops the scale-proportional slack. A stop is accepted only with a positive lower bound and $U\le1.05L$, after checking that the completion reproduces the observed actions to relative residual $2\times10^{-5}$. Any update that fails a numerical check falls back to exact recovery, charged to Stream. Stops remain floating-point decisions, so we audit sampled updates against independently differentiated task gradients.
 
-*What it did.* In new live CelebA-40 training (three paired seeds, 300 updates each), Stream certified 889 of 900 updates before full rank with the sharp endpoint and 890 with the scalar one. The 11 and 10 fallbacks all came at near-stationary states, where the exact MGDA energy was below 0.1% of its median, which is the regime float32 cannot resolve. All 36 independent audits passed (three per run). In App. G.2's run the old guard also passed 22 early stops, because there the energy stayed large and the slack was at most 2.9% of $U$. So the shortfall came from how the safeguard scaled, not from the endpoint.
+*What it did.* In new live CelebA-40 training (three paired seeds, 300 updates each), Stream certified 889 of 900 updates before full rank with the sharp endpoint and 890 with the scalar one. The 11 and 10 fallbacks all came at near-stationary states, where the exact MGDA energy was below 0.1% of its median, which is the regime float32 cannot resolve. All 36 independent audits passed. In App. G.2's run the old guard also passed 22 early stops, because there the energy stayed large and the slack was at most 2.9% of $U$. So the shortfall came from how the safeguard scaled, not from the endpoint.
 
-*How it affects efficiency.* Under the original 0.95 descent target, the descent gate, not the safeguard or the endpoint, decided 887 of 889 live stops. With strict descent as the target and the target-aware query rule (reply to Q4), live recovery at fixed CelebA states takes 1.08 s instead of 1.85 s, with every task descending and energy within 2.1% of optimal. In live training (three seeds, 900 updates) it certified 894 updates early at 1.14 s per update, against 1.79 s for the original rule, with 6 near-stationary fallbacks and all audits passing.
+*How it affects efficiency.* Under the original 0.95 descent target, the descent gate, not the safeguard or the endpoint, decided 887 of 889 live stops. With strict descent as the target and target-aware queries (Q4 below), live training certified 894 of 900 updates early at 1.14 s per update, against 1.79 s for the original rule, with 6 near-stationary fallbacks and all audits passing.
 
 *Next step.* Proposition 3 shows how to tie the guard to action error: if the action errors have operator norm at most $\delta$, both bounds move by computable multiples of $\delta$, and the relative test survives when $U_\delta\le(1+\epsilon)L_\delta$ with $L_\delta>0$. Our runs do not yet use these perturbed bounds, which need a measured bound on action error. We do not claim an outward-rounded certificate for neural autodiff.
 
-=== POST: Response to Reviewer 6wXk (3/3)
-
 **Q4. How should query vectors be chosen in practice?**
-
-Use the rule the theory supplies, plus one improvement the new studies motivated.
 
 *Theorem (residual-rank action bound).* Let $K=C+R$, where $C\succeq0$ is known (the geometry already contracted) and $R\succeq0$ is reached only through exact actions $v\mapsto Rv$, with $r=\operatorname{rank}R$. Initialize by querying $Ru$ for any $u\in\arg\min_{\Delta}u^\top Cu$. For the acquired span $\mathcal S$ with basis $Q$ and $Y=RQ$, let
 
@@ -298,7 +272,7 @@ While $L<U$, query the normalized off-span component of a lower minimizer $\mu$.
 
 *Practical rule.* Time acquisition, solve, reconstruction and fallback for each candidate on a few development states, and take the fastest that fits memory (reply to ZNzr, Q2).
 
-=== POST: Response to Reviewer ZNzr (1/3)
+=== POST: Response to Reviewer ZNzr (1/2)
 
 **In brief.** We do not claim the contraction identity: Direct is the full-information endpoint of our minimax framework. In a new matched benchmark it is 1.19–1.22× faster than adapted structured-NTK contraction on Pythia-160M and 1.03× at 1B, faster than the GhostSuite adapter, and 2.5–9.4× faster than native serial differentiation. With strict descent and target-aware queries, Stream now runs at about 2× Direct's time with 93% less memory on live CelebA when it does not fall back to Direct. We give one decision rule and post the theory-to-experiment map now. Code: https://github.com/chebyshevtech/ParetoTrace.
 
@@ -324,9 +298,9 @@ The controls share items 2 and 4, and we have not ablated which remaining item g
 | 8 objectives | 0.376 s, 4.11 GiB | 0.446 s, 4.11 GiB (1.19×) | 0.634 s, 4.11 GiB | 0.957 s, 9.11 GiB |
 | 32 objectives | 0.373 s, 4.11 GiB | 0.457 s, 4.11 GiB (1.22×) | 1.712 s, 4.11 GiB | 3.497 s, 23.6 GiB |
 
-Ratios use unrounded medians. Both sizes use 32 examples, so the 32 objectives are single examples. At Pythia-1B, Direct takes 1.92 s against 1.99 s for the best structured order (1.03×) and 4.51 s for the GhostSuite adapter, and native differentiation runs out of memory. A stricter check against two FP32 native references at once gave erratic pass rates for every arm, including native differentiation (Direct 3/9), so we make no speed claim there (details in our reply to P8RF, Q8). The GhostSuite arm adapts per-column kernels and is not an optimized all-pairs implementation. The code, adapters, harness and run logs are at https://github.com/chebyshevtech/ParetoTrace.
+These are pooled medians of nine timed trials, ratios use unrounded medians, and Direct beat the best structured control on every batch. Native batched differentiation took 1.006 s and 4.244 s, qualifying on 6 of 9 trials. Both sizes use 32 examples, so the 32 objectives are single examples: Direct's cost depends on the examples, not their grouping, while native differentiation pays one backward pass per objective. Table 9 split a larger batch, so this is not its rerun (there TorchJD was 1.49× slower than Direct at 8 objectives and out of memory at 32). At Pythia-1B, Direct takes 1.92 s against 1.99 s for the best structured order (1.03×) and 4.51 s for the GhostSuite adapter, native differentiation ran out of memory, and every contraction route passed every check. A stricter check against two FP32 native references at once gave erratic pass rates on Pythia-160M (native serial 3/9 at 8 objectives, structured-auto 3/9 and 9/9, GhostSuite 9/9 and 0/9, Direct 3/9 at both sizes), which we read as reference noise near the tolerance, so we make no speed claim under it. The GhostSuite arm adapts per-column kernels and is not an optimized all-pairs implementation. The code, adapters, harness and run logs are at https://github.com/chebyshevtech/ParetoTrace.
 
-=== POST: Response to Reviewer ZNzr (2/3)
+=== POST: Response to Reviewer ZNzr (2/2)
 
 **W2 / Q2. When should a practitioner choose Stream over Direct?**
 
@@ -347,9 +321,7 @@ Ratios use unrounded medians. Both sizes use 32 examples, so the 32 objectives a
 | Stream, original rule (0.95 target) | 1.85 | 0.54 | 23–36 |
 | Stream, target-aware (strict descent) | 1.08 | 0.54 | 15–25 |
 
-Native differentiation was timed in our first run on these states, the other rows in the second. Every Stream direction passed the audit, every task descended, and energy stayed within 2.1% of optimal. So Stream now costs about 2× Direct's time, down from 3.5×, for 93% less memory when it does not fall back to Direct. In live training it took 1.14 s per update against 0.50 s for Direct and 1.79 s for the original rule, at 0.58 GiB on every update that did not fall back. Our new theorem bounds the actions by $\operatorname{rank}R+1$ in exact rank, which is informative only for partial contraction. In practice the effective rank and the descent target decide the cost. We will replace the regime discussion of Sections 5–6 with this rule and these costs.
-
-=== POST: Response to Reviewer ZNzr (3/3)
+Native differentiation was timed in a separate run on these states. Every Stream direction passed the audit, every task descended, and energy stayed within 2.1% of optimal. So Stream now costs about 2× Direct's time, down from 3.5×, for 93% less memory when it does not fall back to Direct. In live training it took 1.14 s per update against 0.50 s for Direct and 1.79 s for the original rule, at 0.58 GiB on every update that did not fall back. We will replace the regime discussion of Sections 5–6 with this rule and these costs.
 
 **W3. Presentation.** We agree that the submission makes theory, stopping rules and experiments hard to connect. The final version will open its experiments with this map:
 
@@ -361,7 +333,7 @@ Native differentiation was timed in our first run on these states, the other row
 | Corollary 1, Equation (21) | Sharp endpoint, dominating the Frank–Wolfe gap and the scalar endpoint | Stopping test | Block 7 replay, live training, target-aware study |
 | Theorem 4 | Recovery when part of the geometry is contracted, a single Gram when all of it is | Direct | Block 3, matched benchmark |
 | Theorem 5, Proposition 4 | Additive regret when a trace budget bounds the completions | Trace-budget variant of the stop | 103 recorded Grams (C.6) |
-| Proposition 1, Equation (27) | A positive margin admits a step that raises no task loss, and a test that finds it | Certified step | Tables 25 and 26, two new CelebA studies (general response, 2/4) |
+| Proposition 1, Equation (27) | A positive margin admits a step that raises no task loss, and a test that finds it | Certified step | Tables 25 and 26, two new CelebA studies (general response, 2/3) |
 | Proposition 3 | Bounds under inexact actions | Basis for a numerical guard | Not yet run live |
 | New residual-rank theorem | At most $\operatorname{rank}R+1$ actions, exact rank | Completion query rule | Rule used live, bound vacuous at full rank |
 
