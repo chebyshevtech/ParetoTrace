@@ -492,5 +492,30 @@ check('1B training corrected analyzer differs from the frozen one in exactly one
 check('1B training the changed line pins the frozen methods file', changed[0][1].strip(), "'language_training_methods.py': '%s'," % FROZEN['language_training_methods.py'])
 check('1B training the analysis was produced by the corrected analyzer', L['analyzer_sha256'], hashlib.sha256(ca_path.read_bytes()).hexdigest())
 
+# ---------------- Pythia-1B first-order responses along the Direct runs (exact 8x8 Grams logged at every update)
+def direct_rows_1b(label):
+    rd_ = RES / 'language_training_1b/runs' / label
+    m_ = json.loads((rd_ / 'metrics.json').read_text())
+    rows_, ok_ = [], True
+    for blk_ in m_['update_blocks']:
+        f_ = rd_ / blk_['file']
+        ok_ = ok_ and hashlib.sha256(f_.read_bytes()).hexdigest() == blk_['sha256']
+        rows_ += json.loads(f_.read_text())
+    return rows_, ok_ and [r_['step'] for r_ in rows_] == list(range(m_['steps']))
+UR_, UR1_, MGP_, NB_, OK_ = 0, 0, 0, 0, True
+for s_ in S1B:
+    rows_, ok_ = direct_rows_1b(f'confirmatory_direct_seed{s_}_lr0.001')
+    OK_ = OK_ and ok_
+    for r_ in rows_:
+        K_ = np.asarray(r_['recovered_gram'], float); K_ = (K_ + K_.T) / 2
+        ru_ = K_ @ np.full(len(K_), 1 / len(K_)); sc_ = float(np.mean(np.diag(K_)))
+        UR_ += int(ru_.min() < 0); UR1_ += int(ru_.min() < -0.01 * sc_)
+        MGP_ += int((K_ @ np.asarray(r_['weights'], float)).min() > 0); NB_ += 1
+check('1B first-order: update records hash-bound to each run and complete', OK_, True)
+check('1B first-order: confirmatory Direct updates with an exact Gram', NB_, 600)
+check('1B first-order: uniform response negative for some task (the verified step would refuse it)', UR_, 401)
+check('1B first-order: uniform response below -1% of the mean Gram diagonal', UR1_, 311)
+check('1B first-order: exact MGDA margin positive at every update', MGP_, 600)
+
 print('\n%d claims failed' % len(FAILS) if FAILS else '\nALL CLAIMS PASS')
 sys.exit(1 if FAILS else 0)

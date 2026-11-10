@@ -16,7 +16,7 @@ python3 audits/replay_query_rules.py   # exact replay of Stream acquisition on s
 python3 audits/check_claims.py         # re-derives every number in the response, prints PASS/FAIL per claim
 ```
 
-`check_claims.py` exits with status 0 only if every check passes. It currently runs 423
+`check_claims.py` exits with status 0 only if every check passes. It currently runs 428
 checks.
 
 `CLAIMS.md` lists every claim in the response with its source file. It also marks the
@@ -206,6 +206,14 @@ held-out worst-task cross-entropy, with descriptive Student-t 95% intervals (df 
 Five rules chose the largest rate in the grid. Direct's validation-selected checkpoint was its last (update 200) on
 every seed, and uniform's was update 100 on every seed. The study measures bounded-budget adaptation, not convergence.
 It did not use the verified step, so it speaks to training quality only.
+
+**The guarantee at 1B.** Every parameter is shared across the eight tasks, and the Direct runs logged the exact
+8×8 Gram of the task gradients at every update. Along the three confirmatory Direct runs, uniform's first-order
+response was negative for some task at 401 of 600 updates (311 by more than 1% of the mean Gram diagonal), so the
+verified step's gate would refuse uniform there. Exact MGDA's margin was positive at all 600 (below 1e-4 of that
+scale at 3 near-stationary updates). These are first-order checks along Direct's trajectory, not runs of the
+verified step. The records are in `results/language_training_1b/runs/*direct*/updates/`, hash-bound to each
+run's `metrics.json`.
 
 **Provenance.** `experiments/language_training_1b/` holds the 26 frozen campaign sources byte for byte (their hashes
 are in `results/language_training_1b/campaign_sources.json`). The campaign driver validated every run, including full
